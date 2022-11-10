@@ -3,4 +3,5 @@ site_url: https://example.com/
 nav:
     - Home: index.md
     - Hello: helpers.md
+    - NeRF: instant-ngp-windows.md
 theme: material
