@@ -1,0 +1,6 @@
+site_name: Cobanov
+site_url: https://example.com/
+nav:
+    - Home: index.md
+    - Hello: helpers.md
+theme: material
