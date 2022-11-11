@@ -1,4 +1,3 @@
 # Welcome to Cobanov
 
-👋
-Hey I'm Cobanov 🦊
+Hey, I'm Cobanov 👋

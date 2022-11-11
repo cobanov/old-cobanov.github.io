@@ -1,8 +1,7 @@
 site_name: Cobanov
-site_url: https://example.com/
 nav:
     - Home: index.md
-    - Hello: helpers.md
-    - NeRF: instant-ngp-windows.md
-    - Cypherpunk Manifest
+    - Helper one-liners: helpers.md
+    - NeRF Windows Installation: instant-ngp-windows.md
+    - Cypherpunk Manifest: cyberpunk.md
 theme: material
