@@ -13,8 +13,7 @@ hide:
 
 # Mert Cobanov #0001
 
-> **Username:** @cobanov <br> > **Job:** Data Scientist, Refik Anadol Studio <br> > **Date of Birth:** 02.01.1996 <br>
-> 👋 **Blog:** [cobanov.dev/blog](https://cobanov.dev/blog)
+> **Username:** @cobanov <br> **Job:** Data Scientist, Refik Anadol Studio <br> **Date of Birth:** 02.01.1996 <br>
 
 ## About
 
