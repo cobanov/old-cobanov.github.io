@@ -1,3 +1,13 @@
+---
+title: One Liners
+summary: A brief description of my document.
+authors:
+  - Mert Cobanov
+date: 2022-11-11
+some_url: https://cobanov.dev/blog
+hide:
+  - footer
+---
 # Helper Codes
 
 ## SSH
@@ -24,7 +34,7 @@ scp -o "ProxyJump mert@servername.ddns.net -p {port}" mert@target-pc:/home/mert/
 
 ## Various
 
-**Download File** 
+**Download File**
 
 ```bash
 wget --user-agent Mozilla/4.0 'big address' -O dest_file_name

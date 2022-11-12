@@ -1,7 +1,54 @@
 site_name: Cobanov
+repo_url: https://github.com/cobanov/
+repo_name: "Visit my GitHub"
+site_author: "Mert Cobanov"
+edit_uri: ""
+
+
 nav:
-    - Home: index.md
-    - Helper one-liners: helpers.md
-    - NeRF Windows Installation: instant-ngp-windows.md
-    - Cypherpunk Manifest: cyberpunk.md
-theme: material
+    - Blog:
+          - "index.md"
+          - "Feature Selection": "feature_selection.md"
+          - "Cypherpunk Manifesto": "cyberpunk.md"
+          - "Helper one-liners": "helpers.md"
+    - "Guides":
+          - "NeRF Windows Installations": "instant-ngp-windows.md"
+
+theme:
+    icon:
+        repo: fontawesome/brands/github 
+    name: material
+    language: tr
+    features:
+        - navigation.tabs
+        - navigation.tabs.sticky
+        - navigation.top
+
+    palette:
+        primary: black
+        accent: orange
+    font:
+        text: Open Sans
+        code: Red Hat Mono
+
+    nav_style: dark
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - python
+
+markdown_extensions:
+    - pymdownx.highlight:
+          anchor_linenums: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.superfences
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter 
+      link: https://twitter.com/cobanov
+    - icon: fontawesome/brands/youtube 
+      link: https://youtube.com/@mertcobanov
+    - icon: fontawesome/brands/instagram 
+      link: https://instagram.com/mertcobanov

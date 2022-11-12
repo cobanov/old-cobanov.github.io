@@ -1,3 +1,13 @@
+---
+title: Instang NGP
+summary: A brief description of my document.
+authors:
+  - Mert Cobanov
+date: 2022-11-11
+some_url: https://cobanov.dev/blog
+hide:
+  - footer
+---
 # Instant Neural Graphics Primitives !
 
 ## Requirements

@@ -1,3 +1,15 @@
+---
+title: Cypherpunk Manifesto
+summary: A brief description of my document.
+authors:
+  - Mert Cobanov
+  - Eric Hughes
+date: 2022-11-11
+some_url: https://cobanov.dev/blog
+hide:
+  - footer
+---
+
 # Bir Cypherpunk'ın Manifestosu
 
 > **by Eric Hughes**
@@ -29,4 +41,4 @@ Cypherpunks, ağları gizlilik için daha güvenli hale getirmek için aktif ola
 İleriye.
 
 > Eric Hughes < hughes@soda.berkeley.edu >
-9 Mart 1993
+> 9 Mart 1993
