@@ -4,7 +4,7 @@ summary: A brief description of my document.
 authors:
   - Mert Cobanov
 date: 2022-11-11
-some_url: https://cobanov.dev/blog
+some_url: https://cobanov.dev/
 hide:
   - footer
 ---
@@ -21,14 +21,9 @@ Community lover, data scientist and generative artist. I love to share what I kn
 
 ## Links
 
-[![](https://img.shields.io/badge/blog-green.svg?&style=for-the-badge&logo=mdBook&logoColor=white)](https://www.cobanov.dev/blog/)
-[![](https://img.shields.io/badge/twitter-blue.svg?&style=for-the-badge&logo=twitter&logoColor=white)](https://www.twitter.com/mertcobanov/)
+[![](https://img.shields.io/badge/twitter-blue.svg?&style=for-the-badge&logo=twitter&logoColor=white)](https://www.twitter.com/mertcobanov/) [![](https://img.shields.io/badge/youtube-red.svg?&style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@mertcobanov/) [![](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mertcobanov/)
 
-[![](https://img.shields.io/badge/youtube-red.svg?&style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@mertcobanov/)
-[![](https://img.shields.io/badge/github-black.svg?&style=for-the-badge&logo=github&logoColor=white)](https://www.github.com/cobanov/) [![](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mertcobanov/)
-
-[![my badge](https://img.shields.io/badge/ethereum-purple.svg?&style=for-the-badge&logo=ethereum)](https://github.com/cobanov/cobanov.github.io/blob/master/eth.md)
-[![opensea](https://img.shields.io/badge/opensea-black.svg?&style=for-the-badge&logo=opensea)](https://opensea.io/cobanov)
+[![my badge](https://img.shields.io/badge/ethereum-purple.svg?&style=for-the-badge&logo=ethereum)](https://github.com/cobanov/cobanov.github.io/blob/master/eth.md) [![opensea](https://img.shields.io/badge/opensea-black.svg?&style=for-the-badge&logo=opensea)](https://opensea.io/cobanov)
 
 ## More
 
