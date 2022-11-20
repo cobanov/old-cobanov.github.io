@@ -15,7 +15,7 @@
     
     
       
-        <title>Main Page - Cobanov</title>
+        <title>DreamBooth Rehberi - Cobanov</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mert-cobanov-0001" class="md-skip">
+        <a href="#dreambooth-extension-for-stable-diffusion-webui" class="md-skip">
           Ana içeriğe geç
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Main Page
+              DreamBooth Rehberi
             
           </span>
         </div>
@@ -185,13 +185,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../instant-ngp-windows/" class="md-tabs__link">
+      <a href="../instant-ngp-windows/" class="md-tabs__link md-tabs__link--active">
         Guides
       </a>
     </li>
@@ -217,15 +219,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link md-tabs__link--active">
+      <a href="../about/" class="md-tabs__link">
         About
       </a>
     </li>
@@ -248,8 +248,6 @@
         <div class="md-main__inner md-grid">
           
             
-              
-                
               
               <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
@@ -380,12 +378,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -420,11 +420,146 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../dreambooth-rehberi/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          DreamBooth Rehberi
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         DreamBooth Rehberi
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage" class="md-nav__link">
+    Usage
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-model" class="md-nav__link">
+    Create a Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-basic-settings" class="md-nav__link">
+    Training (Basic Settings)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-settings" class="md-nav__link">
+    Advanced Settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuing-training" class="md-nav__link">
+    Continuing Training
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#use-dreambooth-to-fine-tune-stable-diffusion-in-google-colab" class="md-nav__link">
+    Use DreamBooth to Fine-Tune Stable Diffusion in Google Colab
+  </a>
+  
+    <nav class="md-nav" aria-label="Use DreamBooth to Fine-Tune Stable Diffusion in Google Colab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-images" class="md-nav__link">
+    Prepare Images
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choosing-images" class="md-nav__link">
+    Choosing Images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resize-crop-to-512-x-512px" class="md-nav__link">
+    Resize &amp; Crop to 512 x 512px
+  </a>
+  
+    <nav class="md-nav" aria-label="Resize &amp; Crop to 512 x 512px">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renaming-your-images" class="md-nav__link">
+    Renaming Your Images
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -490,14 +625,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
       
       
       
@@ -518,66 +651,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Main Page
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
         Main Page
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      İçindekiler
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#about" class="md-nav__link">
-    About
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#links" class="md-nav__link">
-    Links
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#more" class="md-nav__link">
-    More
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -596,8 +674,6 @@
               </div>
             
             
-              
-                
               
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
@@ -618,23 +694,103 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#about" class="md-nav__link">
-    About
+  <a href="#installation" class="md-nav__link">
+    Installation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#links" class="md-nav__link">
-    Links
+  <a href="#usage" class="md-nav__link">
+    Usage
   </a>
+  
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-model" class="md-nav__link">
+    Create a Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-basic-settings" class="md-nav__link">
+    Training (Basic Settings)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-settings" class="md-nav__link">
+    Advanced Settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuing-training" class="md-nav__link">
+    Continuing Training
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#more" class="md-nav__link">
-    More
+  <a href="#use-dreambooth-to-fine-tune-stable-diffusion-in-google-colab" class="md-nav__link">
+    Use DreamBooth to Fine-Tune Stable Diffusion in Google Colab
   </a>
+  
+    <nav class="md-nav" aria-label="Use DreamBooth to Fine-Tune Stable Diffusion in Google Colab">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prepare-images" class="md-nav__link">
+    Prepare Images
+  </a>
+  
+    <nav class="md-nav" aria-label="Prepare Images">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choosing-images" class="md-nav__link">
+    Choosing Images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resize-crop-to-512-x-512px" class="md-nav__link">
+    Resize &amp; Crop to 512 x 512px
+  </a>
+  
+    <nav class="md-nav" aria-label="Resize &amp; Crop to 512 x 512px">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#renaming-your-images" class="md-nav__link">
+    Renaming Your Images
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -653,23 +809,126 @@
                   
 
 
-<p><img alt="" src="https://github.com/cobanov/personal/blob/master/image/image.jpeg?raw=true" /></p>
-<h1 id="mert-cobanov-0001">Mert Cobanov #0001</h1>
-<blockquote>
-<p><strong>Username:</strong> @cobanov <br> <strong>Job:</strong> Data Scientist, Refik Anadol Studio <br> <strong>Date of Birth:</strong> 02.01.1996 <br></p>
-</blockquote>
-<h2 id="about">About</h2>
-<p>Community lover, data scientist and generative artist. I love to share what I know, so I try to provide free data science and machine learning education to everyone on my <a href="https://twitter.com/mertcobanov/">twitter</a> and <a href="https://www.youtube.com/@mertcobanov">youtube</a> channel. I teach at several schools and communities each year. I work as a data scientist at <a href="https://refikanadolstudio.com/">Refik Anadol Studio</a>, where we do great artistic works with my excellent team, and we try to digitize the <strong>memories of humanity to immortalize it.</strong></p>
-<h2 id="links">Links</h2>
-<p><a href="https://www.twitter.com/mertcobanov/"><img alt="" src="https://img.shields.io/badge/twitter-blue.svg?&amp;style=for-the-badge&amp;logo=twitter&amp;logoColor=white" /></a> <a href="https://www.youtube.com/@mertcobanov/"><img alt="" src="https://img.shields.io/badge/youtube-red.svg?&amp;style=for-the-badge&amp;logo=youtube&amp;logoColor=white" /></a> <a href="https://www.linkedin.com/in/mertcobanov/"><img alt="" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&amp;style=for-the-badge&amp;logo=linkedin&amp;logoColor=white" /></a></p>
-<p><a href="https://github.com/cobanov/cobanov.github.io/blob/master/eth.md"><img alt="my badge" src="https://img.shields.io/badge/ethereum-purple.svg?&amp;style=for-the-badge&amp;logo=ethereum" /></a> <a href="https://opensea.io/cobanov"><img alt="opensea" src="https://img.shields.io/badge/opensea-black.svg?&amp;style=for-the-badge&amp;logo=opensea" /></a></p>
-<h2 id="more">More</h2>
-<p>You can see my work in my <a href="https://www.github.com/cobanov/">github</a> repos and my humble <a href="https://art.cobanov.dev">portfolio</a>.</p>
-<p>I really enjoy writing minimal tools that make the lives of software developers easier, building end-to-end pipelines, and doing AI artistic painting works that motivate me immensely. I also digitize and repair old video tapes and bring them to high resolution and high fps forms.</p>
+<h1 id="dreambooth-extension-for-stable-diffusion-webui">Dreambooth Extension for Stable-Diffusion-WebUI</h1>
+<p>This is a WIP port of <a href="https://github.com/ShivamShrirao/diffusers/tree/main/examples/dreambooth">Shivam Shriao's Diffusers Repo</a>, which is a modified version of the default <a href="https://github.com/huggingface/diffusers">Huggingface Diffusers Repo</a> optimized for better performance on lower-VRAM GPUs.</p>
+<p>It also adds several other features, including training multiple concepts simultaneously, and (Coming soon) Inpainting training.</p>
+<h2 id="installation">Installation</h2>
+<p>To install, simply go to the "Extensions" tab in the SD Web UI, select the "Available" sub-tab, pick "Load from:" to load the list of extensions, and finally, click "install" next to the Dreambooth entry.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/1633844/200368737-7fe322de-00d6-4b28-a321-5e09f072d397.png" /></p>
+<p><em>For 8bit adam to run properly, it may be necessary to install the CU116 version of torch and torchvision, which can be accomplished below:</em></p>
+<p>Refer to the appropriate script below for extra flags to install requirements:</p>
+<p>https://github.com/d8ahazard/sd_dreambooth_extension/blob/main/webui-user-dreambooth.bat
+https://github.com/d8ahazard/sd_dreambooth_extension/blob/main/webui-user-dreambooth.sh</p>
+<p>Setting the torch command to:
+<code>TORCH_COMMAND=pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 --extra-index-url https://download.pytorch.org/whl/cu116</code>
+will ensure that the proper torch version is installed when webui-user is executed, and then left alone after that, versus trying to install conflicting versions.</p>
+<p>We also need a newer version of diffusers, as SD-WebUI uses version 0.3.0, while DB training requires &gt; 0.6.0, so we use 0.7.2. Not having the right diffusers version is the cause of the 'UNet2DConditionModel' object has no attribute 'enable_gradient_checkpointing' error message, as well as safety checker warnings.</p>
+<p>To force sd-web-ui to <em>only</em> install one set of requirements, we can specify the command line argument:</p>
+<p>set/export REQS_FILE=.\extensions\sd_dreambooth_extension\requirements.txt</p>
+<p>And last, if you wish to completely skip the "native" install routine of Dreambooth, you can set the following environment flag:
+DREAMBOOTH_SKIP_INSTALL=True</p>
+<p>This is ideal for "offline mode", where you don't want the script to constantly check things from pypi.</p>
+<p>After installing via the WebUI, it is recommended to set the above flags and re-launch the entire Stable-diffusion-webui, not just reload it.</p>
+<h2 id="usage">Usage</h2>
+<h3 id="create-a-model">Create a Model</h3>
+<ol>
+<li>Go to the Dreambooth tab.</li>
+<li>Under the "Create Model" sub-tab, enter a new model name and select the source checkpoint to train from.
+   The source checkpoint will be extracted to models\dreambooth\MODELNAME\working - the original will not be touched.
+   2b. Optionally, you can also specify a huggingface model directory and token to create the Dreambooth dataset from huggingface.co.
+   Model path format should be like so: 'runwayml/stable-diffusion-v1-5'</li>
+<li>Click "Create". This will take a minute or two, but when done, the UI should indicate that a new model directory has been set up.</li>
+</ol>
+<h3 id="training-basic-settings">Training (Basic Settings)</h3>
+<ol>
+<li>After creating a new model, select the new model name from the "Model" dropdown at the very top.</li>
+<li>Select the "Train Model" sub-tab.</li>
+<li>Fill in the paramters as described below:</li>
+</ol>
+<p><em>Concepts List</em> - The path to a JSON file or a JSON string containing multiple concepts. See <a href="https://raw.githubusercontent.com/d8ahazard/sd_dreambooth_extension/main/dreambooth/concepts_list.json">here</a> for an example.</p>
+<p>If a concepts list is specified, then the instance prompt, class prompt, instance data dir, and class data dir fields will be ignored.</p>
+<p><em>Instance Prompt</em> - A short descriptor of your subject using a UNIQUE keyword and a classifier word. If training a dog, your instance prompt could be "photo of zkz dog".
+The key here is that "zkz" is not a word that might overlap with something in the real world "fluff", and "dog" is a generic word to describe your subject. This is only necessary if using prior preservation.
+You can use <code>[filewords]</code> as placeholder for reading caption from the image filename or a seprarte .txt file containing caption, for example, <code>[filewords], in the style of zymkyr</code>. This syntax is the same as textual inversion templates.</p>
+<p><em>Class Prompt</em> - A keyword indicating what type of "thing" your subject is. If your instance prompt is "photo of zkz dog", your class prompt would be "photo of a dog".
+Leave this blank to disable prior preservation training.</p>
+<p><em>Dataset Directory</em> - The path to the directory where the images described in Instance Prompt are kept. <em>REQUIRED</em></p>
+<p><em>Classification dataset directory</em> - The path to the directory where the images described in Class Prompt are kept. If a class prompt is specified and this is left blank,
+images will be generated to /models/dreambooth/MODELNAME/classifiers/</p>
+<p><em>Total number of classification images to use</em> - Leave at 0 to disable prior preservation. For best results you want ~n*10 classification images - so if you have 40 training photos, then set this to 400. This is just a guess.</p>
+<p><em>Training steps</em> - How many total training steps to complete. According to <a href="https://github.com/nitrosocke/dreambooth-training-guide">this guide</a>, you should train for appx 100 steps per sample image. So, if you have 40 instance/sample images, you would train for 4k steps. This is, of course, a rough approximation, and other values will have an effect on final output fidelity.</p>
+<p><em>Batch size</em> - How many training steps to process simultaneously. You probably want to leave this at 1.</p>
+<p><em>Class batch size</em> - How many classification images to generate simultaneously. Set this to whatever you can safely process at once using Txt2Image, or just leave it alone.</p>
+<p><em>Learning rate</em> - You probably don't want to touch this.</p>
+<p><em>Resolution</em> - The resolution to train images at. You probably want to keep this number at 512 or lower unless your GPU is insane. Lowering this (and the resolution of training images)
+may help with lower-VRAM GPUs.</p>
+<p><em>Save a checkpoint every N steps</em> - How frequently to save a checkpoint from the trained data. I should probably change the default of this to 1000.</p>
+<p><em>Generate a preview image every N steps</em> - How frequently will an image be generated as an example of training progress.</p>
+<p><em>Preview image prompt</em> - The prompt to use to generate preview image. Leave blank to use the instance prompt.</p>
+<p><em>Preview image negative prompt</em> - Like above, but negative. Leave blank to do nothing. :P</p>
+<p><em>Number of samples to generate</em> - Self explainatory?</p>
+<p><em>Sample guidance scale</em> - Like CFG Scale in Txt2Image/Img2Img, used for generating preview.</p>
+<p><em>Sample steps</em> - Same as sample guidance scale, but the number of steps to run to generate preview.</p>
+<h3 id="advanced-settings">Advanced Settings</h3>
+<p><em>Use CPU Only</em> - As indicated, this is more of a last resort if you can't get it to train with any other settings. Also, as indicated, it will be abysmally slow.
+Also, you <em>cannot</em> use 8Bit-Adam with CPU Training, or you'll have a bad time.</p>
+<p><em>Don't Cache Latents</em> - Why is this not just called "cache" latents? Because that's what the original script uses, and I'm trying to maintain the ability to update this as easily as possible. Anyway...when this box is <em>checked</em> latents will not be cached. When latents are not cached, you will save a bit of VRAM, but train slightly slower.</p>
+<p><em>Train Text Encoder</em> - Not required, but recommended. Enabling this will probably cost a bit more VRAM, but also purportedly increase output image fidelity.</p>
+<p><em>Use 8Bit Adam</em> - Enable this to save VRAM. Should now work on both windows and Linux without needing WSL.</p>
+<p><em>Center Crop</em> - Crop images if they aren't the right dimensions? I don't use this, and I recommend you just crop your images "right".</p>
+<p><em>Gradient Checkpointing</em> - Enable this to save VRAM at the cost of a bit of speed.</p>
+<p><em>Scale Learning Rate</em> - I don't use this, not sure what impact it has on performance or output quality.</p>
+<p><em>Mixed Precision</em> - Set to 'fp16' to save VRAM at the cost of speed.</p>
+<p><em>Everything after 'Mixed Precision'</em> - Adjust at your own risk. Performance/quality benefits from changing these remain to be tested.</p>
+<p>The next two were added after I wrote the above bit, so just ignore me being a big liar.</p>
+<p><em>Pad Tokens</em> - Pads the text tokens to a longer length for some reason.</p>
+<p><em>Max Token Length</em> - raise the tokenizer's default limit above 75. Requires Pad Tokens for &gt; 75.</p>
+<p><em>Apply Horizontal Flip</em> - "Apply horizontal flip augmentation". Flips images horizontally at random, which can potentially offer better editability?</p>
+<p><em>Use EMA for finetuning</em> - Use exponential moving average weight to reduce overfitting during the last iterations.</p>
+<h3 id="continuing-training">Continuing Training</h3>
+<p>Once a model has been trained for any number of steps, a config file is saved which contains all of the parameters from the UI.</p>
+<p>If you wish to continue training a model, you can simply select the model name from the dropdown and then click the blue button next to the model name dropdown to load previous parameters.</p>
+<p><img alt="image" src="https://user-images.githubusercontent.com/1633844/200369076-8debef69-4b95-4341-83ac-cbbb02ee02f6.png" /></p>
+<h2 id="use-dreambooth-to-fine-tune-stable-diffusion-in-google-colab">Use DreamBooth to Fine-Tune Stable Diffusion in Google Colab</h2>
+<h3 id="prepare-images">Prepare Images</h3>
+<h4 id="choosing-images">Choosing Images</h4>
+<p>When choosing images, it’s recommended to keep the following in mind to get the best results:</p>
+<ul>
+<li>Upload a variety of images of your subject. If you’re uploading images of a person, try something like 70% close-ups, 20% from the chest up, 10% full body, so Stable Diffusion also gets some idea of the rest of the subject and not only the face.</li>
+<li>Try to change things up as much as possible in each picture. This means:</li>
+<li>Varying the body pose</li>
+<li>Taking pictures on different days, in different lighting conditions, and with different backgrounds</li>
+<li>Showing a variety of expressions and emotions</li>
+<li>When generating new images, whatever you capture will be over-represented. For example, if you take multiple pictures with the same green field behind you, it’s likely that the generated images of you will also contain the green field, even if you want a dystopic background. This can apply to anything, like jewelry, clothes, or even people in the background. If you want to avoid seeing that element in your generated image, make sure not to repeat it in every shot. On the other hand, if you want it in the generated images, make sure it’s in your pictures more often.</li>
+<li>It’s recommended that you provide ~50 images of what you’d like to train Stable Diffusion on to get great results. However, I’ve only used 20-30 so far, and the results are pretty good. If you’re just starting out and want to test it out, I think 20-30 images should be good enough for now, and you can get 50 images after you’ve seen it work.</li>
+</ul>
+<h4 id="resize-crop-to-512-x-512px">Resize &amp; Crop to 512 x 512px</h4>
+<p>Once you’ve chosen your images, you should prepare them.</p>
+<p>First, we need to resize and crop our images to be 512 x 512px. We can easily do this using the website https://birme.net.</p>
+<p>To do this, just:</p>
+<ul>
+<li>Visit the website</li>
+<li>Upload your images</li>
+<li>Set your dimensions to 512 x 512px</li>
+<li>Adjust the cropping area to center your subject</li>
+<li>Click on Save as Zip to download the archive.</li>
+<li>You can then unzip it on your computer, and we’ll use them a bit later.</li>
+<li>Birme.net - Resize Images</li>
+<li>Resizing Images using Birme.net</li>
+</ul>
+<h5 id="renaming-your-images">Renaming Your Images</h5>
+<p>We’ll also want to rename our images to contain the subject’s name:</p>
+<ol>
+<li>
+<p>Firstly, the subject name should be one unique/random/unknown keyword. This is because Stable Diffusion also has some knowledge of The Sandman from other sources other than the one played by Tom Sturridge and we don’t want it to get confused and make a combination of interpretations of The Sandman. As such, I’ll call it Sandman2022 to make sure it’s unique.</p>
+</li>
+<li>
+<p>Renaming images to subject (1), subject (2) .. subject (30). This is because, using this method, you can train multiple subjects at once. If you want to fine-tune Stable Diffusion with Sandman, your friend Kevin, and your cat, you can give it prepare images for each of them. For the Sandman you’d have Sandman2022 (1), Sandman2022 (2) … Sandman (30), for Kevin you’d have KevinKevinson2022 (1), KevinKevinson2022 (2) … KevinKevinson (30), and for your cat you’d have DexterTheCat (1), DexterTheCat (2) … DexterTheCat(30).
+   Here’s me renaming my images for Sandman2022 in bulk on Windows. Just select them all, right click one of them and click Rename and give it what name you want and click anywhere to finish the renaming. Everything else will be renamed as well.</p>
+</li>
+</ol>
 
 
-
-  
 
 
 
@@ -690,12 +949,10 @@
         <footer class="md-footer">
   
     
-      
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" hidden>
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../portfolio/" class="md-footer__link md-footer__link--prev" aria-label="Önceki: Hey" rel="prev">
+        <a href="../instant-ngp-windows/" class="md-footer__link md-footer__link--prev" aria-label="Önceki: NeRF Windows Installations" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -704,11 +961,26 @@
               <span class="md-footer__direction">
                 Önceki
               </span>
-              Hey
+              NeRF Windows Installations
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../portfolio/" class="md-footer__link md-footer__link--next" aria-label="Sonraki: Hey" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Sonraki
+              </span>
+              Hey
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
