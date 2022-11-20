@@ -12,7 +12,7 @@ nav:
       - "Helper one-liners": "helpers.md"
   - "Guides":
       - "NeRF Windows Installations": "instant-ngp-windows.md"
-
+      - "DreamBooth Rehberi": "dreambooth-rehberi.md"
   - Portfolio:
       - "portfolio.md"
   - About:

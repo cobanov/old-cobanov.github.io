@@ -98,6 +98,12 @@ ffmpeg -i test.mp4 -vf fps=1/2  png-exports/video13_%06d.png
 ```
 
 ---
+## Image
+
+Convert all images in directory
+```
+mogrify -format png *.*
+```
 
 ## Move Files
 
