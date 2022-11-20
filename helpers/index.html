@@ -11,7 +11,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.9">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.472b142f.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.08040f6c.min.css">
@@ -431,6 +431,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#move-files" class="md-nav__link">
     Move Files
   </a>
@@ -522,6 +529,20 @@
     <li class="md-nav__item">
       <a href="../instant-ngp-windows/" class="md-nav__link">
         NeRF Windows Installations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dreambooth-rehberi/" class="md-nav__link">
+        DreamBooth Rehberi
       </a>
     </li>
   
@@ -694,6 +715,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#image" class="md-nav__link">
+    Image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#move-files" class="md-nav__link">
     Move Files
   </a>
@@ -798,20 +826,24 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>**for f <span class="k">in</span> *.mp4<span class="p">;</span> <span class="k">do</span> ffmpeg -i <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span> -vf <span class="nv">fps</span><span class="o">=</span><span class="m">2</span> png-exports/<span class="si">${</span><span class="nv">f</span><span class="p">%.*</span><span class="si">}</span>_%06d.png<span class="p">;</span> <span class="k">done</span>**
 </code></pre></div>
 <hr />
+<h2 id="image">Image</h2>
+<p>Convert all images in directory
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>mogrify -format png *.*
+</code></pre></div></p>
 <h2 id="move-files">Move Files</h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">for</span> f <span class="k">in</span> png-exports/*<span class="p">;</span> <span class="k">do</span> cp <span class="nv">$f</span>/*.png all_images<span class="p">;</span> <span class="k">done</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">for</span> f <span class="k">in</span> png-exports/*<span class="p">;</span> <span class="k">do</span> cp <span class="nv">$f</span>/*.png all_images<span class="p">;</span> <span class="k">done</span>
 </code></pre></div>
 <h3 id="png-sequence-to-mp4">PNG Sequence to MP4</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ffmpeg -f image2 -r <span class="m">30</span> -i %6d.jpg -vcodec libx264 -crf <span class="m">18</span>  -pix_fmt yuv420p test.mp4
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ffmpeg -f image2 -r <span class="m">30</span> -i %6d.jpg -vcodec libx264 -crf <span class="m">18</span>  -pix_fmt yuv420p test.mp4
 </code></pre></div>
 <h3 id="esrgan">ESRGAN</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python inference_realesrgan.py -n RealESRGAN_x4plus -i v13 -s <span class="m">3</span> --suffix 8k -t <span class="m">1500</span> -o v13_out
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>python inference_realesrgan.py -n RealESRGAN_x4plus -i v13 -s <span class="m">3</span> --suffix 8k -t <span class="m">1500</span> -o v13_out
 </code></pre></div>
 <h3 id="delete-files-recursively">Delete Files Recursively</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>    find e -maxdepth <span class="m">10</span> -type f -name <span class="s2">&quot;.*&quot;</span> -delete
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>    find e -maxdepth <span class="m">10</span> -type f -name <span class="s2">&quot;.*&quot;</span> -delete
 </code></pre></div>
 <h3 id="get-dimensions-from-folder">Get Dimensions from Folder</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ls -U | while read n; do identify -format &quot;%f,%w,%h\n&quot; &quot;$n&quot;; done &gt; file_size.csv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ls -U | while read n; do identify -format &quot;%f,%w,%h\n&quot; &quot;$n&quot;; done &gt; file_size.csv
 </code></pre></div>
 
 
