@@ -10,6 +10,8 @@ nav:
       - "Feature Selection": "feature_selection.md"
       - "Cypherpunk Manifesto": "cyberpunk.md"
       - "Helper one-liners": "helpers.md"
+  - Stable:
+      - "Guides": stable.md
   - "Guides":
       - "NeRF Windows Installations": "instant-ngp-windows.md"
       - "DreamBooth Rehberi": "dreambooth-rehberi.md"
