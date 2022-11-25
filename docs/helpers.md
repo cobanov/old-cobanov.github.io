@@ -109,7 +109,7 @@ for f in *; do ffmpeg -i "${f}" -vn -ab 128k -ar 44100 -y "${f}.mp3" ; done
 ### PNG Sequence → MP4
 
 ```bash
-ffmpeg -f image2 -r 30 -i %6d.jpg -vcodec libx264 -crf 18  -pix_fmt yuv420p test.mp4
+ffmpeg -f image2 -r 30 -i image_%6d.png -vcodec libx264 -crf 18  -pix_fmt yuv420p output.mp4
 ```
 
 ### MP4 → PNG
@@ -125,11 +125,11 @@ for f in *.mp4; do ffmpeg -i "$f" -vf fps=2 png-exports/${f%.*}_%06d.png; done
 ### MOV to Optimized GIF
 
 ```jsx
-ffmpeg -i yesbuddy.mov -pix_fmt rgb24 output.gif
+ffmpeg -i test.mov -vf scale=320:-1 -r 10 output/ffout%3d.png
 ```
 
 ```jsx
-convert -layers Optimize output.gif output_optimized.gif
+convert -delay 8 -loop 0 output/ffout*.png output/test.gif
 ```
 
 ---

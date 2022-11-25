@@ -1033,7 +1033,7 @@
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">for</span> f <span class="k">in</span> *<span class="p">;</span> <span class="k">do</span> ffmpeg -i <span class="s2">&quot;</span><span class="si">${</span><span class="nv">f</span><span class="si">}</span><span class="s2">&quot;</span> -vn -ab 128k -ar <span class="m">44100</span> -y <span class="s2">&quot;</span><span class="si">${</span><span class="nv">f</span><span class="si">}</span><span class="s2">.mp3&quot;</span> <span class="p">;</span> <span class="k">done</span>
 </code></pre></div>
 <h3 id="png-sequence-mp4">PNG Sequence → MP4</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ffmpeg -f image2 -r <span class="m">30</span> -i %6d.jpg -vcodec libx264 -crf <span class="m">18</span>  -pix_fmt yuv420p test.mp4
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>ffmpeg -f image2 -r <span class="m">30</span> -i image_%6d.png -vcodec libx264 -crf <span class="m">18</span>  -pix_fmt yuv420p output.mp4
 </code></pre></div>
 <h3 id="mp4-png">MP4 → PNG</h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ffmpeg -i test.mp4 -vf <span class="nv">fps</span><span class="o">=</span><span class="m">1</span>/2  png-exports/video13_%06d.png
@@ -1041,9 +1041,9 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">for</span> f <span class="k">in</span> *.mp4<span class="p">;</span> <span class="k">do</span> ffmpeg -i <span class="s2">&quot;</span><span class="nv">$f</span><span class="s2">&quot;</span> -vf <span class="nv">fps</span><span class="o">=</span><span class="m">2</span> png-exports/<span class="si">${</span><span class="nv">f</span><span class="p">%.*</span><span class="si">}</span>_%06d.png<span class="p">;</span> <span class="k">done</span>
 </code></pre></div>
 <h3 id="mov-to-optimized-gif">MOV to Optimized GIF</h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ffmpeg -i yesbuddy.mov -pix_fmt rgb24 output.gif
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>ffmpeg -i test.mov -vf scale=320:-1 -r 10 output/ffout%3d.png
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>convert -layers Optimize output.gif output_optimized.gif
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>convert -delay 8 -loop 0 output/ffout*.png output/test.gif
 </code></pre></div>
 <hr />
 <h2 id="image">Image</h2>
