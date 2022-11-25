@@ -7,14 +7,13 @@ edit_uri: ""
 nav:
   - Blog:
       - "index.md"
-      - "Feature Selection": "feature_selection.md"
-      - "Cypherpunk Manifesto": "cyberpunk.md"
       - "Helper one-liners": "helpers.md"
-  - Stable:
-      - "Guides": stable.md
-  - "Guides":
-      - "NeRF Windows Installations": "instant-ngp-windows.md"
+      - "Cobanov's Stable Diffusion Guide": stable.md
       - "DreamBooth Rehberi": "dreambooth-rehberi.md"
+      - "Cypherpunk Manifesto": "cyberpunk.md"
+      - "NeRF Windows Installations": "instant-ngp-windows.md"
+      - "Feature Selection": "feature_selection.md"
+      - "Ogrenme Tekniklerim": "ogrenme-tekniklerim.md"
   - Portfolio:
       - "portfolio.md"
   - About:

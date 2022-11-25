@@ -14,8 +14,8 @@ _For 8bit adam to run properly, it may be necessary to install the CU116 version
 
 Refer to the appropriate script below for extra flags to install requirements:
 
-https://github.com/d8ahazard/sd_dreambooth_extension/blob/main/webui-user-dreambooth.bat
-https://github.com/d8ahazard/sd_dreambooth_extension/blob/main/webui-user-dreambooth.sh
+<https://github.com/d8ahazard/sd_dreambooth_extension/blob/main/webui-user-dreambooth.bat>
+<https://github.com/d8ahazard/sd_dreambooth_extension/blob/main/webui-user-dreambooth.sh>
 
 Setting the torch command to:
 `TORCH_COMMAND=pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 --extra-index-url https://download.pytorch.org/whl/cu116`
@@ -153,7 +153,7 @@ When choosing images, it’s recommended to keep the following in mind to get th
 
 Once you’ve chosen your images, you should prepare them.
 
-First, we need to resize and crop our images to be 512 x 512px. We can easily do this using the website https://birme.net.
+First, we need to resize and crop our images to be 512 x 512px. We can easily do this using the website <https://birme.net>.
 
 To do this, just:
 
@@ -166,7 +166,7 @@ To do this, just:
 - Birme.net - Resize Images
 - Resizing Images using Birme.net
 
-##### Renaming Your Images
+#### Renaming Your Images
 
 We’ll also want to rename our images to contain the subject’s name:
 
