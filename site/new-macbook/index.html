@@ -395,6 +395,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#iterm2-settings" class="md-nav__link">
+    iTerm2 Settings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-python-dev-environment" class="md-nav__link">
     Install Python Dev Environment
   </a>
@@ -663,6 +670,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#iterm2-settings" class="md-nav__link">
+    iTerm2 Settings
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-python-dev-environment" class="md-nav__link">
     Install Python Dev Environment
   </a>
@@ -710,6 +724,10 @@
 <h2 id="install-oh-my-zsh">Install Oh my ZSH.</h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
 </code></pre></div>
+<h2 id="iterm2-settings">iTerm2 Settings</h2>
+<blockquote>
+<p>Preferences &gt; Profiles &gt; Keys &gt; Presets &gt; Natural Text Editing</p>
+</blockquote>
 <h2 id="install-python-dev-environment">Install Python Dev Environment</h2>
 <p>Install Anaconda
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
@@ -720,7 +738,8 @@ Initialize on Terminal if needed
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>source ~/.zshrc
 </code></pre></div>
 Install popular libraries
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pip install pandas numpy matplotlib seaborn scikit-learn requests
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>python -m pip install --upgrade pip
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>pip install pandas numpy matplotlib seaborn scikit-learn requests
 </code></pre></div></p>
 <h2 id="pytorch-env">PyTorch Env</h2>
 <p>Create environment for PyTorch
@@ -735,6 +754,15 @@ Install popular libraries
 </code></pre></div></p>
 <p>MPS acceleration is available on MacOS 12.3+
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>conda install pytorch torchvision torchaudio -c pytorch-nightly
+</code></pre></div>
+if you get error
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>conda install pytorch -c pytorch-nightly
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>pip install --pre torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
+</code></pre></div>
+Check if everyting is okay
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">python</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kn">import</span> <span class="nn">torch</span><span class="p">;</span> <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1"># True</span>
 </code></pre></div></p>
 
 

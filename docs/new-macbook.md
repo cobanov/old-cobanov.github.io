@@ -24,6 +24,9 @@ sudo apt install zsh-autosuggestions zsh-syntax-highlighting zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+## iTerm2 Settings
+> Preferences > Profiles > Keys > Presets > Natural Text Editing
+
 ## Install Python Dev Environment
 Install Anaconda
 ```
@@ -37,6 +40,7 @@ source ~/.zshrc
 ```
 Install popular libraries
 ```
+python -m pip install --upgrade pip
 pip install pandas numpy matplotlib seaborn scikit-learn requests
 ```
 
@@ -59,4 +63,15 @@ conda install pkg-config libuv
 MPS acceleration is available on MacOS 12.3+
 ```
 conda install pytorch torchvision torchaudio -c pytorch-nightly
+```
+if you get error
+```
+conda install pytorch -c pytorch-nightly
+pip install --pre torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
+```
+Check if everyting is okay
+```python
+python
+import torch; torch.backends.mps.is_available()
+# True
 ```
