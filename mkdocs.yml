@@ -8,12 +8,13 @@ nav:
   - Blog:
       - "index.md"
       - "Helper one-liners": "helpers.md"
+      - "New Macbook Installation": "new-macbook.md"
       - "Cobanov's Stable Diffusion Guide": stable.md
       - "DreamBooth Rehberi": "dreambooth-rehberi.md"
       - "Cypherpunk Manifesto": "cyberpunk.md"
       - "NeRF Windows Installations": "instant-ngp-windows.md"
-      - "Feature Selection": "feature_selection.md"
       - 'Doing Python Configuration Right': 'python-conf.md'
+      - 'Nerf Studio Docker': 'nerf-studio-docker.md'
   - Portfolio:
       - "portfolio.md"
   - About:

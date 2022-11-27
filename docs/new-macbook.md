@@ -23,4 +23,40 @@ sudo apt install zsh-autosuggestions zsh-syntax-highlighting zsh
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
-	
+
+## Install Python Dev Environment
+Install Anaconda
+```
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
+sh Miniconda3-latest-MacOSX-arm64.sh
+```
+Initialize on Terminal if needed
+```
+conda init
+source ~/.zshrc
+```
+Install popular libraries
+```
+pip install pandas numpy matplotlib seaborn scikit-learn requests
+```
+
+
+## PyTorch Env
+Create environment for PyTorch
+```
+conda create --name torchenv python=3.9
+activate torchenv
+```
+
+Install Dependencies
+```
+brew install gcc
+
+conda install astunparse numpy ninja pyyaml setuptools cmake cffi typing_extensions future six requests dataclasses
+conda install pkg-config libuv
+```
+
+MPS acceleration is available on MacOS 12.3+
+```
+conda install pytorch torchvision torchaudio -c pytorch-nightly
+```
