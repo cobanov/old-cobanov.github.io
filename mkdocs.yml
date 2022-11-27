@@ -13,7 +13,7 @@ nav:
       - "Cypherpunk Manifesto": "cyberpunk.md"
       - "NeRF Windows Installations": "instant-ngp-windows.md"
       - "Feature Selection": "feature_selection.md"
-      - "Ogrenme Tekniklerim": "ogrenme-tekniklerim.md"
+      - 'Doing Python Configuration Right': 'python-conf.md'
   - Portfolio:
       - "portfolio.md"
   - About:
