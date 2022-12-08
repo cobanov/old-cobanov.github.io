@@ -8,6 +8,7 @@ nav:
   - Blog:
       - "index.md"
       - "Helper one-liners": "helpers.md"
+      - "Training Own Diffusion": "training-own-diffusion.md"
       - "New Macbook Installation": "new-macbook.md"
       - "Cobanov's Stable Diffusion Guide": stable.md
       - "DreamBooth Rehberi": "dreambooth-rehberi.md"
