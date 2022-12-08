@@ -510,6 +510,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../windows-wsl-ssh/" class="md-nav__link">
+        Windows WSL Activate SSH
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -728,6 +742,17 @@
 <ul>
 <li><a href="https://rentry.org/sdmodels">Stable Diffusion Models</a></li>
 </ul>
+<h1 id="textual-inversion-vs-hypernetworks">Textual Inversion vs Hypernetworks</h1>
+<p>Textual Inversion and Hyper Network have different driving principles, and Textual Inversion has much smaller capacity of learning results than Hyper Network.</p>
+<p>Textual Inversion has a slower learning speed than Hyper Network, so it is more suitable for learning specific objects, characters, features, etc. than abstract things such as patterns and painting styles. Also, in order to memorize the pattern and painting style, it is necessary to prepare data that has been unified to some extent, such as coloring and color usage, so it is more difficult to prepare learning data than Hyper Network.</p>
+<p>Also, Hyper Network can only embed one at a time, but even so, it is OK if you prepare a large amount of data using various patterns of composition, materials, and techniques and let it learn. Therefore, it can be said that Hyper Network is more suitable for improving the accuracy of illustrations. However, textual inversion is easier to handle if you want to remember specific patterns and characteristics.</p>
+<h2 id="training-hypernetworks">Training Hypernetworks</h2>
+<p>hyper network layer structure
+If write "1, 2, 1", hypernetworks are composed of 2 fully connected layers whose intermediate dim is 2x, which is same as up to now.
+The more you add the number, like "1, 2, 4, 2, 1", the more the structure of hypernetworks becomes deeper. Deep hypernetworks are suited for training with large datasets.</p>
+<p>Add layer normalization
+If checked, add layer normalization after every fully connected layer. It would be meaningful to prevent hypernetworks from overfitting and make training more stable.</p>
+<p>https://rentry.org/sd-e621-textual-inversion</p>
 
 
 

@@ -15,6 +15,7 @@ nav:
       - "NeRF Windows Installations": "instant-ngp-windows.md"
       - 'Doing Python Configuration Right': 'python-conf.md'
       - 'Nerf Studio Docker': 'nerf-studio-docker.md'
+      - 'Windows WSL Activate SSH': 'windows-wsl-ssh.md'
   - Portfolio:
       - "portfolio.md"
   - About:

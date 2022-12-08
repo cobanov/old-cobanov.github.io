@@ -32,3 +32,4 @@ Get-Service ssh* | Start-Service
 ```
 New-ItemProperty -Path "HKLM:\SOFTWARE\OpenSSH" -Name DefaultShell -Value "C:\WINDOWS\System32\bash.exe" -PropertyType String -Force
 ```
+
