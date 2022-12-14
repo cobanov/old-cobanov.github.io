@@ -81,6 +81,26 @@ Put your files in the main directory of the volume you opened, you can also keep
 ns-process-data {video,images,polycam,insta360,record3d} --data {DATA_PATH} --output-dir {PROCESSED_DATA_DIR}
 ```
 
+Arguments:
+
+```
+ns-process-data images [-h] --data PATH --output-dir PATH
+                       [--camera-type {perspective,fisheye}]
+                       [--matching-method {exhaustive,sequential,vocab_tree}]
+                       [--sfm-tool {any,colmap,hloc}]
+                       [--feature-type 
+{any,sift,superpoint,superpoint_aachen,superpoint_max,superpoint_inloc,r2d2,d2
+net-ss,sosnet,disk}]
+                       [--matcher-type 
+{any,NN,superglue,superglue-fast,NN-superpoint,NN-ratio,NN-mutual,adalam}]
+                       [--num-downscales INT] [--skip-colmap]
+                       [--colmap-cmd STR] [--no-gpu] [--verbose]
+```
+
+```
+ns-train nerfacto --data {PROCESSED_DATA_DIR}
+```
+
 ### Example
 
 It points to the same place in the following two paths. one its location on the host and the other its location inside the container.
@@ -93,13 +113,20 @@ Raw File Path:
 Target Folder Path:
 
 - `D:\nerf\outputs\test_video`
-- `/workspace/outputs`
+- `/workspace/outputs/bank`
+
+Preparing
 
 ```bash
-ns-process-data video --data /workspace/raw_data/IMG_6070.MOV --output-dir /workspace/outputs
+ns-process-data video --data /workspace/raw_data/IMG_6070.MOV --output-dir /workspace/outputs/bank
 ```
 
-## Exporting Results
+Training
 
+```bash
+ns-train nerfacto --data outputs/bank
+```
 
 ## KIRI Engine
+
+Coming soon...
