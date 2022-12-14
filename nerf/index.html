@@ -80,8 +80,6 @@
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#exporting-results">Exporting Results</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#kiri-engine">KIRI Engine</a>
     </li>
     </ul>
@@ -172,6 +170,21 @@
 <p>Put your files in the main directory of the volume you opened, you can also keep them in a folder in the main directory.</p>
 <pre><code>ns-process-data {video,images,polycam,insta360,record3d} --data {DATA_PATH} --output-dir {PROCESSED_DATA_DIR}
 </code></pre>
+<p>Arguments:</p>
+<pre><code>ns-process-data images [-h] --data PATH --output-dir PATH
+                       [--camera-type {perspective,fisheye}]
+                       [--matching-method {exhaustive,sequential,vocab_tree}]
+                       [--sfm-tool {any,colmap,hloc}]
+                       [--feature-type 
+{any,sift,superpoint,superpoint_aachen,superpoint_max,superpoint_inloc,r2d2,d2
+net-ss,sosnet,disk}]
+                       [--matcher-type 
+{any,NN,superglue,superglue-fast,NN-superpoint,NN-ratio,NN-mutual,adalam}]
+                       [--num-downscales INT] [--skip-colmap]
+                       [--colmap-cmd STR] [--no-gpu] [--verbose]
+</code></pre>
+<pre><code>ns-train nerfacto --data {PROCESSED_DATA_DIR}
+</code></pre>
 <h3 id="example">Example</h3>
 <p>It points to the same place in the following two paths. one its location on the host and the other its location inside the container.</p>
 <p>Raw File Path:</p>
@@ -182,12 +195,16 @@
 <p>Target Folder Path:</p>
 <ul>
 <li><code>D:\nerf\outputs\test_video</code></li>
-<li><code>/workspace/outputs/banks</code></li>
+<li><code>/workspace/outputs/bank</code></li>
 </ul>
-<pre><code class="language-bash">ns-process-data video --data /workspace/raw_data/IMG_6070.MOV --output-dir /workspace/outputs/banks
+<p>Preparing</p>
+<pre><code class="language-bash">ns-process-data video --data /workspace/raw_data/IMG_6070.MOV --output-dir /workspace/outputs/bank
 </code></pre>
-<h2 id="exporting-results">Exporting Results</h2>
+<p>Training</p>
+<pre><code class="language-bash">ns-train nerfacto --data outputs/bank
+</code></pre>
 <h2 id="kiri-engine">KIRI Engine</h2>
+<p>Coming soon...</p>
               
             </div>
           </div><footer>
