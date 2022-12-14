@@ -4,22 +4,22 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
-      <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>NeRF Windows Installations - Cobanov</title>
-    <link rel="stylesheet" href="../css/theme.css" />
-    <link rel="stylesheet" href="../css/theme_extra.css" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Instang NGP - Cobanov</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "NeRF Windows Installations";
-        var mkdocs_page_input_path = "instant-ngp-windows.md";
+        var mkdocs_page_name = "Instang NGP";
+        var mkdocs_page_input_path = "archive\\instant-ngp-windows.md";
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
-      <script src="../js/html5shiv.min.js"></script>
+      <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
       <script>hljs.initHighlightingOnLoad();</script> 
@@ -31,9 +31,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> Cobanov
+          <a href="../.." class="icon icon-home"> Cobanov
         </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -41,68 +41,32 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Blog</span></p>
-              <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Hello 👋</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helper one-liners</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../helpers/">Helper one-liners</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../training-own-diffusion/">Training Own Diffusion</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../new-macbook/">New Macbook Installation</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../new-macbook/">New Macbook Installation</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cyberpunk/">Cypherpunk Manifesto</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../stable/">Cobanov's Stable Diffusion Guide</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../python-conf/">Doing Python Configuration Right</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../dreambooth-rehberi/">DreamBooth Rehberi</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../windows-wsl-ssh/">Windows WSL Activate SSH</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../cyberpunk/">Cypherpunk Manifesto</a>
+                  <li class="toctree-l1"><a class="" href="../../openpose.md">OpenPose</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">NeRF Windows Installations</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#compilation">Compilation</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#interactive-training-and-rendering-on-custom-image-sets">Interactive Training and Rendering on Custom Image Sets</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#rendering-custom-camera-path">Rendering custom camera path</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#interactive-training-and-rendering">Interactive training and rendering</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#nerf-fox">NeRF fox</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#sdf-armadillo">SDF armadillo</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#image-of-einstein">Image of Einstein</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#volume-renderer">Volume Renderer</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#python-bindings">Python bindings</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting-compile-errors">Troubleshooting compile errors</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#thanks">Thanks</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#license-and-citation">License and Citation</a>
-    </li>
-    </ul>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../python-conf/">Doing Python Configuration Right</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../nerf-studio-docker/">Nerf Studio Docker</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../windows-wsl-ssh/">Windows WSL Activate SSH</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../nerf/">NeRF</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Portfolio</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../portfolio/">Hey</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../portfolio/">Hey</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">About</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../about/">Main Page</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/">Main Page</a>
                   </li>
               </ul>
       </div>
@@ -112,15 +76,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">Cobanov</a>
+          <a href="../..">Cobanov</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Blog &raquo;</li>
-      <li>NeRF Windows Installations</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Instang NGP</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -367,10 +330,6 @@ We also thank <a href="https://github.com/grey-area">Andrew Webb</a> for noticin
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../cyberpunk/" class="btn btn-neutral float-left" title="Cypherpunk Manifesto"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../python-conf/" class="btn btn-neutral float-right" title="Doing Python Configuration Right">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -392,17 +351,13 @@ We also thank <a href="https://github.com/grey-area">Andrew Webb</a> for noticin
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../cyberpunk/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../python-conf/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
