@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>NeRF - Cobanov</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "NeRF";
+        var mkdocs_page_input_path = "nerf.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Cobanov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Blog</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helper one-liners</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../new-macbook/">New Macbook Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cyberpunk/">Cypherpunk Manifesto</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-conf/">Doing Python Configuration Right</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../windows-wsl-ssh/">Windows WSL Activate SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../openpose.md">OpenPose</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">NeRF</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install">Install</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#training-first-model">Training First Model</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dont-forget-to-change-the-directory">Don't forget to change the directory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#start-training">Start Training</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#explore-nerf-studio">Explore NeRF Studio</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#resume-stop-training">Resume &amp; Stop Training</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#training-on-custom-data">Training on Custom Data</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exporting-results">Exporting Results</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kiri-engine">KIRI Engine</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Portfolio</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../portfolio/">Hey</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../about/">Main Page</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Cobanov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Blog &raquo;</li>
+      <li>NeRF</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="nerf-docker-setup">NeRF Docker Setup</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<ol>
+<li>Docker</li>
+<li>CUDA 11.3</li>
+</ol>
+<h2 id="install">Install</h2>
+<ol>
+<li>Pull latest docker image</li>
+</ol>
+<pre><code class="language-bash">docker pull dromni/nerfstudio:&lt;version_number&gt;
+</code></pre>
+<ol>
+<li>Run docker image</li>
+</ol>
+<pre><code class="language-bash">docker run --gpus all -v /folder/of/your/data:/workspace/ -v /home/&lt;YOUR_USER&gt;/cache/:/home/user/.cache/ -p 7007:7007 --rm -it dromni/nerfstudio:0.1.13
+</code></pre>
+<p>Example for Windows:</p>
+<pre><code class="language-bash">docker run --gpus all -v D:\nerf:/workspace/ -v D:\nerf/:/home/user/.cache/ -p 7007:7007 --rm -it dromni/nerfstudio:0.1.13
+</code></pre>
+<pre><code>-  Give the container access to nvidia GPU (required).
+-  Mount a folder from the local machine into the container to be able to process them (required).
+-  Mount cache folder to avoid re-downloading of models everytime (recommended).
+-  Map port from local machine to docker container (required to access the web interface UI).
+-  Remove container after it is closed (recommended).
+-  Start container in interactive mode.
+-  Docker image name
+</code></pre>
+<h2 id="training-first-model">Training First Model</h2>
+<h3 id="dont-forget-to-change-the-directory">Don't forget to change the directory</h3>
+<pre><code>cd /workspace
+</code></pre>
+<p>Be sure to do everything you do after this point in the <code>/workspace</code> directory.</p>
+<h3 id="start-training">Start Training</h3>
+<pre><code>ns-download-data nerfstudio --capture-name=poster
+</code></pre>
+<p>Because this code is often used too much, google drive can put a download restriction, read the error message and try to download the file in the link with your browser.</p>
+<p>After downloading the file, you can copy the folder into the volume <code>D:\nerf\data\nerfstudio</code> you opened.</p>
+<h3 id="explore-nerf-studio">Explore NeRF Studio</h3>
+<p>A web page similar to the link below will appear on your terminal screen, open this page and continue.</p>
+<pre><code>https://viewer.nerf.studio/versions/22-12-02-0/?websocket_url=ws://localhost:7007 
+</code></pre>
+<h3 id="resume-stop-training">Resume &amp; Stop Training</h3>
+<p>You can stop the training with the <code>Ctrl + c</code> shortcut.</p>
+<p>If you want to continue the training from where it left off, run the code below.</p>
+<pre><code>ns-train nerfacto --data data/nerfstudio/poster --trainer.load-dir {outputs/.../nerfstudio_models}
+</code></pre>
+<h2 id="training-on-custom-data">Training on Custom Data</h2>
+<p>Put your files in the main directory of the volume you opened, you can also keep them in a folder in the main directory.</p>
+<pre><code>ns-process-data {video,images,polycam,insta360,record3d} --data {DATA_PATH} --output-dir {PROCESSED_DATA_DIR}
+</code></pre>
+<h3 id="example">Example</h3>
+<p>It points to the same place in the following two paths. one its location on the host and the other its location inside the container.</p>
+<p>Raw File Path:</p>
+<ul>
+<li><code>D:\nerf\raw_data\IMG_6070.MOV</code></li>
+<li><code>/workspace/raw_data/IMG_6070.MOV</code></li>
+</ul>
+<p>Target Folder Path:</p>
+<ul>
+<li><code>D:\nerf\outputs\test_video</code></li>
+<li><code>/workspace/outputs</code></li>
+</ul>
+<pre><code class="language-bash">ns-process-data video --data /workspace/raw_data/IMG_6070.MOV --output-dir /workspace/outputs
+</code></pre>
+<h2 id="exporting-results">Exporting Results</h2>
+<h2 id="kiri-engine">KIRI Engine</h2>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../windows-wsl-ssh/" class="btn btn-neutral float-left" title="Windows WSL Activate SSH"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../portfolio/" class="btn btn-neutral float-right" title="Hey">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../windows-wsl-ssh/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../portfolio/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
