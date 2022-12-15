@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>OpenPose - Cobanov</title>
+    <title>Fine Tuning - Cobanov</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "OpenPose";
-        var mkdocs_page_input_path = "openpose.md";
+        var mkdocs_page_name = "Fine Tuning";
+        var mkdocs_page_input_path = "fine-tuning.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -41,7 +41,7 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Blog</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helper one-liners</a>
@@ -54,11 +54,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../windows-wsl-ssh/">Windows WSL Activate SSH</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">OpenPose</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#coming-soon">Coming soon...</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../openpose/">OpenPose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../nerf/">NeRF</a>
                   </li>
@@ -74,7 +70,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">diffusion-book</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../ldm/">What is Latent Diffusion</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../samplers/">Samplers</a>
@@ -85,7 +81,23 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../training-ldm/">Training LDM</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../fine-tuning/">Fine Tuning</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Fine Tuning</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#textual-inversion">Textual Inversion</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dreambooth">Dreambooth</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hypernetwork">Hypernetwork</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#textual-inversion-vs-hypernetworks">Textual Inversion vs Hypernetworks</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#training-hypernetworks">Training Hypernetworks</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#discussions">Discussions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#links">Links</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../dream-booth/">Dream Booth</a>
                   </li>
@@ -106,8 +118,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Blog &raquo;</li>
-      <li>OpenPose</li>
+          <li>diffusion-book &raquo;</li>
+      <li>Fine Tuning</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -116,14 +128,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="openpose">Openpose</h1>
-<h2 id="coming-soon">Coming soon...</h2>
+                <h1 id="fine-tuning-latent-diffusion-model">Fine-tuning Latent Diffusion Model</h1>
+<p>Source: <a href="https://www.reddit.com/r/StableDiffusion/comments/y1eec5/automatic1111_just_added_support_for_hypernetwork/">Reddit</a></p>
+<h2 id="textual-inversion">Textual Inversion</h2>
+<p>Textual Inversion - trains a word with one or more vectors that approximate your image. So if it is something it already has seen lots of examples of, it might have the concept and just need to 'point' at it. It is just expanding the vocabulary of model but all information it uses is already in the model.</p>
+<h2 id="dreambooth">Dreambooth</h2>
+<p>Dreambooth - this is essentially model fine tuning, which changes the weights of the main model. Dreambooth differs from typical fine tuning in that in tries to keep from forgetting/overwriting adjacent concepts during the tuning.</p>
+<h2 id="hypernetwork">Hypernetwork</h2>
+<p>Hypernetworks - this is basically an adaptive head - it takes information from late in the model but injects information from the prompt 'skipping' the rest of the model. So it is similar to fine tuning the last 2 layers of a model but it gets much more signal from the prompt (it is taking the clip embedding of the prompt right before the output layer).</p>
+<h2 id="textual-inversion-vs-hypernetworks">Textual Inversion vs Hypernetworks</h2>
+<p>Textual Inversion and Hyper Network have different driving principles, and Textual Inversion has much smaller capacity of learning results than Hyper Network.</p>
+<p>Textual Inversion has a slower learning speed than Hyper Network, so it is more suitable for learning specific objects, characters, features, etc. than abstract things such as patterns and painting styles. Also, in order to memorize the pattern and painting style, it is necessary to prepare data that has been unified to some extent, such as coloring and color usage, so it is more difficult to prepare learning data than Hyper Network.</p>
+<p>Also, Hyper Network can only embed one at a time, but even so, it is OK if you prepare a large amount of data using various patterns of composition, materials, and techniques and let it learn. Therefore, it can be said that Hyper Network is more suitable for improving the accuracy of illustrations. However, textual inversion is easier to handle if you want to remember specific patterns and characteristics.</p>
+<h2 id="training-hypernetworks">Training Hypernetworks</h2>
+<p>hyper network layer structure
+If write "1, 2, 1", hypernetworks are composed of 2 fully connected layers whose intermediate dim is 2x, which is same as up to now.
+The more you add the number, like "1, 2, 4, 2, 1", the more the structure of hypernetworks becomes deeper. Deep hypernetworks are suited for training with large datasets.</p>
+<p>Add layer normalization
+If checked, add layer normalization after every fully connected layer. It would be meaningful to prevent hypernetworks from overfitting and make training more stable.</p>
+<p><a href="https://rentry.org/sd-e621-textual-inversion">https://rentry.org/sd-e621-textual-inversion</a></p>
+<h2 id="discussions">Discussions</h2>
+<ul>
+<li><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/2284">Hypernetwork training topic</a></li>
+</ul>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://rentry.org/sdmodels">Stable Diffusion Models</a></li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../windows-wsl-ssh/" class="btn btn-neutral float-left" title="Windows WSL Activate SSH"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../nerf/" class="btn btn-neutral float-right" title="NeRF">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../training-ldm/" class="btn btn-neutral float-left" title="Training LDM"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../dream-booth/" class="btn btn-neutral float-right" title="Dream Booth">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -146,10 +183,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../windows-wsl-ssh/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../training-ldm/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../nerf/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../dream-booth/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

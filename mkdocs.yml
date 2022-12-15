@@ -19,6 +19,15 @@ nav:
       - "portfolio.md"
   - About:
       - "about.md"
+  - diffusion-book:
+    - What is Latent Diffusion: ldm.md
+    - Samplers: samplers.md
+    - Prompting: prompting.md
+    - Blender Depthmap: blender-depthmap.md
+    - Training LDM: training-ldm.md
+    - Fine Tuning: fine-tuning.md
+    - Dream Booth: dream-booth.md
+    - Tools & Blogs and Useful Links: tools.md
 
 theme: readthedocs
 #   icon:

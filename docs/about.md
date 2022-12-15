@@ -9,7 +9,7 @@ hide:
   - footer
 ---
 
-![](https://github.com/cobanov/personal/blob/master/image/image.jpeg?raw=true)
+![](https://avatars.githubusercontent.com/u/29142615?v=1)
 
 # Mert Cobanov #0001
 
@@ -27,6 +27,6 @@ Community lover, data scientist and generative artist. I love to share what I kn
 
 ## More
 
-You can see my work in my [github](https://www.github.com/cobanov/) repos and my humble [portfolio](https://art.cobanov.dev).
+You can see my work in my [github](https://www.github.com/cobanov/) repos and my humble [portfolio](https://cobanov.dev/portfolio).
 
 I really enjoy writing minimal tools that make the lives of software developers easier, building end-to-end pipelines, and doing AI artistic painting works that motivate me immensely. I also digitize and repair old video tapes and bring them to high resolution and high fps forms.

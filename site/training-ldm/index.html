@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>OpenPose - Cobanov</title>
+    <title>Training LDM - Cobanov</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "OpenPose";
-        var mkdocs_page_input_path = "openpose.md";
+        var mkdocs_page_name = "Training LDM";
+        var mkdocs_page_input_path = "training-ldm.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -41,7 +41,7 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Blog</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helper one-liners</a>
@@ -54,11 +54,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../windows-wsl-ssh/">Windows WSL Activate SSH</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">OpenPose</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#coming-soon">Coming soon...</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../openpose/">OpenPose</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../nerf/">NeRF</a>
                   </li>
@@ -74,7 +70,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">diffusion-book</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../ldm/">What is Latent Diffusion</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../samplers/">Samplers</a>
@@ -83,7 +79,13 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../blender-depthmap/">Blender Depthmap</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../training-ldm/">Training LDM</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Training LDM</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#kernel-inception-distance">Kernel Inception Distance</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sources">Sources</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../fine-tuning/">Fine Tuning</a>
                   </li>
@@ -106,8 +108,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>Blog &raquo;</li>
-      <li>OpenPose</li>
+          <li>diffusion-book &raquo;</li>
+      <li>Training LDM</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -116,14 +118,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="openpose">Openpose</h1>
-<h2 id="coming-soon">Coming soon...</h2>
+                <h1 id="training-latent-diffusion-model">Training Latent Diffusion Model</h1>
+<h2 id="kernel-inception-distance">Kernel Inception Distance</h2>
+<p>The kernel inception distance (KID) is a measure of the similarity between two sets of images. It was introduced by Google AI researcher, Tobias Weyand, in his paper "Kernel Inception Distance: A New Distance Measure for Improved Image Quality Assessment". In this paper, Weyand proposed using the KID to measure the difference between the activations of two sets of images when passed through an inception network, which is a type of deep learning neural network. The KID is calculated as the squared L2 distance between the distributions of the activations of the two sets of images. It is typically used in the field of computer vision to evaluate the performance of image generation algorithms.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://keras.io/examples/generative/ddim">https://keras.io/examples/generative/ddim</a> #denoising-diffusion-implicit-models</li>
+<li><a href="https://benanne.github.io/2022/01/31/diffusion.html">https://benanne.github.io/2022/01/31/diffusion.html</a></li>
+<li><a href="https://github.com/apapiu/guided-diffusion-keras">https://github.com/apapiu/guided-diffusion-keras</a></li>
+<li><a href="https://www.louisbouchard.ai/latent-diffusion-models/">https://www.louisbouchard.ai/latent-diffusion-models/</a></li>
+<li><a href="https://www.kaggle.com/code/apapiu/train-latent-diffusion-in-keras-from-scratch">https://www.kaggle.com/code/apapiu/train-latent-diffusion-in-keras-from-scratch</a></li>
+<li><a href="https://github.com/CompVis/taming-transformers">https://github.com/CompVis/taming-transformers</a></li>
+<li><a href="https://github.com/CompVis/latent-diffusion">https://github.com/CompVis/latent-diffusion</a></li>
+<li><a href="https://github.com/huggingface/diffusers">https://github.com/huggingface/diffusers</a></li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../windows-wsl-ssh/" class="btn btn-neutral float-left" title="Windows WSL Activate SSH"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../nerf/" class="btn btn-neutral float-right" title="NeRF">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../blender-depthmap/" class="btn btn-neutral float-left" title="Blender Depthmap"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../fine-tuning/" class="btn btn-neutral float-right" title="Fine Tuning">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -146,10 +160,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../windows-wsl-ssh/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../blender-depthmap/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../nerf/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../fine-tuning/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
