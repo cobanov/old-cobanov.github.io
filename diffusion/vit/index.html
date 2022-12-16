@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>ViT Visual Transformers - Cobanov</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "ViT Visual Transformers";
+        var mkdocs_page_input_path = "diffusion\\vit.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Cobanov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Blog</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Hello 👋</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../helpers/">Helper one-liners</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../new-macbook/">New Macbook Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cyberpunk/">Cypherpunk Manifesto</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../python-conf/">Doing Python Configuration Right</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../windows-wsl-ssh/">Windows WSL Activate SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openpose/">OpenPose</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../nerf/">NeRF</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Portfolio</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../portfolio/">Hey</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/">Main Page</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">diffusion-book</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../ldm/">What is Latent Diffusion</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">ViT Visual Transformers</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#attention-mekanizmasi">Attention Mekanizmasi</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mimari">Mimari</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#patch-embeddings">Patch Embeddings</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#linear-projection-of-flattened-patches">Linear Projection of Flattened Patches</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#positional-embeddings">Positional embeddings</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#transformer-encoding">Transformer Encoding</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#egitim">Egitim</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sources">Sources</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../glossary/">Glossary</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../samplers/">Samplers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../prompting/">Prompting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../blender-depthmap/">Blender Depthmap</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../training-ldm/">Training LDM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../fine-tuning/">Fine Tuning</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../dream-booth/">Dream Booth</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../tools/">Tools & Blogs and Useful Links</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Cobanov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>diffusion-book &raquo;</li>
+      <li>ViT Visual Transformers</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="vision-transformers-vits">Vision Transformers ViTs</h1>
+<p><img alt="vit" src="../../assets/vit.png" /></p>
+<p>Uzun yillardir CNN algoritmalari goruntu isleme konularinda neredeyse tek cozumumuzdu. ResNet, EfficientNetm Inception vb. gibi tum mimariler temelde CNN mimarilerini kullanarak goruntu isleme problemlerimizi cozmede bize yardimci oluyor. Bugun sizinle goruntu isleme konusunda farkli bir yaklasim olan ViT'ler yani Vision Transformerlari inceleyecegiz.</p>
+<p>Aslinda Transformer kavrami NLP alaninda yurutulen teknolojiler icin ortaya konmustu. Attention is all you need adiyla yayinlanan makale NLP problemlerinin cozumu icin devrimsel cozumler getirdi, artik Transformer-based mimarilar nlp gorevleri icin standart bir hale geldi.</p>
+<p>Cok da uzun bir sure gecmeden dogal dil alaninda kullanilan bu mimari goruntu alaninda da ufak degisikliklerle uyarlandi. Bu calismayi <a href="">"An image is worth 16x16 words"</a> olarak bu linkteki paperdan okuyabilirsiniz. Asagida daha detayli anlatacagim fakat temel olarak bir goruntuyu 16x16 boyutlu parcalara ayirarak embeddinglerini cikartmak uzere. Temel bazi konulari anlatmadan bu mekanikleri aciklamak cok zor bu yuzden hiz kaybetmeden konuyu daha iyi anlamak icin alt basliklara gecelim.</p>
+<h2 id="attention-mekanizmasi">Attention Mekanizmasi</h2>
+<h2 id="mimari">Mimari</h2>
+<p>ViT mimarisi birkaç aşamadan oluşur:</p>
+<ol>
+<li>
+<p><strong>Patch + Position Embedding (inputs)</strong> - Giriş görüntüsünü bir dizi görüntü parcalarina (patches) dönüştürür ve parcalarin hangi sırayla geldiğini bilmek icin bir konum numarası ekler.</p>
+</li>
+<li>
+<p><strong>Linear projection of flattened patches (Embedded Patches)</strong> - Görüntü parcalari embeddinglere dönüşür, görüntüleri direkt kullanmak yerine embeddingleri kullanmanın yararı, embeddingler görüntünün eğitimle öğrenilebilir bir temsili olmasıdır.</p>
+</li>
+<li>
+<p><strong>Norm</strong> - Bir sinir ağını düzenli hale getirmek (overfitting'i azaltmak) için bir teknik olan "Layer Normalization" veya "LayerNorm"un kısaltmasıdır.</p>
+</li>
+<li>
+<p><strong>Multi-Head Attention</strong> - Bu, Multi-Headed Self-Attention layer veya kısaca "MSA" dır.</p>
+</li>
+<li>
+<p><strong>MLP (Multilayer perceptron)</strong> - Genellikle herhangi bir ileri besleme katmanı koleksiyonunu olarak dusunebilirsiniz.</p>
+</li>
+<li>
+<p><strong>Transformer Encoder</strong> - Transformer Encoder, yukarıda listelenen katmanların bir koleksiyonudur. Transformer Encoderin içinde iki atlama (skip) bağlantısı vardır ("+" sembolleri), katmanın girdilerinin doğrudan sonraki katmanların yanı sıra hemen sonraki katmanlara beslendiği anlamına gelir. Genel ViT mimarisi, birbiri üzerine yığılmış bir dizi Transformer kodlayıcıdan oluşur.</p>
+</li>
+<li>
+<p><strong>MLP Head</strong> - Bu, mimarinin çıktı katmanıdır, bir girdinin öğrenilen özelliklerini bir sınıf çıktısına dönüştürür. Görüntü sınıflandırması üzerinde çalıştığımız için buna "sınıflandırıcı kafa" da diyebilirsiniz. MLP Kafasının yapısı MLP bloğuna benzer.</p>
+</li>
+</ol>
+<p><img alt="vit architecture" src="../../assets/vit-arch.png" /></p>
+<h3 id="patch-embeddings">Patch Embeddings</h3>
+<p>Standart Transformer, girişi tek boyutlu token embedding dizisi olarak alır. 2B görüntüleri işlemek için <strong>x∈R^{H×W×C}</strong> görüntüsünü düzleştirilmiş 2B patchlere (goruntu parcalarina) yeniden şekillendiriyoruz.</p>
+<p>Burada, (H, W) orijinal görüntünün çözünürlüğüdür ve (P, P) her görüntü parçasının çözünürlüğüdür. Resim sabit boyutlu parcalara bölünmüştür, aşağıdaki resimde yama boyutu 16×16 olarak alınmıştır. Yani görüntünün boyutları 48×48 olacaktır.</p>
+<p>Self-attention maliyeti quadratictir. Görüntünün her pikselini girdi olarak iletirsek, Self-attention her pikselin diğer tüm piksellerle ilgilenmesini gerektirir. Self-attention ikinci dereceden maliyeti çok maliyetli olacak ve gerçekçi girdi boyutuna ölçeklenmeyecek; bu nedenle, görüntü parcalara bölünür.</p>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+from PIL import Image
+import numpy as np
+</code></pre>
+<pre><code class="language-python">img = Image.open('cobanov-profile.jpg')
+img.thumbnail((224, 224))
+array_img = np.array(img)
+array_img.shape
+</code></pre>
+<pre><code class="language-python"># Setup hyperparameters and make sure img_size and patch_size are compatible
+img_size = 224
+patch_size = 16
+num_patches = img_size/patch_size 
+assert img_size % patch_size == 0, &quot;Image size must be divisible by patch size&quot; 
+print(f&quot;Number of patches per row: {num_patches}\
+        \nNumber of patches per column: {num_patches}\
+        \nTotal patches: {num_patches*num_patches}\
+        \nPatch size: {patch_size} pixels x {patch_size} pixels&quot;)
+
+</code></pre>
+<pre><code class="language-python"># Create a series of subplots
+fig, axs = plt.subplots(nrows=img_size // patch_size, # need int not float
+                        ncols=img_size // patch_size, 
+                        figsize=(num_patches, num_patches),
+                        sharex=True,
+                        sharey=True)
+
+# Loop through height and width of image
+for i, patch_height in enumerate(range(0, img_size, patch_size)): # iterate through height
+    for j, patch_width in enumerate(range(0, img_size, patch_size)): # iterate through width
+
+        # Plot the permuted image patch (image_permuted -&gt; (Height, Width, Color Channels))
+        axs[i, j].imshow(array_img[patch_height:patch_height+patch_size, # iterate through height 
+                                        patch_width:patch_width+patch_size, # iterate through width
+                                        :]) # get all color channels
+
+        # Set up label information, remove the ticks for clarity and set labels to outside
+        axs[i, j].set_ylabel(i+1, 
+                             rotation=&quot;horizontal&quot;, 
+                             horizontalalignment=&quot;right&quot;, 
+                             verticalalignment=&quot;center&quot;) 
+        axs[i, j].set_xlabel(j+1) 
+        axs[i, j].set_xticks([])
+        axs[i, j].set_yticks([])
+        axs[i, j].label_outer()
+
+# Set a super title
+plt.show()
+</code></pre>
+<p><img alt="patch-embeddings" src="../../assets/patch_emb.png" /></p>
+<h2 id="linear-projection-of-flattened-patches">Linear Projection of Flattened Patches</h2>
+<p>Parcalar Transformer bloğuna geçirmeden önce, makalenin yazarları yamaları önce doğrusal bir projeksiyondan geçirmeyi faydalı buldular. Bir yamayı alıp büyük bir vektöre açarlar ve yamalı gömmeler oluşturmak için gömme matrisiyle çarparlar ve bu, konumsal gömmeyle birlikte transformatöre giden şeydir.</p>
+<p>Her yama, tüm piksel kanallarını bir yamada birleştirerek ve ardından bunu doğrusal olarak istenen giriş boyutuna yansıtarak gömülen bir 1B yamaya düzleştirilir.</p>
+<h2 id="positional-embeddings">Positional embeddings</h2>
+<p>Nasil konusurken dilde kelimelerin sırası kurdugunuz cumlenin anlamini tamamen degistiriyorsa, goruntuler uzerinde de buna dikkat etmek gerekir. Maalesef transformerlar, patch embeddinglerin "sırasını" dikkate alan herhangi bir varsayılan mekanizmaya sahip değildir.</p>
+<p>Bir yapboz yaptiginizi dusunun, elinizdeki parcalar (yani onceki adimlarda yaptigimiz patch embeddingler) karisik bir duzende geldiginde goruntunun tamaminda ne oldugunu anlamak oldukca zordur, bu transformatörler için de geçerli. Modelin yapboz parçalarının sırasını veya konumunu çıkarmasını sağlamanın bir yoluna ihtiyacımız var.</p>
+<p>Transformatörler, giriş elemanlarının yapısından bağımsızdır. Her yamaya öğrenilebilir konum yerleştirmeleri eklemek, modelin görüntünün yapısı hakkında bilgi edinmesine olanak tanır. Positional embeddinglerde düzeni modele aktarmamizi sagliyor. ViT için, bu Positional embeddingler, patch embeddingler ile aynı boyutluluğa sahip öğrenilmiş vektörlerdir.</p>
+<p>Bu konumsal yerleştirmeler, ön eğitim sırasında ve (bazen) ince ayar sırasında öğrenilir. Eğitim sırasında, bu yerleştirmeler, özellikle aynı sütunu ve satırı paylaşan komşu konum yerleştirmelerine yüksek benzerlik gösterdikleri vektör uzaylarında birleşir.</p>
+<p><img alt="" src="../../assets/visualizing-positional-encodings-vit.png" /></p>
+<h2 id="transformer-encoding">Transformer Encoding</h2>
+<ul>
+<li>
+<p><strong>Multi-Head Self Attention Layer(MSP)</strong> birden fazla attention ciktisini lineer olarak beklenen boyutlara esitlemek için kullanilir. MSP, görüntüdeki yerel ve global bağımlılıkları öğrenmeye yardımcı olur.</p>
+</li>
+<li>
+<p><strong>Multi-Layer Perceptrons(MLP)</strong> - Klasik sinir agi katmani fakat aktivasyon fonksiyonu olarak GELU kullaniyoruz.</p>
+</li>
+<li>
+<p><strong>Layer Norm(LN)</strong> eğitim görüntüleri arasında herhangi bir yeni bağımlılık getirmediğinden her bloktan önce uygulanır. Eğitim süresini ve genelleme performansını iyileştirmeye yardımcı olun.</p>
+</li>
+<li>
+<p><strong>Residual connections</strong> gradyanların doğrusal olmayan aktivasyonlardan geçmeden doğrudan ağ üzerinden akmasına izin verdiği için her bloktan sonra uygulanır.
+Görüntü sınıflandırması için, ön eğitim zamanında bir gizli katman ve ince ayar için tek bir doğrusal katman ile MLP kullanılarak bir sınıflandırma kafası uygulanır. ViT'nin üst katmanları global özellikleri öğrenirken, alt katmanlar hem global hem de yerel özellikleri öğrenir. Bu, ViT'nin daha genel kalıpları öğrenmesini sağlar.</p>
+</li>
+</ul>
+<h2 id="egitim">Egitim</h2>
+<p>ViT, büyük veri kümelerinde önceden eğitilmiştir ve daha küçük bir veri kümesine ince ayar yapılmıştır.</p>
+<p>İnce ayar yapılırken, önceden eğitilmiş son tahmin kafası kaldırılır ve daha küçük veri kümesine dayalı olarak sınıfları tahmin etmek için sıfır başlatılmış bir ileri besleme katmanı ekleriz.</p>
+<p>İnce ayar, modelin önceden eğitildiğinden daha yüksek çözünürlüklü bir görüntüye uygulanabilir, ancak yama boyutu aynı kalmalıdır.</p>
+<p>Transformers, görüntü yapısı hakkında önceden bilgiye sahip değildir ve bu nedenle daha uzun eğitim sürelerine sahiptir ve modeli eğitmek için büyük veri kümeleri gerektirir.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li><a href="https://www.learnpytorch.io/08_pytorch_paper_replicating/#3-replicating-the-vit-paper-an-overview">https://www.learnpytorch.io/08_pytorch_paper_replicating/#3-replicating-the-vit-paper-an-overview</a></li>
+<li><a href="https://theaisummer.com/vision-transformer/">https://theaisummer.com/vision-transformer/</a></li>
+<li><a href="https://medium.com/swlh/visual-transformers-a-new-computer-vision-paradigm-aa78c2a2ccf2">https://medium.com/swlh/visual-transformers-a-new-computer-vision-paradigm-aa78c2a2ccf2</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ldm/" class="btn btn-neutral float-left" title="What is Latent Diffusion"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../glossary/" class="btn btn-neutral float-right" title="Glossary">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ldm/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../glossary/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
