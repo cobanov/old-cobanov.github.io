@@ -4,22 +4,22 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
-      <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>What is Latent Diffusion - Cobanov</title>
-    <link rel="stylesheet" href="../css/theme.css" />
-    <link rel="stylesheet" href="../css/theme_extra.css" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Glossary - Cobanov</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "What is Latent Diffusion";
-        var mkdocs_page_input_path = "ldm.md";
+        var mkdocs_page_name = "Glossary";
+        var mkdocs_page_input_path = "diffusion\\glossary.md";
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
-      <script src="../js/html5shiv.min.js"></script>
+      <script src="../../js/html5shiv.min.js"></script>
     <![endif]-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
       <script>hljs.initHighlightingOnLoad();</script> 
@@ -31,9 +31,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> Cobanov
+          <a href="../.." class="icon icon-home"> Cobanov
         </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -42,37 +42,49 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Blog</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Hello 👋</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helper one-liners</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../helpers/">Helper one-liners</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../new-macbook/">New Macbook Installation</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../new-macbook/">New Macbook Installation</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../cyberpunk/">Cypherpunk Manifesto</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cyberpunk/">Cypherpunk Manifesto</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../python-conf/">Doing Python Configuration Right</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../python-conf/">Doing Python Configuration Right</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../windows-wsl-ssh/">Windows WSL Activate SSH</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../windows-wsl-ssh/">Windows WSL Activate SSH</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../openpose/">OpenPose</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../openpose/">OpenPose</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../nerf/">NeRF</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../nerf/">NeRF</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Portfolio</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../portfolio/">Hey</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../portfolio/">Hey</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">About</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../about/">Main Page</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/">Main Page</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">diffusion-book</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">What is Latent Diffusion</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ldm/">What is Latent Diffusion</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../vit/">ViT Visual Transformers</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Glossary</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#noise">Noise</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#unet">UNet</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ddpm">DDPM</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#schedulers-or-samplers">Schedulers or Samplers</a>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../samplers/">Samplers</a>
@@ -97,15 +109,15 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">Cobanov</a>
+          <a href="../..">Cobanov</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+    <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>diffusion-book &raquo;</li>
-      <li>What is Latent Diffusion</li>
+      <li>Glossary</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -114,17 +126,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="latent-diffusion-models">Latent Diffusion Models</h1>
-<p>Recent advances in machine learning and artificial intelligence have made it possible to generate high-resolution images using latent diffusion models. These models are a type of mathematical model that is used to study the spread of knowledge, ideas, or innovations through a population or social network. In the context of image synthesis, these models can be used to generate photorealistic images from low-resolution inputs.</p>
-<p>One of the key challenges in generating high-resolution images with latent diffusion models is the so-called "resolution gap." This refers to the difference between the resolution of the input image and the desired output image. In order to generate a high-resolution output image from a low-resolution input image, the latent diffusion model must be able to fill in the missing details and add new features to the image.</p>
-<p>Recent research has demonstrated that latent diffusion models can be trained to perform high-resolution image synthesis using a process called "progressive growing." In this process, the latent diffusion model is trained on a set of low-resolution images and then gradually increased in resolution as it generates high-resolution outputs. This allows the model to learn the finer details of the images and generate more realistic outputs.</p>
-<p>One of the key advantages of using latent diffusion models for image synthesis is that they can generate high-resolution images that are consistent with the input image. This means that the generated images will have the same style and composition as the input image, but with added details and features. This can be useful for applications such as image super-resolution, inpainting, and stylization.</p>
-<p>Overall, the use of latent diffusion models for high-resolution image synthesis is a promising area of research that has the potential to revolutionize the field of computer graphics and image processing. By leveraging the power of machine learning and AI, these models can generate photorealistic images from low-resolution inputs, and open up new possibilities for image manipulation and generation.</p>
+                <h1 id="glossary">Glossary</h1>
+<h2 id="noise">Noise</h2>
+<h2 id="unet">UNet</h2>
+<ul>
+<li>GroupNorm applies group normalization to the inputs of each block</li>
+<li>Dropout layers for smoother training</li>
+<li>Multiple resnet layers per block (if layers_per_block isn't set to 1)</li>
+<li>Attention (usually used only at lower resolution blocks)</li>
+<li>Conditioning on the timestep.</li>
+<li>Downsampling and upsampling blocks with learnable parameters</li>
+</ul>
+<h2 id="ddpm">DDPM</h2>
+<h2 id="schedulers-or-samplers">Schedulers or Samplers</h2>
+<h1 id="sources">Sources</h1>
+<ul>
+<li><a href="https://github.com/huggingface/diffusion-models-class/tree/main/unit1">https://github.com/huggingface/diffusion-models-class/tree/main/unit1</a></li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../about/" class="btn btn-neutral float-left" title="Main Page"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../vit/" class="btn btn-neutral float-left" title="ViT Visual Transformers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../samplers/" class="btn btn-neutral float-right" title="Samplers">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -148,17 +171,17 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../about/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../vit/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../samplers/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
