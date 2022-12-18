@@ -107,8 +107,6 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#toparlama">Toparlama</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#egitim">Egitim</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#sources">Sources</a>
@@ -167,10 +165,13 @@
 <p>Bu makale aşağıdaki konulardan bahsedecegim:</p>
 <ul>
 <li>Vision Transformer (ViT) nedir?</li>
-<li>Görüntü Tanıma'da ViT modellerini kullanma Görüntü Dönüştürücüler nasıl çalışır?</li>
-<li>Vision Transformers'ın Kullanım Durumları ve uygulamaları</li>
+<li>Vision Transformers vs Convolutional Neural Networks</li>
+<li>Attention Mekanizmasi</li>
+<li>ViT Implementasyonlari</li>
+<li>ViT Mimarisi</li>
+<li>Vision Transformers'ın Kullanım ve Ugulamala</li>
 </ul>
-<pre><code>- Devamindaki konulari yaz!
+<pre><code class="language-python">- Devamindaki konulari yaz!
 </code></pre>
 <h2 id="vision-transformers">Vision Transformers</h2>
 <p><img alt="vit" src="../../assets/vit.png" /></p>
@@ -193,8 +194,9 @@
 <p>Örneğin, bir makine çeviri görevinde, bir attention mekanizması modelin kaynak dil cümlesindeki belli kelimeleri üreterek hedef dil cümlesine dikkat etmesine izin verebilir. Bu, modelin daha doğru çeviriler üretebilmesine yardımcı olur, çünkü kaynak dil kelimelerinin anlam ve bağlamını dikkate alarak çeviri üretebilir.</p>
 <p>Genel olarak, attention mekanizmaları birçok state-of-the-art NLP modelinin bir parçasıdır ve bu modellerin çeşitli görevlerde performansını geliştirme konusunda çok etkili olduğu gösterilmiştir.</p>
 <p><code>ChatGPT sonu</code></p>
-<p>Aslinda konuya hakim biri icin daha iyi bir aciklama fakat cok kisa bu alanda hicbir bilgisi olmayan birisi icin basitlestirilmis bir aciklama yapma geregi duyuyorum.</p>
-<p><code>ACIKLAMA GELECEK</code></p>
+<p>Aslinda konuya hakim biri icin daha iyi bir aciklama fakat cok kisa bu alanda hicbir bilgisi olmayan birisi icin basitlestirilmis bir aciklama burada harika bir sekilde anlatilmis</p>
+<p><a href="https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/">Mechanics of Seq2seq Models With Attention</a></p>
+<p><a href="https://jalammar.github.io/illustrated-transformer/">Illustrated Transformer</a></p>
 <h2 id="vit-implementasyonlari">ViT Implementasyonlari</h2>
 <p>Fine-tune edilmis ve pre-trained  ViT modelleri <a href="https://github.com/google-research/">Google Research</a>'un Github'ında mevcut:</p>
 <p><a href="https://github.com/google-research/vision_transformer">https://github.com/google-research/vision_transformer</a></p>
@@ -316,12 +318,6 @@ Image classification için, ön eğitim zamanında bir hidden layer ve fine-tuni
 <h2 id="toparlama">Toparlama</h2>
 <p>Evet oldukca fazla terim, teori ve mimari inceledik kafalarda daha iyi oturtmak adina bu gif surecin nasil isledigini guzel bir sekilde ozetliyor.</p>
 <p><img alt="vit gif" src="../../assets/vit-fig.gif" /></p>
-<h2 id="egitim">Egitim</h2>
-<p><code>Bolum yeniden yazilacak</code></p>
-<p>ViT, büyük veri kümelerinde önceden eğitilmiştir ve daha küçük bir veri kümesine ince ayar yapılmıştır.</p>
-<p>İnce ayar yapılırken, önceden eğitilmiş son tahmin kafası kaldırılır ve daha küçük veri kümesine dayalı olarak sınıfları tahmin etmek için sıfır başlatılmış bir ileri besleme katmanı ekleriz.</p>
-<p>İnce ayar, modelin önceden eğitildiğinden daha yüksek çözünürlüklü bir görüntüye uygulanabilir, ancak yama boyutu aynı kalmalıdır.</p>
-<p>Transformers, görüntü yapısı hakkında önceden bilgiye sahip değildir ve bu nedenle daha uzun eğitim sürelerine sahiptir ve modeli eğitmek için büyük veri kümeleri gerektirir.</p>
 <h2 id="usage">Usage</h2>
 <p>Eger basitce bir ViT kullanmak isterseniz bunun icin ufacik bir rehberi de buraya ekliyorum.</p>
 <p>Muhtemelen denk gelmissinizdir artik yapay zeka alaninda yeni bir sey ciktiginda birakin bunun implementasyonunu kullanimini da birkac satir koda indirmek moda oldu.</p>
@@ -378,13 +374,11 @@ top5_prob, top5_catid = torch.topk(probabilities, 5)
 for i in range(top5_prob.size(0)):
     print(categories[top5_catid[i]], top5_prob[i].item())
 </code></pre>
-<pre><code class="language-python"># prints class names and probabilities like:
-
-# trench coat 0.422695130109787
-# bulletproof vest 0.18995067477226257
-# suit 0.06873432546854019
-# sunglasses 0.02222270704805851
-# sunglass 0.020680639892816544
+<pre><code class="language-python">trench coat             0.422695130109787
+bulletproof vest        0.18995067477226257
+suit                    0.06873432546854019
+sunglasses              0.02222270704805851
+sunglass                0.020680639892816544
 </code></pre>
 <h2 id="sources">Sources</h2>
 <ul>
