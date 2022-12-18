@@ -13,7 +13,7 @@
       <script>
         // Current page data
         var mkdocs_page_name = "ViT Visual Transformers";
-        var mkdocs_page_input_path = "diffusion\\vit.md";
+        var mkdocs_page_input_path = "diffusion/vit.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -75,9 +75,23 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">ViT Visual Transformers</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#tl-dr">TL; DR</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vision-transformers">Vision Transformers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vits-vs-cnn">ViTs vs. CNN</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#attention-mekanizmasi">Attention Mekanizmasi</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vit-implementasyonlari">ViT Implementasyonlari</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#mimari">Mimari</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#vit-mimarisi">ViT Mimarisi</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#patch-embeddings">Patch Embeddings</a>
     </li>
@@ -137,11 +151,47 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="vision-transformers-vits">Vision Transformers ViTs</h1>
+<h2 id="introduction">Introduction</h2>
+<p>2022 yili yapay zekanin yili oldu, yapay zeka sanatinda, dogal dil islemede, goruntu islemede, ses teknolojilerinde inanilmaz gelismeler yasandi. Hem huggingface hem opeanai firtinalar kopardi. Onceki yillara nazaran bu yapay zeka teknolojileri hem demokratiklesti hem de son kullaniciya daha fazla ulasma firsati buldu.</p>
+<p>Bugun sizinle bu gelismelerden biri olan Vision Transformerlardan bahsedecegim. Makale giderek derinlesip tekniklesiyor, bu yuzden tum akisi basitten karmasiga olacak sekilde siraladim. Bu konu ne kadar ilginizi cekiyorsa o kadar ileri gidebilirsiniz.</p>
+<p><code>Bu makaleyi yazarken bircok kaynaktan, bloglardan, kendi bilgilerimden hatta ChatGPT'den dahi yararlandim. Daha derin okumalar yapmak isterseniz lutfen kaynaklar bolumune goz atin!</code></p>
+<h3 id="tl-dr">TL; DR</h3>
+<p>2022'de Vision Transformer (ViT), şu anda bilgisayar görüşünde son teknoloji olan ve bu nedenle farklı görüntü tanıma görevlerinde yaygın olarak kullanılan evrişimli sinir ağlarına (CNN'ler) rekabetçi bir alternatif olarak ortaya çıktı.</p>
+<p>ViT modelleri, hesaplama verimliliği ve doğruluğu açısından mevcut en son teknolojiye (CNN) neredeyse 4 kat daha iyi performans gösteriyorlar.</p>
+<p>Bu makale aşağıdaki konulardan bahsedecegim:</p>
+<ul>
+<li>Vision Transformer (ViT) nedir?</li>
+<li>Görüntü Tanıma'da ViT modellerini kullanma Görüntü Dönüştürücüler nasıl çalışır?</li>
+<li>Vision Transformers'ın Kullanım Durumları ve uygulamaları</li>
+</ul>
+<pre><code>- Devamindaki konulari yaz!
+</code></pre>
+<h2 id="vision-transformers">Vision Transformers</h2>
 <p><img alt="vit" src="../../assets/vit.png" /></p>
 <p>Uzun yillardir CNN algoritmalari goruntu isleme konularinda neredeyse tek cozumumuzdu. ResNet, EfficientNetm Inception vb. gibi tum mimariler temelde CNN mimarilerini kullanarak goruntu isleme problemlerimizi cozmede bize yardimci oluyor. Bugun sizinle goruntu isleme konusunda farkli bir yaklasim olan ViT'ler yani Vision Transformerlari inceleyecegiz.</p>
 <p>Aslinda Transformer kavrami NLP alaninda yurutulen teknolojiler icin ortaya konmustu. Attention is all you need adiyla yayinlanan makale NLP problemlerinin cozumu icin devrimsel cozumler getirdi, artik Transformer-based mimarilar nlp gorevleri icin standart bir hale geldi.</p>
 <p>Cok da uzun bir sure gecmeden dogal dil alaninda kullanilan bu mimari goruntu alaninda da ufak degisikliklerle uyarlandi. Bu calismayi <a href="">"An image is worth 16x16 words"</a> olarak bu linkteki paperdan okuyabilirsiniz. Asagida daha detayli anlatacagim fakat temel olarak bir goruntuyu 16x16 boyutlu parcalara ayirarak embeddinglerini cikartmak uzere. Temel bazi konulari anlatmadan bu mekanikleri aciklamak cok zor bu yuzden hiz kaybetmeden konuyu daha iyi anlamak icin alt basliklara gecelim.</p>
+<h2 id="vits-vs-cnn">ViTs vs. CNN</h2>
+<p>Bu iki mimariyi karsilastirdigimizda acik ara ViTlerin cok daha etkileyici oldugunu gorebiliyoruz.</p>
+<p>Vision Transformerlar, training için daha az hesaplama kaynağı kullanirken ayni zamanda, evrişimli sinir ağlarına (CNN) daha iyi performans gosteriyor.</p>
+<p>Birazdan asagida daha detayli olarak anlatacagim fakat temelde CNNler piksel dizilerini kullanır, ViT ise görüntüleri sabit boyutlu ufak parcalara bolder. Her bir parca transformer encoder ile patch, positional vs. embeddingleri cikartilir (asagida anlatacagim). Ayrıca ViT modelleri, hesaplama verimliliği ve doğruluğu söz konusu olduğunda CNN'lerden neredeyse dört kat daha iyi performans gösteriyorlar.</p>
+<p>ViT'deki self-attention katmanı, bilgilerin genel olarak görüntünün tamamına yerleştirilmesini mümkün kıliyor bu demek oluyor ki yeniden birlestirmek istedigimizde veya yenilerini olusturmak istedigimizde bu bilgi de elimizde olacak, yani modele bunlari da ogretiyoruz.</p>
+<p><img alt="" src="../../assets/attention-map-vit.webp" /></p>
+<p><em>Raw gorselleri (solda)  ViT-S/16 modeliyle attention haritalari (sagda)</em></p>
+<p>Kaynak:  <em>When Vision Transformers Outperform ResNets without Pre-training or Strong Data Augmentations</em> <a href="https://arxiv.org/abs/2106.01548">https://arxiv.org/abs/2106.01548</a></p>
 <h2 id="attention-mekanizmasi">Attention Mekanizmasi</h2>
+<p><code>Bu bolum ChatGPT ile yazildi</code></p>
+<p>Özetle, NLP (Doğal Dil İşleme) için geliştirilen dikkat mekanizmaları, yapay sinir ağı modellerinin girdiyi daha iyi işleyip anlamasına yardımcı olmak için kullanılır. Bu mekanizmalar, girdinin farklı bölümlerine farklı ağırlık verilerek çalışır, bu sayede model girdiyi işlerken belli bölümlere daha fazla dikkat eder.</p>
+<p>Dikkat mekanizmaları, dot-product dikkat, multi-head dikkat ve transformer dikkat gibi farklı türleri geliştirilmiştir. Bu mekanizmalar her birisi biraz farklı şekilde çalışsa da, hepsi girdinin farklı bölümlerine farklı ağırlık verilerek modelin belli bölümlere daha fazla dikkat etmesine izin verme ilkesi üzerine çalışır.</p>
+<p>Örneğin, bir makine çeviri görevinde, bir dikkat mekanizması modelin kaynak dil cümlesindeki belli kelimeleri üreterek hedef dil cümlesine dikkat etmesine izin verebilir. Bu, modelin daha doğru çeviriler üretebilmesine yardımcı olur, çünkü kaynak dil kelimelerinin anlam ve bağlamını dikkate alarak çeviri üretebilir.</p>
+<p>Genel olarak, dikkat mekanizmaları birçok state-of-the-art NLP modelinin bir parçasıdır ve bu modellerin çeşitli görevlerde performansını geliştirme konusunda çok etkili olduğu gösterilmiştir.</p>
+<h2 id="vit-implementasyonlari">ViT Implementasyonlari</h2>
+<p>Fine-tune edilmis ve pre-trained  ViT modelleri Google Research'ün GitHub'ında mevcut:</p>
+<p><a href="https://github.com/google-research/vision_transformer">https://github.com/google-research/vision_transformer</a></p>
+<p>Pytorch Implementasyonlari lucidrains'in Github reposunda bulabilirsiniz:</p>
+<p><a href="https://github.com/lucidrains/vit-pytorch">https://github.com/lucidrains/vit-pytorch</a></p>
+<p>Ayni zamanda <code>timm</code> kullanarak hazir modelleri hizlica kullanabilirsiniz.</p>
+<p><a href="https://github.com/rwightman/pytorch-image-models">https://github.com/rwightman/pytorch-image-models</a></p>
 <h2 id="mimari">Mimari</h2>
 <p>ViT mimarisi birkaç aşamadan oluşur:</p>
 <ol>
@@ -167,6 +217,7 @@
 <p><strong>MLP Head</strong> - Bu, mimarinin çıktı katmanıdır, bir girdinin öğrenilen özelliklerini bir sınıf çıktısına dönüştürür. Görüntü sınıflandırması üzerinde çalıştığımız için buna "sınıflandırıcı kafa" da diyebilirsiniz. MLP Kafasının yapısı MLP bloğuna benzer.</p>
 </li>
 </ol>
+<h2 id="vit-mimarisi">ViT Mimarisi</h2>
 <p><img alt="vit architecture" src="../../assets/vit-arch.png" /></p>
 <h3 id="patch-embeddings">Patch Embeddings</h3>
 <p>Standart Transformer, girişi tek boyutlu token embedding dizisi olarak alır. 2B görüntüleri işlemek için <strong>x∈R^{H×W×C}</strong> görüntüsünü düzleştirilmiş 2B patchlere (goruntu parcalarina) yeniden şekillendiriyoruz.</p>
@@ -257,6 +308,8 @@ Görüntü sınıflandırması için, ön eğitim zamanında bir gizli katman ve
 <li><a href="https://www.learnpytorch.io/08_pytorch_paper_replicating/#3-replicating-the-vit-paper-an-overview">https://www.learnpytorch.io/08_pytorch_paper_replicating/#3-replicating-the-vit-paper-an-overview</a></li>
 <li><a href="https://theaisummer.com/vision-transformer/">https://theaisummer.com/vision-transformer/</a></li>
 <li><a href="https://medium.com/swlh/visual-transformers-a-new-computer-vision-paradigm-aa78c2a2ccf2">https://medium.com/swlh/visual-transformers-a-new-computer-vision-paradigm-aa78c2a2ccf2</a></li>
+<li><a href="https://viso.ai/deep-learning/vision-transformer-vit/">https://viso.ai/deep-learning/vision-transformer-vit/</a></li>
+<li><a href="https://arxiv.org/abs/2106.01548">https://arxiv.org/abs/2106.01548</a></li>
 </ul>
               
             </div>
