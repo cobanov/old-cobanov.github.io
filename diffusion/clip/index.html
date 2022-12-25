@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Prompting - Cobanov</title>
+    <title>Clip - Cobanov</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Prompting";
-        var mkdocs_page_input_path = "diffusion/prompting.md";
+        var mkdocs_page_name = "Clip";
+        var mkdocs_page_input_path = "diffusion/clip.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -72,7 +72,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">diffusion-book</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../ldm/">What is Latent Diffusion</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../vit/">ViT Visual Transformers</a>
@@ -83,13 +83,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../samplers/">Samplers</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Prompting</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#prompt-weighting">Prompt Weighting</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#negative-prompts">Negative Prompts</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../prompting/">Prompting</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../blender-depthmap/">Blender Depthmap</a>
                   </li>
@@ -116,8 +110,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>diffusion-book &raquo;</li>
-      <li>Prompting</li>
+      <li>Clip</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -126,42 +119,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="prompting">Prompting</h1>
-<h2 id="prompt-weighting">Prompt Weighting</h2>
-<p>Source: <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#prompt-editing">AUTOMATIC1111</a></p>
-<p>Using () in the prompt increases the model's attention to enclosed words, and [] decreases it. You can combine multiple modifiers:</p>
-<p><strong>Cheat Sheet</strong></p>
-<ul>
-<li>a (word) - increase attention to word by a factor of 1.1</li>
-<li>a ((word)) - increase attention to word by a factor of 1.21 (= 1.1 * 1.1)</li>
-<li>a [word] - decrease attention to word by a factor of 1.1</li>
-<li>a (word:1.5) - increase attention to word by a factor of 1.5</li>
-<li>a (word:0.25) - decrease attention to word by a factor of 4 (= 1 / 0.25)</li>
-<li>a (word) - use literal () characters in prompt</li>
-</ul>
-<p>With (), a weight can be specified like this: (text:1.4). If the weight is not specified, it is assumed to be 1.1. Specifying weight only works with () not with [].</p>
-<p>If you want to use any of the literal ()[] characters in the prompt, use the backslash to escape them: anime_(character).</p>
-<p>On 2022-09-29, a new implementation was added that supports escape characters and numerical weights. A downside of the new implementation is that the old one was not perfect and sometimes ate characters: "a (((farm))), daytime", for example, would become "a farm daytime" without the comma. This behavior is not shared by the new implementation which preserves all text correctly, and this means that your saved seeds may produce different pictures. For now, there is an option in settings to use the old implementation.</p>
-<p>NAI uses my implementation from before 2022-09-29, except they have 1.05 as the multiplier and use {} instead of (). So the conversion applies:</p>
-<ul>
-<li>their {word} = our (word:1.05)</li>
-<li>their {{word}} = our (word:1.1025)</li>
-<li>their [word] = our (word:0.952) (0.952 = 1/1.05)</li>
-<li>their [[word]] = our (word:0.907) (0.907 = 1/1.05/1.05)</li>
-</ul>
-<h2 id="negative-prompts">Negative Prompts</h2>
-<p>Negative prompts are essential for 2.0 or greater models.</p>
-<p><strong>Negative Prompt Example</strong></p>
-<blockquote>
-<p>disfigured, kitsch, ugly, oversaturated, grain, low-res, Deformed, blurry, bad anatomy, disfigured, poorly drawn face, mutation, mutated, extra limb, ugly, poorly drawn hands, missing limb, blurry, floating limbs, disconnected limbs, malformed hands, blur, out of focus, long neck, long body, ugly, disgusting, poorly drawn, childish, mutilated, mangled, old, surreal, watermark</p>
-</blockquote>
+                
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../samplers/" class="btn btn-neutral float-left" title="Samplers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../blender-depthmap/" class="btn btn-neutral float-right" title="Blender Depthmap">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -183,10 +144,6 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../samplers/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../blender-depthmap/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
