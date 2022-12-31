@@ -107,6 +107,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../tools/">Tools & Blogs and Useful Links</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../sd-layers/">SD Layers</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -132,26 +134,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="diffusion-models">Diffusion Models</h1>
-<p>Temel notlar:</p>
-<ul>
-<li>Yuksek cozunurluklu goruntu islemek oldukca masraflidir cunku 128px bir goruntu 64px bir goruntunun tam 4 katidir bu baglamda yapilacak islemler quadratictir.</li>
-<li>Diffsuion modellerinde VAE (variational auto encoderlar) kullanilir, bu goruntunun ortulu bir uzayda daha kucuk bir representasyonunu saglar. 512x512x3 olan bir gorsel 64x64x4 boyutuna indirgenir.</li>
-<li>VAE ile birlikte gorsellerdeki redundant kisimlari atilmis olur, yeteri kadar data verildigi muddet VAE gorselleri latent spaceden tekrardan eski cozunurluge olusturabilmeyi ogrenir.</li>
-<li>Text Conditioning, diffusion modeli egitilirken goruntuye ek olarak bu goruntunun olusmasinda etkili olacak sekilde text datasinin da (caption) bilgi olarak verilmesine denir. Burda amaca gurultulu bir gorsel verildiginde modelin caption’a uygun bir sekilde gurultuyu cozmesi ve goruntunun buna gore olusmasini amaclar.</li>
-<li>Inference aninda, baslangicta pure noise ve olusturmak istedigimiz goruntuye uygun olacak sekilde bir text veririz ve modelin random bir inputu text’e gore olusturmasini isteriz.</li>
-<li>Text conditioning olusturmak icin yazilarin numerik bir representasyonunu olusturmamiz gerekiyor, bunu CLIP adi verilen OpenAI tarafindan gelistirilmis bir LLM modeli kullaniyoruz. CLIP, image captionlari uzerinde egitilmis, fotograflari ve yazilarini (fotograflarin captionlarini) karsislastirmamizi saglayan bir model.</li>
-<li>Stable diffusionda kullandigimiz promptlar once clip encoder'a iletilir ve SD 1.x serisi icin token basina 768 uzunlugunda bir embedding vektoru uretir. Bu SD 2.x versiyonlari icin 1024 uzunlugunda bir vektor.</li>
-<li>Sureci stabil tutmak adina tum promptlar 77 token ile sinirlandirilmistir. Yani daha uzun prompt girmeniz tokenlerin truncate edilmesine sebep olur. Son durumda CLIP'den elde ettigimiz matrix 77x768 uzunlugunda olacaktir. SD 2.x icin 77x1024.</li>
-</ul>
-<p><img alt="Conditioning" src="https://github.com/huggingface/diffusion-models-class/blob/main/unit3/sd_unet_color.png?raw=true" /></p>
-<ul>
-<li>Cross Attention nedir?</li>
-<li>Her ne kadar text conditioning yapsak da, gun sonunda olusan gurultu baslangicta kullandigimiz noise inputa cok bagimli oldugunu goruyoruz. Bu mantikli cunku milyonlarca resimin caption'u cogunlukla resimin kendisinden bagimsiz captionlar iceriyor. Bu yuzden model descriptionlardan cok ogrenemiyor.</li>
-<li>Bu problemi ortadan kaldirmak icin CFG (Classifier Free Guidance) denilen bir yontem uyguluyoruz.</li>
-<li>Cok kisa bir tabirle model egitim sirasinda text bilgisi olmadan egitilir, inference aninda ise iki tahmin yapilir zero conditioning ve text conditioning, bu ikisi arasindaki farka bakarak bilr olcek olustururuz bu da CFG adi verilir.</li>
-<li>Super-resolution, Inpainting ve Depth to Image turunde 3 farkli conditioning de vardir, ayni textte oldugu gibi, super resolution fotografin yuksek cozunurluklu hali ve dusuk cozunurlukle hali uzerinde bir egitim gerceklestirilir, depth 2 image, midas modeli ile goruntunun kendisi ve derinlik haritasi cikartilmis haliyle conditionlanarak egitilir.</li>
-</ul>
+                <h1 id="applied-stable-diffuion">Applied Stable Diffuion</h1>
 <h2 id="components-of-stable-diffusion-model">Components of Stable Diffusion Model</h2>
 <ul>
 <li>VAE</li>

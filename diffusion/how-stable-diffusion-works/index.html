@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Samplers - Cobanov</title>
+    <title>Diffusion Models - Cobanov</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Samplers";
-        var mkdocs_page_input_path = "diffusion/samplers.md";
+        var mkdocs_page_name = "Diffusion Models";
+        var mkdocs_page_input_path = "diffusion/how-stable-diffusion-works.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -72,7 +72,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">diffusion-book</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../ldm/">What is Latent Diffusion</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../vit/">ViT Visual Transformers</a>
@@ -81,9 +81,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../glossary/">Glossary</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Samplers</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../samplers/">Samplers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../prompting/">Prompting</a>
                   </li>
@@ -114,8 +112,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-          <li>diffusion-book &raquo;</li>
-      <li>Samplers</li>
+      <li>Diffusion Models</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -124,68 +121,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="samplers">Samplers</h1>
-<p>Source: <a href="https://www.reddit.com/r/StableDiffusion/comments/zgu6wd/can_anyone_explain_differences_between_sampling/">Reddit</a></p>
-<p>There are ancestral samplers (marked by the letter "a") whose output will keep changing as the number of steps increases, and the others, which will eventually settle on a final image. This final image is different between Karras and non-Karras samplers, but very similar within those groups.</p>
-<p>Then there's DPM fast, which doesn't feel particularly fast, and which always seems to produce inferior images for me.</p>
-<p>DPM adaptive is also its own thing, as it ignores step count and works with cfg scale instead. More cfg = more steps. I kind of like it when I'm not sure how many steps I should use, but the final step count is generally high. It can also take a long, long time if you use the "AND" prompt syntax - I have interrupted it after waiting for over 2000 steps.</p>
-<p>Most differences between the different samplers appear at low step counts &lt; 20. Some produce distinguishable images faster and some slower, and may look very different in the early stages. That's random though, there's no good way to predict what those early images will turn into with more steps.</p>
-<p>In practice, the choice of samplers is just preference, there's actually very little difference in the long run.</p>
-<p>First, you have to understand what samplers are.  These are discretized differential equations.  I'm not going to go into these at all in this post, but I've covered them before.</p>
-<p>DDIM and PLMS were the original samplers.  They were part of Latent Diffusion's repository.  They stand for the papers that introduced them, Denoising Diffusion Implicit Models and Pseudo Numerical Methods for Diffusion Models on Manifolds.</p>
-<p>Almost all other samplers come from work done by @RiversHaveWings or Katherine Crowson, which is mostly contained in her work at this repository.  She is listed as the principal researcher at Stability AI. Her notes for those samplers are as follows:</p>
+                <h1 id="diffusion-models">Diffusion Models</h1>
+<p>Temel notlar:</p>
 <ul>
-<li>⁠Euler - Implements Algorithm 2 (Euler steps) from Karras et al. (2022)</li>
-<li>⁠Euler_a - Ancestral sampling with Euler method steps.</li>
-<li>⁠LMS - No information, but can be inferred that the name comes from linear multistep coefficients</li>
-<li>⁠Heun - Implements Algorithm 2 (Heun steps) from Karras et al. (2022).</li>
-<li>⁠DPM2 - A sampler inspired by DPM-Solver-2 and Algorithm 2 from Karras et al. (2022).</li>
-<li>⁠DPM2 a - Ancestral sampling with DPM-Solver second-order steps</li>
-<li>⁠DPM++ 2s a - Ancestral sampling with DPM-Solver++(2S) second-order steps</li>
-<li>⁠DPM++ 2M - DPM-Solver++(2M)</li>
-<li>⁠DPM++ SDE - DPM-Solver++ (stochastic)</li>
-<li>⁠DPM fast - DPM-Solver-Fast (fixed step size). See <a href="https://arxiv.org/abs/2206.00927">https://arxiv.org/abs/2206.00927</a></li>
-<li>⁠DPM adaptive - DPM-Solver-12 and 23 (adaptive step size). See <a href="https://arxiv.org/abs/2206.00927">https://arxiv.org/abs/2206.00927</a></li>
+<li>Yuksek cozunurluklu goruntu islemek oldukca masraflidir cunku 128px bir goruntu 64px bir goruntunun tam 4 katidir bu baglamda yapilacak islemler quadratictir.</li>
+<li>Diffsuion modellerinde VAE (variational auto encoderlar) kullanilir, bu goruntunun ortulu bir uzayda daha kucuk bir representasyonunu saglar. 512x512x3 olan bir gorsel 64x64x4 boyutuna indirgenir.</li>
+<li>VAE ile birlikte gorsellerdeki redundant kisimlari atilmis olur, yeteri kadar data verildigi muddet VAE gorselleri latent spaceden tekrardan eski cozunurluge olusturabilmeyi ogrenir.</li>
+<li>Text Conditioning, diffusion modeli egitilirken goruntuye ek olarak bu goruntunun olusmasinda etkili olacak sekilde text datasinin da (caption) bilgi olarak verilmesine denir. Burda amaca gurultulu bir gorsel verildiginde modelin caption’a uygun bir sekilde gurultuyu cozmesi ve goruntunun buna gore olusmasini amaclar.</li>
+<li>Inference aninda, baslangicta pure noise ve olusturmak istedigimiz goruntuye uygun olacak sekilde bir text veririz ve modelin random bir inputu text’e gore olusturmasini isteriz.</li>
+<li>Text conditioning olusturmak icin yazilarin numerik bir representasyonunu olusturmamiz gerekiyor, bunu CLIP adi verilen OpenAI tarafindan gelistirilmis bir LLM modeli kullaniyoruz. CLIP, image captionlari uzerinde egitilmis, fotograflari ve yazilarini (fotograflarin captionlarini) karsislastirmamizi saglayan bir model.</li>
+<li>Stable diffusionda kullandigimiz promptlar once clip encoder'a iletilir ve SD 1.x serisi icin token basina 768 uzunlugunda bir embedding vektoru uretir. Bu SD 2.x versiyonlari icin 1024 uzunlugunda bir vektor.</li>
+<li>Sureci stabil tutmak adina tum promptlar 77 token ile sinirlandirilmistir. Yani daha uzun prompt girmeniz tokenlerin truncate edilmesine sebep olur. Son durumda CLIP'den elde ettigimiz matrix 77x768 uzunlugunda olacaktir. SD 2.x icin 77x1024.</li>
 </ul>
-<p>The 'Karras' versions of these weren't made by Karras as far as I can tell, but instead are using a variance-exploding scheduler from the Karras paper, which of course is extra confusing given that most of the other samplers were inspired by that paper in the first place.</p>
-<p>In terms of "what will I get at high step counts", most of the time you will get similar pictures from:</p>
+<p><img alt="Conditioning" src="https://github.com/huggingface/diffusion-models-class/blob/main/unit3/sd_unet_color.png?raw=true" /></p>
 <ul>
-<li>⁠Group A: Euler_a, DPM2 a, DPM++ 2S a, DPM fast (after many steps), DPM adaptive, DPM2 a Karras</li>
-<li>⁠Group B: Euler, LMS, Heun, DPM2, DPM++ 2M, DDIM, PLMS</li>
-<li>⁠Group C: LMS Karras, DPM2 Karras, DPM++ 2M Karras</li>
+<li>Cross Attention nedir?</li>
+<li>Her ne kadar text conditioning yapsak da, gun sonunda olusan gurultu baslangicta kullandigimiz noise inputa cok bagimli oldugunu goruyoruz. Bu mantikli cunku milyonlarca resimin caption'u cogunlukla resimin kendisinden bagimsiz captionlar iceriyor. Bu yuzden model descriptionlardan cok ogrenemiyor.</li>
+<li>Bu problemi ortadan kaldirmak icin CFG (Classifier Free Guidance) denilen bir yontem uyguluyoruz.</li>
+<li>Cok kisa bir tabirle model egitim sirasinda text bilgisi olmadan egitilir, inference aninda ise iki tahmin yapilir zero conditioning ve text conditioning, bu ikisi arasindaki farka bakarak bilr olcek olustururuz bu da CFG adi verilir.</li>
+<li>Super-resolution, Inpainting ve Depth to Image turunde 3 farkli conditioning de vardir, ayni textte oldugu gibi, super resolution fotografin yuksek cozunurluklu hali ve dusuk cozunurlukle hali uzerinde bir egitim gerceklestirilir, depth 2 image, midas modeli ile goruntunun kendisi ve derinlik haritasi cikartilmis haliyle conditionlanarak egitilir.</li>
 </ul>
-<p>As far as convergence behavior:</p>
-<ul>
-<li>⁠Does not converge: Euler_a, DPM2 a, DPM Fast, DDIM, PLMS, DPM adaptive, DPM2 a Karras</li>
-<li>⁠Converges: Euler, LMS, Heun, DPM2, DPM++ 2M, LMS Karras, DPM2 Karras, DPM++ 2M Karras</li>
-</ul>
-<p>By required steps:</p>
-<ul>
-<li>⁠Euler_a = Euler = DPM++2M = LMS Karras (image degraded at high steps) &gt;</li>
-<li>⁠LMS = DPM++ 2M Karras = Heun (slower) = DPM++ 2S a (slower) = DPM++ 2S a Karras &gt;</li>
-<li>⁠DDIM = PLMS = DPM2 (slower) = DPM 2 Karras&gt;</li>
-<li>⁠DPM Fast = DPM2 a (slower)</li>
-</ul>
-<p>These all give somewhat different results so a person could prefer the output of any of the models at a given CFG or step range.  I do think that there is an argument to be made that DPM++ 2M and Euler_a are good generic samplers for most people, however, as they both resolve to a good picture at low seeds (sub-20) without a hit to iteration speed.  DPM++ 2M has the advantage of converging to a single image more often (if you choose to run the same image at higher seed), but is slightly more prone to deformations at high CFG.</p>
-<p>To combine all the above:</p>
-<ul>
-<li>⁠Fast, new, converges: DPM++ 2M, DPM++ 2M Karras</li>
-<li>⁠Fast, doesn't converge: Euler_a, DPM2 a Karras</li>
-<li>⁠Others worth considering: DPM2 a, LMS, DPM++ 2S a Karras</li>
-<li>⁠Bugged: LMS Karras (at high steps</li>
-<li>⁠Older, fast but maybe lower quality final result: Euler, LMS, Heun</li>
-<li>⁠Slow: DDIM, PLMS, DPM2, DPM 2 Karras, DPM Fast, DPM2 a</li>
-</ul>
-<p>TL;DR</p>
-<p>These are confusingly named and mostly come from academic papers.  The actual mechanisms of each sampler aren't really relevant to their outputs.  In general PLMS, DDIM, or DPM fast are slower and give worse results.</p>
-<p>Instead, try out DPM++ 2M and Euler_a, along with DPM++ 2M Karras. These should all give good results at a low seed value.</p>
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../glossary/" class="btn btn-neutral float-left" title="Glossary"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../prompting/" class="btn btn-neutral float-right" title="Prompting">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -207,10 +165,6 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../glossary/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../prompting/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
