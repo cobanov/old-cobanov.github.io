@@ -1,4 +1,4 @@
-> **Source**: https://whalesalad.com/blog/doing-python-configuration-right
+> **Source**: <https://whalesalad.com/blog/doing-python-configuration-right>
 
 # Doing Python Configuration Right
 
@@ -232,9 +232,9 @@ def is_production_env():
 
 We're leveraging **import-time evaluation** to dynamically fetch the necessary configuration from the corresponding child environment. Let's step through it piece by piece:
 
-1.  First we import the `importlib` module ([docs](https://docs.python.org/3/library/importlib.html)) which gives us some handy tools for importing code with code.
-2.  Using the convention we established – the `ENV` environment variable – we grab the name of the environment we're currently running in.
-3.  We choose `development` as the default if one is not set, but as noted earlier this decision will vary depending on the system.
+1. First we import the `importlib` module ([docs](https://docs.python.org/3/library/importlib.html)) which gives us some handy tools for importing code with code.
+2. Using the convention we established – the `ENV` environment variable – we grab the name of the environment we're currently running in.
+3. We choose `development` as the default if one is not set, but as noted earlier this decision will vary depending on the system.
 
     We might even consider **preventing our application from starting** unless this variable is defined. Here is an example of how that could work:
 
@@ -245,9 +245,9 @@ We're leveraging **import-time evaluation** to dynamically fetch the necessary c
 
     ```
 
-4.  Next we use the `importlib.import_module` function to load the module containing our specific environment's code into a local variable, `module`.
-5.  Finally, we update the [globals](https://docs.python.org/3/library/functions.html#globals) of this module merging in the ones from the `development.py` file.
-6.  At the end you will see a few conveniences (a-la Rails) to make it easier to toggle specific logic based on the environment. These are kept as functions so that they isolate implementation to this module instead of wherever its being used.
+4. Next we use the `importlib.import_module` function to load the module containing our specific environment's code into a local variable, `module`.
+5. Finally, we update the [globals](https://docs.python.org/3/library/functions.html#globals) of this module merging in the ones from the `development.py` file.
+6. At the end you will see a few conveniences (a-la Rails) to make it easier to toggle specific logic based on the environment. These are kept as functions so that they isolate implementation to this module instead of wherever its being used.
 
 This approach was heavily inspired by [Ruby on Rails configuration](https://guides.rubyonrails.org/configuring.html#configuring-rails-components) which achieves a very similar outward appearance albeit with a different under-the-hood implementation.
 
@@ -384,14 +384,14 @@ Notice the last line: `RedisManager.from_config()` is used to isolate concerns. 
 
 I use this approach in all of my Python projects and have yet to find a situation where this (or a variation of it) doesn't work.
 
-1.  We have the flexibility to create an unlimited number of environments. If for example we wanted to spin-up a temporary environment for a pull request: `cp environments/staging.py environments/PR_402.py` and `ENV=PR_402` is all you need.
-2.  When developing locally we can run the system in production mode by prefixing it with `ENV=production` and vice versa, running software anywhere else in a dev or test mode.
-3.  Developers can quickly glean the major differences between environments by taking a look at the configuration each of them is overriding. This makes it easier to onboard new team members to your codebase.
-4.  Similarly, each developer on the team can have his or her own unique configuration. No more clobbering central config because your system has something setup a little differently than the others.
-5.  We can protect our test environment from accidentally reaching out to production resources by explicitly setting certain variables in `environments/test.py` to `None`.
-6.  We eliminate the heft of passing big key/val configuration maps between various CLI tools such as Docker et-all (although tooling more and more capable of reading env from a file these days)
-7.  We expose our configuration as a vanilla Python package so there is little to no learning curve and interoperability with other Python tools.
-8.  We avoid the cost of supporting external libraries/dependencies
+1. We have the flexibility to create an unlimited number of environments. If for example we wanted to spin-up a temporary environment for a pull request: `cp environments/staging.py environments/PR_402.py` and `ENV=PR_402` is all you need.
+2. When developing locally we can run the system in production mode by prefixing it with `ENV=production` and vice versa, running software anywhere else in a dev or test mode.
+3. Developers can quickly glean the major differences between environments by taking a look at the configuration each of them is overriding. This makes it easier to onboard new team members to your codebase.
+4. Similarly, each developer on the team can have his or her own unique configuration. No more clobbering central config because your system has something setup a little differently than the others.
+5. We can protect our test environment from accidentally reaching out to production resources by explicitly setting certain variables in `environments/test.py` to `None`.
+6. We eliminate the heft of passing big key/val configuration maps between various CLI tools such as Docker et-all (although tooling more and more capable of reading env from a file these days)
+7. We expose our configuration as a vanilla Python package so there is little to no learning curve and interoperability with other Python tools.
+8. We avoid the cost of supporting external libraries/dependencies
 
 At the end of the day this approach is not very glamorous, and that is exactly what we want when we're building systems that need to be reliable, maintainable and efficient. With some plain old Python and a few lines of special code we've unlocked a tremendous amount of flexibility and power in the configuration of our system.
 

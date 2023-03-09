@@ -1,3 +1,0 @@
-# Openpose
-
-## Coming soon...
