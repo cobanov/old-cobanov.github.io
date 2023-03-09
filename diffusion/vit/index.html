@@ -44,8 +44,6 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../..">Hello 👋</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../reading-list/">2023 Reading List</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../helpers/">Helper one-liners</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../new-macbook/">New Macbook Installation</a>
@@ -57,8 +55,6 @@
                   <li class="toctree-l1"><a class="reference internal" href="../../windows-wsl-ssh/">Windows WSL Activate SSH</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../nerf/">NeRF</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../instagram/">Instagram Non-followers</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">About</span></p>
@@ -90,61 +86,19 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="vision-transformers-vits">Vision Transformers ViTs</h1>
-<h2 id="introduction">Introduction</h2>
-<p>2022 yili yapay zekanin yili oldu, yapay zeka sanatinda, dogal dil islemede, goruntu islemede, ses teknolojilerinde inanilmaz gelismeler yasandi. Hem <a href="https://huggingface.co/">Huggingface</a> hem <a href="https://openai.com/">OpenAI</a> firtinalar kopardi. Onceki yillara nazaran bu yapay zeka teknolojileri hem demokratiklesti hem de son kullaniciya daha fazla ulasma firsati buldu.</p>
-<p>Bugun sizinle bu gelismelerden biri olan Vision Transformerlardan bahsedecegim. Makale giderek derinlesip tekniklesiyor, bu yuzden tum akisi basitten karmasiga olacak sekilde siraladim. Bu konu ne kadar ilginizi cekiyorsa o kadar ileri gidebilirsiniz.</p>
-<p><code>Bu makaleyi yazarken bircok kaynaktan, bloglardan, kendi bilgilerimden hatta ChatGPT'den dahi yararlandim. Daha derin okumalar yapmak isterseniz lutfen kaynaklar bolumune goz atin!</code></p>
-<h3 id="tl-dr">TL; DR</h3>
-<p>2022'de Vision Transformer (ViT), şu anda bilgisayar görüşünde son teknoloji olan ve bu nedenle farklı görüntü tanıma görevlerinde yaygın olarak kullanılan evrişimli sinir ağlarına (CNN'ler) rekabetçi bir alternatif olarak ortaya çıktı.</p>
-<p>ViT modelleri, hesaplama verimliliği ve doğruluğu açısından mevcut en son teknolojiye (CNN) neredeyse 4 kat daha iyi performans gösteriyor.</p>
-<p>Bu makale aşağıdaki konulardan bahsedecegim:</p>
-<ul>
-<li>Vision Transformer (ViT) nedir?</li>
-<li>Vision Transformers vs Convolutional Neural Networks</li>
-<li>Attention Mekanizmasi</li>
-<li>ViT Implementasyonlari</li>
-<li>ViT Mimarisi</li>
-<li>Vision Transformers'ın Kullanım ve Uygulamasi</li>
-</ul>
-<h2 id="vision-transformers">Vision Transformers</h2>
 <p><img alt="vit" src="../../assets/vit.png" /></p>
-<p>Uzun yillardir CNN algoritmalari goruntu isleme konularinda neredeyse tek cozumumuzdu. <a href="https://arxiv.org/abs/1512.03385">ResNet</a>, <a href="https://arxiv.org/abs/1905.11946">EfficientNet</a>, <a href="https://arxiv.org/abs/1512.00567">Inception</a> vb. gibi tum mimariler temelde CNN mimarilerini kullanarak goruntu isleme problemlerimizi cozmede bize yardimci oluyordu. Bugun sizinle goruntu isleme konusunda farkli bir yaklasim olan ViT'ler yani Vision Transformerlari inceleyecegiz.</p>
-<p>Aslinda Transformer kavrami NLP alaninda yurutulen teknolojiler icin ortaya kondu. <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a> adiyla yayinlanan makale NLP problemlerinin cozumu icin devrimsel cozumler getirdi, artik Transformer-based mimarilar NLP gorevleri icin standart bir hale geldi.</p>
-<p>Cok da uzun bir sure gecmeden dogal dil alaninda kullanilan bu mimari goruntu alaninda da ufak degisikliklerle uyarlandi. Bu calismayi <a href="https://arxiv.org/abs/2010.11929">An image is worth 16x16 words</a> olarak bu linkteki paperdan okuyabilirsiniz.</p>
-<p>Asagida daha detayli anlatacagim fakat surec temel olarak bir goruntuyu 16x16 boyutlu parcalara ayirarak embeddinglerini cikartmak uzerine calisiyor. Temel bazi konulari anlatmadan bu mekanikleri aciklamak cok zor bu yuzden hiz kaybetmeden konuyu daha iyi anlamak icin alt basliklara gecelim.</p>
-<h2 id="vits-vs-cnn">ViTs vs. CNN</h2>
-<p>Bu iki mimariyi karsilastirdigimizda acik ara ViTlerin cok daha etkileyici oldugunu gorebiliyoruz.</p>
-<p>Vision Transformerlar, training için daha az hesaplama kaynağı kullanirken ayni zamanda, evrişimli sinir ağlarına (CNN) daha iyi performans gosteriyor.</p>
-<p>Birazdan asagida daha detayli olarak anlatacagim fakat temelde CNN'ler piksel dizilerini kullanır, ViT ise görüntüleri sabit boyutlu ufak parcalara boler. Her bir parca transformer encoder ile patch, positional vs. embeddingleri cikartilir (asagida anlatacagim konular bunlari iceriyor). Ayrıca ViT modelleri, hesaplama verimliliği ve doğruluğu söz konusu olduğunda CNN'lerden neredeyse dört kat daha iyi performans gösteriyorlar.</p>
-<p>ViT'deki self-attention katmanı, bilgilerin genel olarak görüntünün tamamına yerleştirilmesini mümkün kiliyor bu demek oluyor ki yeniden birlestirmek istedigimizde veya yenilerini olusturmak istedigimizde bu bilgi de elimizde olacak, yani modele bunlari da ogretiyoruz.</p>
-<p><img alt="attention map" src="../../assets/attention-map-vit.webp" /></p>
-<p><em>Raw gorselleri (solda)  ViT-S/16 modeliyle attention haritalari (sagda)</em></p>
-<p>Kaynak:  <em>When Vision Transformers Outperform ResNets without Pre-training or Strong Data Augmentations</em> <a href="https://arxiv.org/abs/2106.01548">https://arxiv.org/abs/2106.01548</a></p>
+<p>Uzun yillardir CNN algoritmalari goruntu isleme konularinda neredeyse tek cozumumuzdu. ResNet, EfficientNetm Inception vb. gibi tum mimariler temelde CNN mimarilerini kullanarak goruntu isleme problemlerimizi cozmede bize yardimci oluyor. Bugun sizinle goruntu isleme konusunda farkli bir yaklasim olan ViT'ler yani Vision Transformerlari inceleyecegiz.</p>
+<p>Aslinda Transformer kavrami NLP alaninda yurutulen teknolojiler icin ortaya konmustu. Attention is all you need adiyla yayinlanan makale NLP problemlerinin cozumu icin devrimsel cozumler getirdi, artik Transformer-based mimarilar nlp gorevleri icin standart bir hale geldi.</p>
+<p>Cok da uzun bir sure gecmeden dogal dil alaninda kullanilan bu mimari goruntu alaninda da ufak degisikliklerle uyarlandi. Bu calismayi <a href="">"An image is worth 16x16 words"</a> olarak bu linkteki paperdan okuyabilirsiniz. Asagida daha detayli anlatacagim fakat temel olarak bir goruntuyu 16x16 boyutlu parcalara ayirarak embeddinglerini cikartmak uzere. Temel bazi konulari anlatmadan bu mekanikleri aciklamak cok zor bu yuzden hiz kaybetmeden konuyu daha iyi anlamak icin alt basliklara gecelim.</p>
 <h2 id="attention-mekanizmasi">Attention Mekanizmasi</h2>
-<p><code>Bu bolum ChatGPT ile yazildi</code></p>
-<p>Özetle, NLP (Doğal Dil İşleme) için geliştirilen attention(dikkat) mekanizmaları, yapay sinir ağı modellerinin girdiyi daha iyi işleyip anlamasına yardımcı olmak için kullanılır. Bu mekanizmalar, girdinin farklı bölümlerine farklı ağırlık verilerek çalışır, bu sayede model girdiyi işlerken belli bölümlere daha fazla dikkat eder.</p>
-<p>Attention mekanizmaları, dot-product attention, multi-head attention ve transformer attention gibi farklı türleri geliştirilmiştir. Bu mekanizmalar her birisi biraz farklı şekilde çalışsa da, hepsi girdinin farklı bölümlerine farklı ağırlık verilerek modelin belli bölümlere daha fazla dikkat etmesine izin verme ilkesi üzerine çalışır.</p>
-<p>Örneğin, bir makine çeviri görevinde, bir attention mekanizması modelin kaynak dil cümlesindeki belli kelimeleri üreterek hedef dil cümlesine dikkat etmesine izin verebilir. Bu, modelin daha doğru çeviriler üretebilmesine yardımcı olur, çünkü kaynak dil kelimelerinin anlam ve bağlamını dikkate alarak çeviri üretebilir.</p>
-<p>Genel olarak, attention mekanizmaları birçok state-of-the-art NLP modelinin bir parçasıdır ve bu modellerin çeşitli görevlerde performansını geliştirme konusunda çok etkili olduğu gösterilmiştir.</p>
-<p><code>ChatGPT sonu</code></p>
-<p>Aslinda konuya hakim biri icin daha iyi bir aciklama fakat cok kisa bu alanda hicbir bilgisi olmayan birisi icin basitlestirilmis bir aciklama burada harika bir sekilde anlatilmis</p>
-<p><a href="https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/">Mechanics of Seq2seq Models With Attention</a></p>
-<p><a href="https://jalammar.github.io/illustrated-transformer/">Illustrated Transformer</a></p>
-<h2 id="vit-implementasyonlari">ViT Implementasyonlari</h2>
-<p>Fine-tune edilmis ve pre-trained  ViT modelleri <a href="https://github.com/google-research/">Google Research</a>'un Github'ında mevcut:</p>
-<p><a href="https://github.com/google-research/vision_transformer">https://github.com/google-research/vision_transformer</a></p>
-<p>Pytorch Implementasyonlari lucidrains'in Github reposunda bulabilirsiniz:</p>
-<p><a href="https://github.com/lucidrains/vit-pytorch">https://github.com/lucidrains/vit-pytorch</a></p>
-<p>Ayni zamanda <code>timm</code> kullanarak hazir modelleri hizlica kullanabilirsiniz.</p>
-<p><a href="https://github.com/rwightman/pytorch-image-models">https://github.com/rwightman/pytorch-image-models</a></p>
 <h2 id="mimari">Mimari</h2>
-<p>ViT mimarisi birkaç aşamadan oluşuyor:</p>
+<p>ViT mimarisi birkaç aşamadan oluşur:</p>
 <ol>
 <li>
 <p><strong>Patch + Position Embedding (inputs)</strong> - Giriş görüntüsünü bir dizi görüntü parcalarina (patches) dönüştürür ve parcalarin hangi sırayla geldiğini bilmek icin bir konum numarası ekler.</p>
 </li>
 <li>
-<p><strong>Linear projection of flattened patches (Embedded Patches)</strong> - Görüntü parcalari embeddinglere donusturulur, görüntüleri direkt kullanmak yerine embeddingleri kullanmanın yararı, embeddingler görüntünün eğitimle öğrenilebilir bir temsili olmasıdır.</p>
+<p><strong>Linear projection of flattened patches (Embedded Patches)</strong> - Görüntü parcalari embeddinglere dönüşür, görüntüleri direkt kullanmak yerine embeddingleri kullanmanın yararı, embeddingler görüntünün eğitimle öğrenilebilir bir temsili olmasıdır.</p>
 </li>
 <li>
 <p><strong>Norm</strong> - Bir sinir ağını düzenli hale getirmek (overfitting'i azaltmak) için bir teknik olan "Layer Normalization" veya "LayerNorm"un kısaltmasıdır.</p>
@@ -153,22 +107,20 @@
 <p><strong>Multi-Head Attention</strong> - Bu, Multi-Headed Self-Attention layer veya kısaca "MSA" dır.</p>
 </li>
 <li>
-<p><strong>MLP (Multilayer perceptron)</strong> - Genellikle herhangi bir feed-forward (ileri besleme) katmanı koleksiyonu olarak dusunebilirsiniz.</p>
+<p><strong>MLP (Multilayer perceptron)</strong> - Genellikle herhangi bir ileri besleme katmanı koleksiyonunu olarak dusunebilirsiniz.</p>
 </li>
 <li>
-<p><strong>Transformer Encoder</strong> - Transformer Encoder, yukarıda listelenen katmanların bir koleksiyonudur. Transformer Encoderin içinde iki skip (atlama) bağlantısı vardır ("+" sembolleri), katmanın girdilerinin doğrudan sonraki katmanların yanı sıra hemen sonraki katmanlara beslendiği anlamına gelir. Genel ViT mimarisi, birbiri üzerine yığılmış bir dizi Transformer kodlayıcıdan oluşur.</p>
+<p><strong>Transformer Encoder</strong> - Transformer Encoder, yukarıda listelenen katmanların bir koleksiyonudur. Transformer Encoderin içinde iki atlama (skip) bağlantısı vardır ("+" sembolleri), katmanın girdilerinin doğrudan sonraki katmanların yanı sıra hemen sonraki katmanlara beslendiği anlamına gelir. Genel ViT mimarisi, birbiri üzerine yığılmış bir dizi Transformer kodlayıcıdan oluşur.</p>
 </li>
 <li>
-<p><strong>MLP Head</strong> - Bu, mimarinin çıktı katmanıdır, bir girdinin öğrenilen özelliklerini bir sınıf çıktısına dönüştürür. Görüntü sınıflandırması üzerinde çalıştığımız için buna "sınıflandırıcı kafa" da diyebilirsiniz. MLP head yapısı MLP bloğuna benzer.</p>
+<p><strong>MLP Head</strong> - Bu, mimarinin çıktı katmanıdır, bir girdinin öğrenilen özelliklerini bir sınıf çıktısına dönüştürür. Görüntü sınıflandırması üzerinde çalıştığımız için buna "sınıflandırıcı kafa" da diyebilirsiniz. MLP Kafasının yapısı MLP bloğuna benzer.</p>
 </li>
 </ol>
-<h2 id="vit-mimarisi">ViT Mimarisi</h2>
 <p><img alt="vit architecture" src="../../assets/vit-arch.png" /></p>
 <h3 id="patch-embeddings">Patch Embeddings</h3>
 <p>Standart Transformer, girişi tek boyutlu token embedding dizisi olarak alır. 2B görüntüleri işlemek için <strong>x∈R^{H×W×C}</strong> görüntüsünü düzleştirilmiş 2B patchlere (goruntu parcalarina) yeniden şekillendiriyoruz.</p>
-<p>Burada, (H, W) orijinal görüntünün çözünürlüğüdür ve (P, P) her görüntü parçasının çözünürlüğüdür. Resim sabit boyutlu parcalara bölünmüştür, aşağıdaki resimde patch  (parca) boyutu 16×16 olarak alınmıştır. Yani görüntünün boyutları 48×48 olacaktır. (Cunku 3 kanal var)</p>
+<p>Burada, (H, W) orijinal görüntünün çözünürlüğüdür ve (P, P) her görüntü parçasının çözünürlüğüdür. Resim sabit boyutlu parcalara bölünmüştür, aşağıdaki resimde yama boyutu 16×16 olarak alınmıştır. Yani görüntünün boyutları 48×48 olacaktır.</p>
 <p>Self-attention maliyeti quadratictir. Görüntünün her pikselini girdi olarak iletirsek, Self-attention her pikselin diğer tüm piksellerle ilgilenmesini gerektirir. Self-attention ikinci dereceden maliyeti çok maliyetli olacak ve gerçekçi girdi boyutuna ölçeklenmeyecek; bu nedenle, görüntü parcalara bölünür.</p>
-<p>Yani sair burada her pikselle ugrasmak sonsuza kadar surecegi icin 16x16 boyutlu goruntu bolumlerinin embeddinglerini almanin parametre sayisini dusureceginden bahsediyor.</p>
 <pre><code class="language-python">import matplotlib.pyplot as plt
 from PIL import Image
 import numpy as np
@@ -220,17 +172,13 @@ plt.show()
 </code></pre>
 <p><img alt="patch-embeddings" src="../../assets/patch_emb.png" /></p>
 <h2 id="linear-projection-of-flattened-patches">Linear Projection of Flattened Patches</h2>
-<p>Parcalari Transformer bloğuna geçirmeden önce, makalenin yazarları yamaları önce doğrusal bir projeksiyondan geçirmeyi faydalı bulmuslar. Bir yamayı alıp büyük bir vektöre açarlar ve patch embeddingler (goruntu parcalarinin gommeleri? veya embedddingleri) oluşturmak için embedding matrisiyle çarparlar ve bu konumsal gömmeyle (positional embeddings) birlikte transformatöre giden şeydir.</p>
-<p>Her goruntu parcasi (patches), tüm piksel kanallarını bir yamada birleştirerek ve ardından bunu doğrusal olarak istenen giriş boyutuna yansıtarak embed edilen bir 1B patch'e düzleştirilir.</p>
-<p>Ne demek istedigimi bu gorselde cok daha iyi anlayacaginizi dusunuyorum.
-<img alt="linear embeddings" src="../../assets/linear-projection.png" /></p>
-<p><em>Kaynak: <a href="https://arxiv.org/pdf/2103.14803.pdf">Face Transformer for Recognition</a></em></p>
+<p>Parcalar Transformer bloğuna geçirmeden önce, makalenin yazarları yamaları önce doğrusal bir projeksiyondan geçirmeyi faydalı buldular. Bir yamayı alıp büyük bir vektöre açarlar ve yamalı gömmeler oluşturmak için gömme matrisiyle çarparlar ve bu, konumsal gömmeyle birlikte transformatöre giden şeydir.</p>
+<p>Her yama, tüm piksel kanallarını bir yamada birleştirerek ve ardından bunu doğrusal olarak istenen giriş boyutuna yansıtarak gömülen bir 1B yamaya düzleştirilir.</p>
 <h2 id="positional-embeddings">Positional embeddings</h2>
-<p>Nasil konusurken dilde kelimelerin sırası kurdugunuz cumlenin anlamini tamamen degistiriyorsa, goruntuler uzerinde de buna dikkat etmek gerekiyor. Maalesef transformerlar, patch embeddinglerin "sırasını" dikkate alan herhangi bir varsayılan mekanizmaya sahip değiller.</p>
-<p>Bir yapboz yaptiginizi dusunun, elinizdeki parcalar (yani onceki adimlarda yaptigimiz patch embeddingler) karisik bir duzende geldiginde goruntunun tamaminda ne oldugunu anlamak oldukca zordur, bu transformerlar için de geçerli. Modelin yapboz parçalarının sırasını veya konumunu çıkarmasını sağlamanın bir yoluna ihtiyacımız var.</p>
-<p>Transformerlar, giriş elemanlarının yapısından bağımsızdır. Her yamaya öğrenilebilir positional embeddings (konum yerleştirmeleri) eklemek, modelin görüntünün yapısı hakkında bilgi edinmesine olanak tanır.</p>
-<p>Positional embeddingler de, bu düzeni modele aktarmamizi sagliyor. ViT için, bu positional embeddingler, patch embeddingler ile aynı boyutluluğa sahip öğrenilmiş vektörlerdir.</p>
-<p>Bu positional embeddingler, eğitim sırasında ve (bazen) ince ayar sırasında öğrenilir. Eğitim sırasında, bu embeddingler, özellikle aynı sütunu ve satırı paylaşan komşu konum yerleştirmelerine yüksek benzerlik gösterdikleri vektör uzaylarında birleşir.</p>
+<p>Nasil konusurken dilde kelimelerin sırası kurdugunuz cumlenin anlamini tamamen degistiriyorsa, goruntuler uzerinde de buna dikkat etmek gerekir. Maalesef transformerlar, patch embeddinglerin "sırasını" dikkate alan herhangi bir varsayılan mekanizmaya sahip değildir.</p>
+<p>Bir yapboz yaptiginizi dusunun, elinizdeki parcalar (yani onceki adimlarda yaptigimiz patch embeddingler) karisik bir duzende geldiginde goruntunun tamaminda ne oldugunu anlamak oldukca zordur, bu transformatörler için de geçerli. Modelin yapboz parçalarının sırasını veya konumunu çıkarmasını sağlamanın bir yoluna ihtiyacımız var.</p>
+<p>Transformatörler, giriş elemanlarının yapısından bağımsızdır. Her yamaya öğrenilebilir konum yerleştirmeleri eklemek, modelin görüntünün yapısı hakkında bilgi edinmesine olanak tanır. Positional embeddinglerde düzeni modele aktarmamizi sagliyor. ViT için, bu Positional embeddingler, patch embeddingler ile aynı boyutluluğa sahip öğrenilmiş vektörlerdir.</p>
+<p>Bu konumsal yerleştirmeler, ön eğitim sırasında ve (bazen) ince ayar sırasında öğrenilir. Eğitim sırasında, bu yerleştirmeler, özellikle aynı sütunu ve satırı paylaşan komşu konum yerleştirmelerine yüksek benzerlik gösterdikleri vektör uzaylarında birleşir.</p>
 <p><img alt="" src="../../assets/visualizing-positional-encodings-vit.png" /></p>
 <h2 id="transformer-encoding">Transformer Encoding</h2>
 <ul>
@@ -238,88 +186,26 @@ plt.show()
 <p><strong>Multi-Head Self Attention Layer(MSP)</strong> birden fazla attention ciktisini lineer olarak beklenen boyutlara esitlemek için kullanilir. MSP, görüntüdeki yerel ve global bağımlılıkları öğrenmeye yardımcı olur.</p>
 </li>
 <li>
-<p><strong>Multi-Layer Perceptrons(MLP)</strong> - Klasik sinir agi katmani fakat aktivasyon fonksiyonu olarak GELU <a href="https://arxiv.org/abs/1606.08415">Gaussian Error Linear Units</a> kullaniyoruz.</p>
+<p><strong>Multi-Layer Perceptrons(MLP)</strong> - Klasik sinir agi katmani fakat aktivasyon fonksiyonu olarak GELU kullaniyoruz.</p>
 </li>
 <li>
-<p><strong>Layer Norm(LN)</strong> eğitim görüntüleri arasında herhangi bir yeni bağımlılık getirmediğinden her bloktan önce uygulanır. Eğitim süresini ve genelleme performansını iyileştirmeye yardımcı olur. Burada Misra'nin harika bir <a href="https://www.youtube.com/watch?v=2V3Uduw1zwQ&amp;ab_channel=AssemblyAI">videosu</a> var. Bu da <a href="https://arxiv.org/abs/1607.06450">Paper</a>.</p>
+<p><strong>Layer Norm(LN)</strong> eğitim görüntüleri arasında herhangi bir yeni bağımlılık getirmediğinden her bloktan önce uygulanır. Eğitim süresini ve genelleme performansını iyileştirmeye yardımcı olun.</p>
 </li>
 <li>
 <p><strong>Residual connections</strong> gradyanların doğrusal olmayan aktivasyonlardan geçmeden doğrudan ağ üzerinden akmasına izin verdiği için her bloktan sonra uygulanır.
-Image classification için, ön eğitim zamanında bir hidden layer ve fine-tuning için tek bir linear layer ile MLP kullanılarak bir classification head uygulanır. ViT'nin üst katmanları global özellikleri öğrenirken, alt katmanlar hem global hem de yerel özellikleri öğrenir. Bu da aslinda ViT'nin daha genel kalıpları öğrenmesini sagliyor.</p>
+Görüntü sınıflandırması için, ön eğitim zamanında bir gizli katman ve ince ayar için tek bir doğrusal katman ile MLP kullanılarak bir sınıflandırma kafası uygulanır. ViT'nin üst katmanları global özellikleri öğrenirken, alt katmanlar hem global hem de yerel özellikleri öğrenir. Bu, ViT'nin daha genel kalıpları öğrenmesini sağlar.</p>
 </li>
 </ul>
-<h2 id="toparlama">Toparlama</h2>
-<p>Evet oldukca fazla terim, teori ve mimari inceledik kafalarda daha iyi oturtmak adina bu gif surecin nasil isledigini guzel bir sekilde ozetliyor.</p>
-<p><img alt="vit gif" src="../../assets/vit-fig.gif" /></p>
-<h2 id="usage">Usage</h2>
-<p>Eger basitce bir ViT kullanmak isterseniz bunun icin ufacik bir rehberi de buraya ekliyorum.</p>
-<p>Muhtemelen denk gelmissinizdir artik yapay zeka alaninda yeni bir sey ciktiginda birakin bunun implementasyonunu kullanimini da birkac satir koda indirmek moda oldu.</p>
-<p>Yukarida anlattigim her seyi birkac satir Python koduyla nasil yapildigina bakalim.</p>
-<p>Colab linki: <a href="https://colab.research.google.com/drive/1sPafxIo6s1BBjHbl9e0b_DYGlb2AMBC3?usp=sharing">https://colab.research.google.com/drive/1sPafxIo6s1BBjHbl9e0b_DYGlb2AMBC3?usp=sharing</a></p>
-<p>Oncelikle pretrained model instantiate <em>(orneklendirmek?)</em> edelim.</p>
-<pre><code class="language-python">import timm
-
-model = timm.create_model('vit_base_patch16_224', pretrained=True)
-model.eval()
-</code></pre>
-<p>Goruntumuzu yukleyip on islemelerini tamamlayim. Ben burada twitter profil fotograimi kullanacagim.</p>
-<p><img alt="" src="../../assets/mert.jpg" /></p>
-<pre><code class="language-python"># eger kendiniz bir gorsel vermek isterseniz 
-# asagidaki kodda bu kismi comment'e alip, 
-# filename kismina local path verebilirsiniz.
-
-url, filename = (&quot;https://github.com/pytorch/hub/raw/master/images/dog.jpg&quot;, &quot;dog.jpg&quot;)
-urllib.request.urlretrieve(url, filename)
-</code></pre>
-<pre><code class="language-python">import urllib
-from PIL import Image
-from timm.data import resolve_data_config
-from timm.data.transforms_factory import create_transform
-
-config = resolve_data_config({}, model=model)
-transform = create_transform(**config)
-
-url, filename = (&quot;https://pbs.twimg.com/profile_images/1594739904642154497/-7kZ3Sf3_400x400.jpg&quot;, &quot;mert.jpg&quot;)
-urllib.request.urlretrieve(url, filename)
-img = Image.open(filename).convert('RGB')
-tensor = transform(img).unsqueeze(0) # transform and add batch dimension
-
-</code></pre>
-<p>Tahminleri alalim</p>
-<pre><code class="language-python">import torch
-
-with torch.no_grad():
-    out = model(tensor)
-probabilities = torch.nn.functional.softmax(out[0], dim=0)
-print(probabilities.shape)
-
-# prints: torch.Size([1000])
-</code></pre>
-<p>En populer 5 tahminin siniflarina bakalim.</p>
-<pre><code class="language-python"># Get imagenet class mappings
-url, filename = (&quot;https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt&quot;, &quot;imagenet_classes.txt&quot;)
-urllib.request.urlretrieve(url, filename) 
-with open(&quot;imagenet_classes.txt&quot;, &quot;r&quot;) as f:
-    categories = [s.strip() for s in f.readlines()]
-
-# Print top categories per image
-top5_prob, top5_catid = torch.topk(probabilities, 5)
-for i in range(top5_prob.size(0)):
-    print(categories[top5_catid[i]], top5_prob[i].item())
-</code></pre>
-<pre><code class="language-python">trench coat             0.422695130109787
-bulletproof vest        0.18995067477226257
-suit                    0.06873432546854019
-sunglasses              0.02222270704805851
-sunglass                0.020680639892816544
-</code></pre>
+<h2 id="egitim">Egitim</h2>
+<p>ViT, büyük veri kümelerinde önceden eğitilmiştir ve daha küçük bir veri kümesine ince ayar yapılmıştır.</p>
+<p>İnce ayar yapılırken, önceden eğitilmiş son tahmin kafası kaldırılır ve daha küçük veri kümesine dayalı olarak sınıfları tahmin etmek için sıfır başlatılmış bir ileri besleme katmanı ekleriz.</p>
+<p>İnce ayar, modelin önceden eğitildiğinden daha yüksek çözünürlüklü bir görüntüye uygulanabilir, ancak yama boyutu aynı kalmalıdır.</p>
+<p>Transformers, görüntü yapısı hakkında önceden bilgiye sahip değildir ve bu nedenle daha uzun eğitim sürelerine sahiptir ve modeli eğitmek için büyük veri kümeleri gerektirir.</p>
 <h2 id="sources">Sources</h2>
 <ul>
 <li><a href="https://www.learnpytorch.io/08_pytorch_paper_replicating/#3-replicating-the-vit-paper-an-overview">https://www.learnpytorch.io/08_pytorch_paper_replicating/#3-replicating-the-vit-paper-an-overview</a></li>
 <li><a href="https://theaisummer.com/vision-transformer/">https://theaisummer.com/vision-transformer/</a></li>
 <li><a href="https://medium.com/swlh/visual-transformers-a-new-computer-vision-paradigm-aa78c2a2ccf2">https://medium.com/swlh/visual-transformers-a-new-computer-vision-paradigm-aa78c2a2ccf2</a></li>
-<li><a href="https://viso.ai/deep-learning/vision-transformer-vit/">https://viso.ai/deep-learning/vision-transformer-vit/</a></li>
-<li><a href="https://arxiv.org/abs/2106.01548">https://arxiv.org/abs/2106.01548</a></li>
 </ul>
               
             </div>
