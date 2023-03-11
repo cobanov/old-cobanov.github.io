@@ -10,10 +10,10 @@ nav:
       - "Helper one-liners": "helpers.md"
       - "New Macbook Installation": "new-macbook.md"
       - "Cypherpunk Manifesto": "cyberpunk.md"
-      - 'Doing Python Configuration Right': 'python-conf.md'
-      - 'Windows WSL Activate SSH': 'windows-wsl-ssh.md'
-      - 'NeRF': 'nerf.md'
-
+      - "Doing Python Configuration Right": "python-conf.md"
+      - "Windows WSL Activate SSH": "windows-wsl-ssh.md"
+      - "NeRF": "nerf.md"
+      - "Instagram": "instagram.md"
 
   - About:
       - "about.md"
