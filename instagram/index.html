@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Instagram - Cobanov</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Instagram";
+        var mkdocs_page_input_path = "instagram.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Cobanov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Blog</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helper one-liners</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../new-macbook/">New Macbook Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cyberpunk/">Cypherpunk Manifesto</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-conf/">Doing Python Configuration Right</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../windows-wsl-ssh/">Windows WSL Activate SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../nerf/">NeRF</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Instagram</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#asagidaki-kodu-kopyalayin">Asagidaki kodu kopyalayin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#instagram-hesabiniza-girin-ve-developer-consoleu-acin">Instagram hesabiniza girin ve developer console'u acin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kodu-consolea-yapistirip-calistirin">Kodu Console'a yapistirip calistirin</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#soyle-bir-ekran-karsilayacak">Soyle bir ekran karsilayacak</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../about/">Main Page</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Cobanov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Blog &raquo;</li>
+      <li>Instagram</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="instagram-unfollowers">Instagram Unfollowers</h1>
+<p>Bu harika github projesiyle instagramdaki sizi geri takip etmeyen kisileri bulabilir ve kolayca takipten cikabilirsiniz.</p>
+<p>Bu projeye <a href="https://github.com/davidarroyo1234">davidarroyo1234</a>'nun bu <a href="https://github.com/davidarroyo1234/InstagramUnfollowers">github reposundan</a> ulasabilirsiniz.</p>
+<h2 id="asagidaki-kodu-kopyalayin">Asagidaki kodu kopyalayin</h2>
+<pre><code class="language-javascript">&quot;use strict&quot;;const INSTAGRAM_HOSTNAME=&quot;www.instagram.com&quot;;let nonFollowersList=[],userIdsToUnfollow=[],isActiveProcess=!1;function sleep(e){return new Promise((n=&gt;{setTimeout(n,e)}))}function getCookie(e){const n=`; ${document.cookie}`.split(`; ${e}=`);if(2===n.length)return n.pop().split(&quot;;&quot;).shift()}function afterUrlGenerator(e){return`https://www.instagram.com/graphql/query/?query_hash=3dec7e2c57367ef3da3d987d89f9dbc8&amp;variables={&quot;id&quot;:&quot;${getCookie(&quot;ds_user_id&quot;)}&quot;,&quot;include_reel&quot;:&quot;true&quot;,&quot;fetch_mutual&quot;:&quot;false&quot;,&quot;first&quot;:&quot;24&quot;,&quot;after&quot;:&quot;${e}&quot;}`}function unfollowUserUrlGenerator(e){return`https://www.instagram.com/web/friendships/${e}/unfollow/`}function getElementByClass(e){const n=document.querySelector(e);if(null===n)throw new Error(`Unable to find element by class: ${e}`);return n}function getUserById(e){const n=nonFollowersList.find((n=&gt;n.id.toString()===e.toString()));return void 0===n&amp;&amp;console.error(`Unable to find user by id: ${e}`),n}function copyListToClipboard(){const e=[...nonFollowersList].sort(((e,n)=&gt;e.username&gt;n.username?1:-1));let n=&quot;&quot;;e.forEach((e=&gt;{n+=e.username+&quot;\n&quot;})),copyToClipboard(n)}async function copyToClipboard(e){await navigator.clipboard.writeText(e),alert(&quot;List copied to clipboard!&quot;)}function onToggleUser(){getElementByClass(&quot;.selected-user-count&quot;).innerHTML=`[${userIdsToUnfollow.length}]`}function toggleUser(e){userIdsToUnfollow=-1===userIdsToUnfollow.indexOf(e)?[...userIdsToUnfollow,e]:userIdsToUnfollow.filter((n=&gt;n!==e)),onToggleUser()}function toggleAllUsers(e=!1){document.querySelectorAll(&quot;.account-checkbox&quot;).forEach((n=&gt;n.checked=e)),userIdsToUnfollow=e?nonFollowersList.map((e=&gt;e.id)):[],onToggleUser()}function renderResults(e){const n=[...e].sort(((e,n)=&gt;e.username&gt;n.username?1:-1));getElementByClass(&quot;.toggle-all-checkbox&quot;).disabled=!1;const t=getElementByClass(&quot;.results-container&quot;);t.innerHTML=&quot;&quot;;let o=&quot;&quot;;n.forEach((e=&gt;{const n=-1!==userIdsToUnfollow.indexOf(parseInt(e.id,10)),r=e.username.substring(0,1).toUpperCase();o!==r&amp;&amp;(o=r,t.innerHTML+=`&lt;div class='alphabet-character'&gt;${o}&lt;/div&gt;`),t.innerHTML+=`&lt;label class='result-item'&gt;\n            &lt;div class='flex grow align-center'&gt;\n                &lt;img class='avatar' src=${e.profile_pic_url} /&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;\n                &lt;div class='flex column'&gt;\n                    &lt;a class='fs-xlarge' target='_blank' href='../${e.username}'&gt;${e.username}&lt;/a&gt;\n                    &lt;span class='fs-medium'&gt;${e.full_name}&lt;/span&gt;\n                &lt;/div&gt;\n                ${e.is_verified?&quot;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;div class='verified-badge'&gt;✔&lt;/div&gt;&quot;:&quot;&quot;}\n                ${e.is_private?&quot;&lt;div class='flex justify-center w-100'&gt;\n                            &lt;span class='private-indicator'&gt;Private&lt;/span&gt;\n                          &lt;/div&gt;&quot;:&quot;&quot;}\n            &lt;/div&gt;\n            &lt;input\n                class='account-checkbox'\n                type='checkbox'\n                onchange='toggleUser(${e.id})'\n                ${n?&quot;checked&quot;:&quot;&quot;} /&gt;\n        &lt;/label&gt;`}))}async function run(e){getElementByClass(&quot;.run-scan&quot;).remove(),getElementByClass(&quot;.include-verified-checkbox&quot;).disabled=!0,nonFollowersList=await getNonFollowersList(e),getElementByClass(&quot;.copy-list&quot;).disabled=!1}function renderOverlay(){let e=!0;document.body.innerHTML=`\n        &lt;main class='iu'&gt;\n            &lt;div class='overlay'&gt;\n                &lt;header class='top-bar'&gt;\n                    &lt;div class='logo' onclick='location.reload()'&gt;InstagramUnfollowers&lt;/div&gt;\n                    &lt;label class='flex align-center'&gt;\n                        &lt;input type='checkbox' class='include-verified-checkbox' ${e?&quot;checked&quot;:&quot;&quot;} /&gt; Include verified\n                    &lt;/label&gt;\n                    &lt;button class='copy-list' onclick='copyListToClipboard()' disabled&gt;COPY LIST&lt;/button&gt;\n                    &lt;button class='fs-large clr-red' onclick='unfollow()'&gt;UNFOLLOW &lt;span class='selected-user-count'&gt;[0]&lt;/span&gt;&lt;/button&gt;\n                    &lt;input type='checkbox' class='toggle-all-checkbox' onclick='toggleAllUsers(this.checked)' disabled /&gt;\n                &lt;/header&gt;\n\n                &lt;button class='run-scan'&gt;RUN&lt;/button&gt;\n                &lt;div class='results-container'&gt;&lt;/div&gt;\n\n                &lt;footer class='bottom-bar'&gt;\n                    &lt;div&gt;Non-followers: &lt;span class='nonfollower-count' /&gt;&lt;/div&gt;\n                    &lt;div class='sleeping-text'&gt;&lt;/div&gt;\n                    &lt;div class='progressbar-container'&gt;\n                        &lt;div class='progressbar-bar'&gt;&lt;/div&gt;\n                        &lt;span class='progressbar-text'&gt;0%&lt;/span&gt;\n                    &lt;/div&gt;\n                &lt;/footer&gt;\n            &lt;/div&gt;\n        &lt;/main&gt;`,getElementByClass(&quot;.run-scan&quot;).addEventListener(&quot;click&quot;,(()=&gt;run(e))),getElementByClass(&quot;.include-verified-checkbox&quot;).addEventListener(&quot;change&quot;,(()=&gt;e=!e))}async function getNonFollowersList(e=!0){if(isActiveProcess)return;let n=[],t=!0,o=0,r=0,s=-1;isActiveProcess=!0;let l=`https://www.instagram.com/graphql/query/?query_hash=3dec7e2c57367ef3da3d987d89f9dbc8&amp;variables={&quot;id&quot;:&quot;${getCookie(&quot;ds_user_id&quot;)}&quot;,&quot;include_reel&quot;:&quot;true&quot;,&quot;fetch_mutual&quot;:&quot;false&quot;,&quot;first&quot;:&quot;24&quot;}`;const i=getElementByClass(&quot;.progressbar-bar&quot;),a=getElementByClass(&quot;.progressbar-text&quot;),c=getElementByClass(&quot;.nonfollower-count&quot;),d=getElementByClass(&quot;.sleeping-text&quot;);for(;t;){let u;try{u=await fetch(l).then((e=&gt;e.json()))}catch(e){console.error(e);continue}-1===s&amp;&amp;(s=u.data.user.edge_follow.count),t=u.data.user.edge_follow.page_info.has_next_page,l=afterUrlGenerator(u.data.user.edge_follow.page_info.end_cursor),r+=u.data.user.edge_follow.edges.length,u.data.user.edge_follow.edges.forEach((t=&gt;{!e&amp;&amp;t.node.is_verified||t.node.follows_viewer||n.push(t.node)}));const f=`${Math.ceil(r/s*100)}%`;a.innerHTML=f,i.style.width=f,c.innerHTML=n.length.toString(),renderResults(n),await sleep(Math.floor(400*Math.random())+1e3),o++,o&gt;6&amp;&amp;(o=0,d.style.display=&quot;block&quot;,d.innerHTML=&quot;Sleeping 10 secs to prevent getting temp blocked...&quot;,await sleep(1e4)),d.style.display=&quot;none&quot;}return i.style.backgroundColor=&quot;#59A942&quot;,a.innerHTML=&quot;DONE&quot;,isActiveProcess=!1,n}async function unfollow(){if(isActiveProcess)return;if(0===userIdsToUnfollow.length)return void alert(&quot;Must select at least a single user to unfollow&quot;);if(!confirm(&quot;Are you sure?&quot;))return;let e=getCookie(&quot;csrftoken&quot;);if(void 0===e)throw new Error(&quot;csrftoken cookie is undefined&quot;);const n=getElementByClass(&quot;.sleeping-text&quot;),t=getElementByClass(&quot;.progressbar-bar&quot;),o=getElementByClass(&quot;.progressbar-text&quot;);getElementByClass(&quot;.toggle-all-checkbox&quot;).disabled=!0;const r=getElementByClass(&quot;.results-container&quot;);r.innerHTML=&quot;&quot;;const s=()=&gt;window.scrollTo(0,r.scrollHeight);o.innerHTML=&quot;0%&quot;,t.style.width=&quot;0%&quot;,isActiveProcess=!0;let l=0;for(const i of userIdsToUnfollow){const a=getUserById(i);try{await fetch(unfollowUserUrlGenerator(i),{headers:{&quot;content-type&quot;:&quot;application/x-www-form-urlencoded&quot;,&quot;x-csrftoken&quot;:e},method:&quot;POST&quot;,mode:&quot;cors&quot;,credentials:&quot;include&quot;}),r.innerHTML+=`&lt;div class='p-medium'&gt;Unfollowed\n                &lt;a class='clr-inherit' target='_blank' href='${a.username}'&gt; ${a.username}&lt;/a&gt;\n                &lt;span class='clr-cyan'&gt; [${l+1}/${userIdsToUnfollow.length}]&lt;/span&gt;\n            &lt;/div&gt;`}catch(e){console.error(e),r.innerHTML+=`&lt;div class='p-medium clr-red'&gt;Failed to unfollow ${a.username} [${l+1}/${userIdsToUnfollow.length}]&lt;/div&gt;`}l+=1;const c=`${Math.ceil(l/userIdsToUnfollow.length*100)}%`;if(o.innerHTML=c,t.style.width=c,s(),i===userIdsToUnfollow[userIdsToUnfollow.length-1])break;await sleep(Math.floor(2e3*Math.random())+4e3),l%5==0&amp;&amp;(n.style.display=&quot;block&quot;,n.innerHTML=&quot;Sleeping 5 minutes to prevent getting temp blocked...&quot;,s(),await sleep(3e5)),n.style.display=&quot;none&quot;}t.style.backgroundColor=&quot;#59A942&quot;,o.innerHTML=&quot;DONE&quot;,isActiveProcess=!1,r.innerHTML+=&quot;&lt;hr /&gt;&lt;div class='fs-large p-medium clr-green'&gt;All DONE!&lt;/div&gt;&lt;hr /&gt;&quot;,s()}function init(){location.hostname===INSTAGRAM_HOSTNAME?(document.title=&quot;InstagramUnfollowers&quot;,renderOverlay()):alert(&quot;Can be used only on Instagram routes&quot;)}window.addEventListener(&quot;beforeunload&quot;,(e=&gt;{if(isActiveProcess)return(e=e||window.event)&amp;&amp;(e.returnValue=&quot;Changes you made may not be saved.&quot;),&quot;Changes you made may not be saved.&quot;})),init();const styleMarkup=&quot;html {\n  background-color: #222 !important; }\n  html .iu {\n    margin-bottom: 10rem; }\n    html .iu .overlay {\n      background-color: #222;\n      color: #fff;\n      height: 100%;\n      font-family: system-ui; }\n    html .iu header.top-bar {\n      position: fixed;\n      top: 0;\n      left: 0;\n      right: 0;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      padding: 1rem;\n      height: 2.5rem;\n      background-color: #333;\n      z-index: 1; }\n    html .iu header .logo {\n      font-family: monospace;\n      font-size: 1.5em;\n      cursor: pointer; }\n    html .iu footer.bottom-bar {\n      position: fixed;\n      bottom: 0;\n      left: 0px;\n      right: 0px;\n      display: flex;\n      align-items: center;\n      justify-content: space-between;\n      padding: 1rem;\n      background-color: #000;\n      font-weight: bold;\n      z-index: 1; }\n    html .iu label {\n      cursor: pointer; }\n    html .iu input[type='checkbox'] {\n      height: 1.1rem;\n      width: 1.1rem; }\n    html .iu a {\n      color: inherit;\n      text-decoration-color: transparent;\n      transition: text-decoration-color 0.1s; }\n      html .iu a:hover {\n        text-decoration-color: inherit; }\n    html .iu button {\n      background: none;\n      border: none;\n      padding: 0;\n      cursor: pointer; }\n      html .iu button.copy-list {\n        color: white;\n        font-size: 1rem; }\n      html .iu button.run-scan {\n        position: absolute;\n        left: 50%;\n        top: 50%;\n        transform: translate(-50%, -50%);\n        font-size: 2em;\n        color: white;\n        border: 1px solid white;\n        height: 160px;\n        width: 160px;\n        border-radius: 50%; }\n    html .iu .progressbar-container {\n      width: 175px;\n      height: 30px;\n      border-radius: 5px;\n      position: relative;\n      border: 1px solid #7b7777; }\n    html .iu .progressbar-bar {\n      width: 0;\n      height: 100%;\n      background-color: #7b7777; }\n    html .iu .progressbar-text {\n      position: absolute;\n      top: 50%;\n      left: 50%;\n      transform: translate(-50%, -50%); }\n    html .iu .sleeping-text {\n      color: yellow; }\n    html .iu .results-container {\n      transform: translateY(75px); }\n      html .iu .results-container .alphabet-character {\n        margin: 1rem;\n        padding: 1rem;\n        font-size: 2em;\n        border-bottom: 1px solid #333; }\n      html .iu .results-container .result-item {\n        display: flex;\n        align-items: center;\n        padding: 1rem;\n        border-radius: 3px;\n        cursor: pointer; }\n        html .iu .results-container .result-item .avatar {\n          width: 75px;\n          border-radius: 50%; }\n        html .iu .results-container .result-item .verified-badge {\n          background-color: #49adf4;\n          border-radius: 50%;\n          padding: 0.2rem 0.3rem;\n          font-size: 0.45em;\n          height: fit-content;\n          transform: translateY(-15px); }\n        html .iu .results-container .result-item .private-indicator {\n          border: 2px solid #51bb42;\n          border-radius: 25px;\n          padding: 0.5rem;\n          color: #51bb42;\n          font-weight: 500; }\n\n/** HELPERS */\n.flex {\n  display: flex; }\n  .flex.align-center {\n    align-items: center; }\n  .flex.justify-center {\n    justify-content: center; }\n  .flex.column {\n    flex-direction: column; }\n\n.grow {\n  flex: 1; }\n\n.w-100 {\n  width: 100%; }\n\n.p-small {\n  padding: 0.5rem; }\n\n.p-medium {\n  padding: 1rem; }\n\n.p-large {\n  padding: 1.5rem; }\n\n.p-xlarge {\n  padding: 2rem; }\n\n.fs-small {\n  font-size: 0.5rem; }\n\n.fs-medium {\n  font-size: 1rem; }\n\n.fs-large {\n  font-size: 1.5rem; }\n\n.fs-xlarge {\n  font-size: 2rem; }\n\n.clr-inherit {\n  color: inherit; }\n\n.clr-red {\n  color: #bd2121; }\n\n.clr-green {\n  color: #56d756; }\n\n.clr-cyan {\n  color: #00ffff; }\n&quot;,elStyle=document.createElement(&quot;style&quot;);elStyle.innerHTML=styleMarkup,document.head.appendChild(elStyle);
+</code></pre>
+<h2 id="instagram-hesabiniza-girin-ve-developer-consoleu-acin">Instagram hesabiniza girin ve developer console'u acin</h2>
+<pre><code>Windows: Ctrl+Shift+J
+MacOS: ⌘+⌥+I
+</code></pre>
+<p><img alt="instagram" src="../assets/instagram.png" /></p>
+<h2 id="kodu-consolea-yapistirip-calistirin">Kodu Console'a yapistirip calistirin</h2>
+<p><img alt="" src="../assets/insta3.png" /></p>
+<h2 id="soyle-bir-ekran-karsilayacak">Soyle bir ekran karsilayacak</h2>
+<p>Calistirin ve takipten cikmak istediginiz kullanicilari tikleyip calistirin.</p>
+<p><img alt="" src="../assets/insta2.png" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../nerf/" class="btn btn-neutral float-left" title="NeRF"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../about/" class="btn btn-neutral float-right" title="Main Page">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../nerf/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
