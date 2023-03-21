@@ -15,6 +15,7 @@ nav:
       - "NeRF": "nerf.md"
       - "Instagram": "instagram.md"
       - "Training and Tuning Terms": "tuning-terms.md"
+      - "Python YAML Configs": "pyyaml.md"
 
   - About:
       - "about.md"
