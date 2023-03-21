@@ -3,7 +3,8 @@
 ## Prerequisites
 
 1. Docker
-2. CUDA 11.3
+2. Latest nvidia drivers
+3. CUDA 11.8 capable GPU
 
 ## Install
 
@@ -11,6 +12,13 @@
 
 ```bash
 docker pull dromni/nerfstudio:<version_number>
+```
+
+You can see the latest tag in this link <https://hub.docker.com/r/dromni/nerfstudio/tags>
+
+```bash
+# example command
+docker pull dromni/nerfstudio:0.1.19
 ```
 
 2. Run docker image
@@ -22,7 +30,7 @@ docker run --gpus all -v /folder/of/your/data:/workspace/ -v /home/<YOUR_USER>/c
 Example for Windows:
 
 ```bash
-docker run --gpus all -v D:\nerf:/workspace/ -v D:\nerf/:/home/user/.cache/ -p 7007:7007 --rm -it dromni/nerfstudio:0.1.13
+docker run --gpus all -v D:\nerf:/workspace/ -v D:\nerf/:/home/user/.cache/ -p 7007:7007 --rm -it dromni/nerfstudio:0.1.19
 ```
 
 ```
@@ -53,13 +61,48 @@ ns-download-data nerfstudio --capture-name=poster
 
 Because this code is often used too much, google drive can put a download restriction, read the error message and try to download the file in the link with your browser.
 
-After downloading the file, you can copy the folder into the volume `D:\nerf\data\nerfstudio` you opened.
+There are also different dataset you can use, to show them run this code
+
+```bash
+ns-download-data nerfstudio --help
+```
+
+```plain
+bww_entrance, campanile, desolation, library, 
+poster, redwoods2, storefront, vegetation, Egypt, 
+person, kitchen, plane, dozer, floating-tree, aspen, 
+stump, sculpture, Giannini-Hall, all, nerfstudio-dataset
+```
+
+After select one of the dataset you can download as well with following command
+
+```
+ns-download-data nerfstudio --capture-name=bmw_entrance
+```
+
+You will see all the downloaded datasets in this directory `D:\nerf\data\nerfstudio`
 
 ### Explore NeRF Studio
 
+Start training with the following command, you will need change the datapath to your dataset folder
+
+```bash
+ns-train nerfacto --data data/nerfstudio/poster
+```
+
+or
+
+```bash
+ns-train nerfacto --data data/nerfstudio/bww_entrance
+```
+
+If everything is correct, ideal output would be like this.
+
+![nerf-training](assets/nerf-training.png)
+
 A web page similar to the link below will appear on your terminal screen, open this page and continue.
 
-```
+```bash
 https://viewer.nerf.studio/versions/22-12-02-0/?websocket_url=ws://localhost:7007 
 ```
 
@@ -69,16 +112,38 @@ You can stop the training with the `Ctrl + c` shortcut.
 
 If you want to continue the training from where it left off, run the code below.
 
+```bash
+ns-train nerfacto --data data/nerfstudio/poster --load-dir {outputs/.../nerfstudio_models}
 ```
-ns-train nerfacto --data data/nerfstudio/poster --trainer.load-dir {outputs/.../nerfstudio_models}
+
+Example code
+
+```bash
+ns-train nerfacto --data data/nerfstudio/bww_entrance/ --load-dir outputs/bww_entrance/nerfacto/2023-03-14_183456/nerfstudio_models/
+```
+
+### Visualize Only (without training)
+
+```bash
+ns-viewer --load-config {outputs/.../config.yml}
+```
+
+```bash
+# example code
+ns-viewer --load-config outputs/bww_entrance/nerfacto/2023-03-14_183456/config.yml
 ```
 
 ## Training on Custom Data
 
 Put your files in the main directory of the volume you opened, you can also keep them in a folder in the main directory.
 
-```
+```bash
 ns-process-data {video,images,polycam,insta360,record3d} --data {DATA_PATH} --output-dir {PROCESSED_DATA_DIR}
+```
+
+```bash
+# example code
+ns-process-data video --data raw_video/forest_walk.mp4 --output-dir forest_walk_processed
 ```
 
 Arguments:
@@ -97,8 +162,13 @@ net-ss,sosnet,disk}]
                        [--colmap-cmd STR] [--no-gpu] [--verbose]
 ```
 
-```
+```bash
 ns-train nerfacto --data {PROCESSED_DATA_DIR}
+```
+
+```bash
+# example code
+ns-train nerfacto --data forest_walk_processed/
 ```
 
 ### Example

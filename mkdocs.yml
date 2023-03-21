@@ -14,6 +14,8 @@ nav:
       - "Windows WSL Activate SSH": "windows-wsl-ssh.md"
       - "NeRF": "nerf.md"
       - "Instagram": "instagram.md"
+      - "Install WSL on Windows": "windows-wsl-installation.md"
+      - "Training and Tuning Terms": "tuning-terms.md"
 
   - About:
       - "about.md"
