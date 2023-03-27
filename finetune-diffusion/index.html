@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Fine Tuning Diffusion - Cobanov</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Fine Tuning Diffusion";
+        var mkdocs_page_input_path = "finetune-diffusion.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Cobanov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Blog</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helper one-liners</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../new-macbook/">New Macbook Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cyberpunk/">Cypherpunk Manifesto</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-conf/">Doing Python Configuration Right</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../windows-wsl-ssh/">Windows WSL Activate SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../nerf/">NeRF</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../instagram/">Instagram</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../steamdeck/">Steam Deck</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Fine Tuning Diffusion</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#advance-advice-for-model-training-and-fine-tuning">Advance Advice for Model Training and Fine Tuning</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-basic-rules-of-training-images">The basic rules of training images</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-many-training-images-to-use">How many training images to use</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-to-select-trainer-images">How to select trainer images</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#avoid-visual-repetition-as-much-as-possible-except-for-the-thing-you-want-to-reproduce">Avoid visual repetition as much as possible except for the thing you want to reproduce</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#visually-diverse-trainers-are-critical-for-style-and-object-matters">Visually diverse trainers are critical for style and object matters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#some-concepts-are-hard-to-train-and-some-concepts-probably-cant-be-trained">Some concepts are hard to train, and some concepts probably can't be trained</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#the-basic-rules-of-captioning">The basic rules of captioning</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#the-more-description-the-better">The MORE description the better.</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#describe-the-image-in-order-from-most-to-least-prominent-concept-usually-biggest-to-smallest-part-of-image">Describe the image in order from most to least prominent concept (usually biggest to smallest part of image)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#you-dont-need-to-caption-a-style-keyword-eg-in-blob-style">You don't need to caption a style keyword - e.g. "in blob style"</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#use-words-with-the-right-level-of-specificity-common-but-not-too-generic">Use words with the right level of specificity: common but not too generic</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#you-may-or-may-not-want-to-caption-things-that-are-true-of-all-the-training-images">You may or may not want to caption things that are true of ALL the training images</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-caption-object-models">How to caption ~object~ models</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#do-use-keywords-eg-a-blob-person-opposite-from-style-models">DO use keywords - e.g. "a blob person". (opposite from style models)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-less-description-the-better-opposite-from-style-models">The LESS description the better. (opposite from style models)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#for-multiple-concepts-describe-the-image-in-order-from-most-to-least-prominent-concept-same-as-for-style-models">For multiple concepts, describe the image in order from most to least prominent concept. (same as for style models)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#use-words-with-the-right-level-of-specificity-common-but-not-too-generic-same-as-for-style-models">Use words with the right level of specificity: common but not too generic. (same as for style models)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#learning-rate">Learning rate</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#as-of-feb-2023-everydream2-is-the-best-checkpoint-training-software">As of Feb 2023, Everydream2 is the best checkpoint training software.</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#additional-comment">Additional Comment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#captioning-datasets-for-training-purposes">Captioning Datasets for Training Purposes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#disclaimer">DISCLAIMER</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#who-is-this-document-for">WHO IS THIS DOCUMENT FOR</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dataset">DATASET</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#preparation">PREPARATION</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#captioning-general-notes">CAPTIONING – GENERAL NOTES</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#caption-in-the-same-manner-you-prompt">Caption in the same manner you prompt.</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#follow-a-set-structure-per-concept">Follow a set structure per concept.</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#captions-are-like-variables-you-can-use-in-your-prompts">Captions are like variables you can use in your prompts.</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#leveraging-classes-as-tags">Leveraging classes as tags</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#consistent-captioning">Consistent Captioning</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#avoid-repetition">Avoid Repetition</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#take-note-of-ordering">Take Note of Ordering</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#use-your-models-existing-knowledge-to-your-advantage">Use Your Models Existing Knowledge to Your Advantage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-booru-dataset-tag-manager">THE BOORU DATASET TAG MANAGER</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-process">THE PROCESS</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#full-example-of-a-single-image">FULL EXAMPLE OF A SINGLE IMAGE</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#train">TRAIN</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#misc-thoughts-and-references">MISC THOUGHTS AND REFERENCES</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#detailed-guide-on-training-embeddings-on-a-persons-likeness">Detailed guide on training embeddings on a person's likeness</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#what-is-an-embedding">What is an embedding?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#why-do-i-want-an-embedding">Why do I want an embedding?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#preparing-your-starting-images">Preparing your starting images</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#creating-the-embedding-file">Creating the embedding file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#preprocessing">Preprocessing</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#training">Training</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#how-batch-size-helps-to-converge-on-the-subject">How batch size helps to converge on the subject</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#settings-tab">Settings tab</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#txt2img-tab">txt2img tab</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#click-train-embedding">Click 'Train Embedding'</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#inspecting-the-embedding">Inspecting the embedding</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#picking-the-final-embedding-file">Picking the final embedding file</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#final-notes">Final notes</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lora-training">LoRA Training</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2">2</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3">3</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../about/">Main Page</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Cobanov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>Blog &raquo;</li>
+      <li>Fine Tuning Diffusion</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="finetunediffusion">FineTuneDiffusion</h1>
+<h2 id="advance-advice-for-model-training-and-fine-tuning"><strong>Advance Advice for Model Training and Fine Tuning</strong></h2>
+<p>This is advice for those who already understand the basics of training a checkpoint model and want to up their game. I'll be giving very specific pointers and explaining the reason behind them using real examples from my own models (which I'll also shamelessly plug). My experience is specific to checkpoints, but may also be true for LORA.</p>
+<h3 id="summary">Summary</h3>
+<p><strong>Training images</strong></p>
+<ul>
+<li>Originals should be very large, denoised, then sized down</li>
+<li>Minimum 10 per concept, but much more is much better</li>
+<li>Maximize visual diversity and minimize visual repetition (except any object being trained)</li>
+</ul>
+<p><strong>Style captioning</strong></p>
+<ul>
+<li>The MORE description, the better (opposite of objects)</li>
+<li>Order captions from most to least prominent concept</li>
+<li>You DON'T need to caption a style keyword (opposite of objects)</li>
+<li>The specific word choice matters</li>
+</ul>
+<p><strong>Object captioning</strong></p>
+<ul>
+<li>The LESS description, the better (opposite of styles)</li>
+<li>Order captions from most to least prominent concept (if more than one)</li>
+<li>You DO need to caption an object keyword (opposite of styles)</li>
+<li>The specific word choice matters</li>
+</ul>
+<p><strong>Learning rate</strong></p>
+<ul>
+<li>Probably 5e-7 is best, but it's slowwwww</li>
+</ul>
+<h3 id="the-basic-rules-of-training-images">The basic rules of training images</h3>
+<p>I've seen vast improvements by increasing the number of images and quality in my training set. Specifically, the improvements were: more reliably generating images that match trained concepts, images that more reliably combined concepts, images that are more realistic, diverse, and detailed, and images that didn't look exactly like the trainers (over-fitting). But why is that? This is what you need to know:</p>
+<ol>
+<li>Any and every large and small visual detail of the training images will appear in the model.</li>
+<li>Anything visual detail that's repeated in multiple training images will be massively amplified.</li>
+<li>If base-SD can already generate a style/object that's similar to training concepts, then fewer trainer images will be needed for those concepts.</li>
+</ol>
+<h3 id="how-many-training-images-to-use">How many training images to use</h3>
+<p><strong>The number of images depends on the concept, but more is always better.</strong></p>
+<p>With Everydream2, you don't need to enter in a set of "concepts" as a parameter. Instead, you simply use captions. So when I use the term "concept" in this post, I mean the word or words in your caption file that match a specific visual element in your trainers. For example, my <a href="https://civitai.com/models/4940/emotion-puppeteer">Emotion-Puppeteer model</a> contains several concepts: one for each different eye and mouth expression. One such concept is "seething eyes". That's the caption I used in each image that contained a face with eyes the look angry with the brows scrunched together in a &gt;:( shape. Several trainers shared that concept even though the faces were different people and the mouths paired with the "seething eyes" were sometimes different (e.g. frowning or sneering).</p>
+<p>So how many images do you need? Some of the eye and mouth concepts only needed 10 training images to reliably reproduce the matching visual element in the output. But "seething eyes" took 20 images. Meanwhile, I have 20 trainers with "winking eyes", and that output is still unreliable. In a future model, I'll try again with 40 "winking eye" trainers. I suspect it's harder to train because it's less common in the LAION dataset used to train SD. Also keep in mind, that the more trainers per concept the less over-fitting and the more diversity of the output. Some amateurs are training models with literally thousands of images.</p>
+<p>In <a href="https://huggingface.co/mattthew/emotion-puppeteer-v2">my Huggingface</a>, I list exactly how many images I used for each concept used to train Emotion Puppeteer so that you can see how those difference cause bias.</p>
+<h3 id="how-to-select-trainer-images">How to select trainer images</h3>
+<p>This may seem obvious - just pick images that match the desired style/object right? Nope! Consider trainer rules #1 and #2. If your trainers are a bit blurry or contain artifacts, those will be amplified in the resulting model. That's why it's import, for every single training image to:</p>
+<ul>
+<li><strong>Start with images that are no smaller than 1,000</strong><strong>2</strong><strong>before resizing.</strong></li>
+<li><strong>Level-balance, color-balance, and denoise before resizing.</strong></li>
+</ul>
+<p>Note that the 10002 size is the minimum for a typical 5122 model. For a 7682 model, the minimum is 1,5002 images. If you don't follow the above, your model will be biased towards lacking contrast, having color-bias, having noise, and having low detail. The reason you need to start with higher-res images is that you need to denoise them. Even with high-quality denoising software, some of the fine detail besides the noise will be unavoidably lost. But if you start large, then any detail loss will be hidden when you scale down (e.g. to 5122). Also, if you're using images found only, they will typically be compressed or artificially upscaled. So only the largest images will have enough detail. You can judge the quality difference yourself by starting with two different sized images, denoising both, then scaling both down to a matching 5122.</p>
+<p>The reverse of trainer rule #1 is also true: anything that's NOT in the trainers won't appear in the model. That including fine detail. For example, My <a href="https://civitai.com/models/4940/emotion-puppeteer">Emotion-Puppeteer model</a> generates closeups of faces. In an earlier version of the model, all output lacked detail because I didn't start with high-res images. In the latest model I started with hi-res trainers, and even when scaled to 5122, you can see skin pores and fine wrinkles in the trainers. While nothing is guaranteed, these details can show up in the output of the latest model.</p>
+<p>If you can't find larger training images, then at least upscale before resizing to the training size. Start with a denoised image, then quadruple its size using upscaling software (e.g. the "extras" tab within Auto1111). Finally, scale it down to to train size. That at least will make all of the edges clean and sharp, remove artifacts, and smooth solid areas. But this can't replace the missing authentic details. Even the best GAN upscalers leave a lot to be desired. Still, it's better than not. Any blurriness or artifacts in your trainers will be partially learned by the model.</p>
+<h3 id="avoid-visual-repetition-as-much-as-possible-except-for-the-thing-you-want-to-reproduce"><strong>Avoid visual repetition as much as possible except for the thing you want to reproduce</strong></h3>
+<p>Remember trainer rule #2. Here's an example. For my <a href="https://civitai.com/models/4940/emotion-puppeteer">Emotion-Puppeteer model</a>, I needed to images of the many eye and mouth positions I wanted to train. But it's hard to find high-quality images of some facial expressions. So for one of the mouth positions (aka concepts), I found several photos of the same celebrity making that expression. Out of all the trainers I found for that mouth concept, I ended up with about ~10% that were photos of that celebrity. In my latest model, when that mouth keyword is used in a prompt, the face looks recognizably like that celebrity, I'd guess, about a 3rd of the time. The 10% of that celebrity has been amplified by about 3x.</p>
+<p>This amplification effect isn't only limited to the things that you explicitly describe in the captions. Literally anything that's visually similar across images, anywhere in those images will be trained and amplified.</p>
+<p>Here another example: The reason for that was that, in an earlier version of Emotion-Puppeteer, I had cropped all of my trainer photos at the neck. So the model struggled to generate output that was zoomed-out and cropped at the waist. To get around that limitation, I tried an experiment. I found one photo that was cropped at the waist, and then I used my model with inpainting to generate new images of various different faces. I then added those new images to my training set and trained a 2nd model.</p>
+<p>Those generate images only made up about ~15% of the training set that I used to train the 2nd model, but the background was the same for each, and it happened to be a wall covered in flowers. Note that none of my captions contained "flowers". Nevertheless the result was that most of the images generated by that 2nd model contained flowers! Flowers in the background, random flowers next to random objects, flowers in people's hair, and even flowers in the fabric print on clothing. The ~15% of uncaptioned flowers made the whole model obsessed with flowers!</p>
+<h3 id="visually-diverse-trainers-are-critical-for-style-and-object-matters"><strong>Visually diverse trainers are critical for style and object matters</strong></h3>
+<p>This is similar to the advice to avoid visual repetition, but it's worth calling out. For a style model, the more diverse and numerous the objects in the trainers, the more examples of objects in that style the model has to learn from. Therefore, the model is better able to extract the style from those example objects and transfer it to objects that aren't in the trainers. Ideally, your style trainers will have examples from inside, outside, closeup, long-shot, day, night, people, objects, etc.</p>
+<p>Meanwhile, for an object model, you want the trainers to show the object being trained as many different angles and lighting conditions as possible. For an object model, the more diverse and numerous the "styles" (e.g. lighting conditions) in the trainers, the more examples of styles of that object the model has to learn from. Therefore, the model is better able to extract the object from those example styles and transfer onto it styles that aren't in the trainers. The ideal object trainer set will show the object from many angles (e.g. 10), repeating all that set of angles in several lighting conditions (e.g. 10x10), and using a different background in every single trainer (e.g. 100 different backgrounds). That prevents the backgrounds from appearing unprompted in the output.</p>
+<h3 id="some-concepts-are-hard-to-train-and-some-concepts-probably-cant-be-trained"><strong>Some concepts are hard to train, and some concepts probably can't be trained</strong></h3>
+<p>This is trainer rule #3, and mostly you'll discover this through experimentation. Mostly. But if the base SD model struggles with something, you know that'll be harder to train. Hands are the most obvious example. People have tried to train a model that just does hands using hundreds of images. That hasn't been successful because the base SD 1.5 model doesn't understand hands at all. Similarly SD 2.1 doesn't understand anatomy in general, and people haven't been able to train anatomy back in. The base or starting point for the fine-tuning is just too low. Also, hands and bodies can form into thousands of very different silhouettes and shapes, which aren't captured in LAION dataset captions. Maybe ControlNet will fix this.</p>
+<p>In my own experience with Emotion-Puppeteer, so far I haven't been able to train the concept of a the lip-biting expression. Maybe I could if I had a 100 trainers. The "winking eyes" concept is merely unreliable. But I actually had to remove the lip-biting trainer images entirely from the model and retrain because including that concept resulted in hideously deformed mouths even when caption keyword wasn't used in the prompt. I even tried switching the caption from "lip-biting" mouth to "flirting mouth", but it didn't help.</p>
+<p>Here's another example: I tried to train 4 concepts using ~50 images for each: a.) head turned straight towards the camera and eyes looking into the camera, b.) head turned straight towards the camera but eyes looking away from it, c.) head turned to a three-quarter angle but eyes looking into the camera, and d.) head turned away and eyes looking away. While a, b, and d, worked, c failed to train, even with 50 images. So in the latest model, I only used concepts a and d. For the ~100 images of 3/4 head turn, whether eyes looking to camera or not, I captioned them all as "looking away". For the ~50 images of head facing forward but eyes looking away, I didn't caption anything, and for the other ~50, I captioned "looking straight". This resulted in looking into camera and 3/4 head turn both becoming more reliable.</p>
+<h2 id="the-basic-rules-of-captioning">The basic rules of captioning</h2>
+<p>You've probably heard by now that captions are the best way to train, which is true. But I haven't found any good advice about how to caption, what to caption, what words to use, and why. I already made one post about how to caption a style, based what I learned from my <a href="https://civitai.com/models/1053/technicolor-50s-diffusion">Technicolor-Diffusion model</a>. Since that post, I've learned more. This is what you need to know:</p>
+<ol>
+<li>The specific words that you use in the captions are the same specific words you'll need to use in the prompts.</li>
+<li>Describe concepts in training images that you want to reproduce, and don't describe concepts that you don't want to reproduce.</li>
+<li>Like imagery, words that are repeated will be amplified.</li>
+<li>Like prompting, words at the start of the caption carry more weight.</li>
+<li>For each caption word you used, the corresponding visual elements from your trainers will be blended with the visual elements that the SD base model already associates with that word.</li>
+</ol>
+<p>How to caption ~style~ models</p>
+<h3 id="the-more-description-the-better"><strong>The MORE description the better.</strong></h3>
+<p>An ideal style model will reproduce the style no matter what subject you reference in the prompt. The greater the visual diversity or subject matter of the images, the better SD is able to guess what that visual style will look like on subjects that it hasn't seen in that style. Makes sense, right? So why are more word descriptions better? Because it's also the case that the greater the linguistic diversity of the captions, the better SD is able to relate those words to the adjacent words it already knows, and the better it will apply the visual style to those adjacent concepts that aren't in the captions. Therefore, you should describe in detail every part of every object in the image, the positions and orientations of those objects and parts of objects, and whether they're in the foreground or background. Also describe more abstract concepts such as the lighting conditions, emotions, beautiful/ugly, etc.</p>
+<p>Consider captioning rule #1. In my earlier <a href="https://old.reddit.com/r/StableDiffusion/comments/zcr644/make_better_dreambooth_style_models_by_using/">post about training Technicolor-Diffusion</a>, I showed an example where using one of the full and exact captions as the prompt reproduced that training image nearly exactly. And I showed that replacing one of those caption words (e.g. changing woman to girl) generated an image that was just like the training image except for the part that matched that word (woman became girl visually). It follows that the more words you use in your caption, the more levers you have to change in this way. If you only captioned "woman", then you can only reliably change "woman" in the output image. But if you captioned "blonde woman", then you can reliably change "blonde" (e.g. to redhead) while keeping woman. You can't over-describe, as long as you don't describe anything that's NOT in the image.</p>
+<h3 id="describe-the-image-in-order-from-most-to-least-prominent-concept-usually-biggest-to-smallest-part-of-image"><strong>Describe the image in order from most to least prominent concept (usually biggest to smallest part of image)</strong></h3>
+<p>Consider captioning rule #4. Let's say that you have an illustration of a man sitting in a chair by a pool. You could - and should - caption a hundred things about that image from the man's clothing and hairstyle, to the pair of sunglasses in his shirt-pocket, down to the tiny glint of sunlight off the water in the pool in the distance. But if you asked an average person what the image contained, they'd say something like "a man sitting in a chair by a pool" because those are both the biggest parts of the image and the most obvious concepts.</p>
+<p>Captioning rule #4 says that, just as words at the start of the prompt are most likely to be generated in the image, words at the start of the caption are most likely to be learned from the trainer image. You hope your style model will reproduce that style even in glint of light in the distance. But that detail is hard to learn because it's so small in pixel size and because "glint" as a concept isn't as obvious. Again, you can't over describe so long as you order your captions by concept prominence. Those words and concepts at the end of the caption are just less likely to be learned.</p>
+<h3 id="you-dont-need-to-caption-a-style-keyword-eg-in-blob-style"><strong>You don't need to caption a style keyword - e.g. "in blob style"</strong></h3>
+<p>The traditional advice has been to include "blob style" at the front of every caption - where "blob" is any random keyword that will be used in the prompt to invoke the style. But, again, that just means that you're now required to put "blob style" into every prompt in order to maximize the output of that style. Meanwhile, your blob model output is always going to be at least a bit "blobby", so your fine-tuned style model is already ruined as a completely generic model, and that's the whole point. Why would anyone use your "blob style" model if they don't want blobby images? It's easy enough to switch models. So it's better to just leave "blob style" out of your captions.</p>
+<p>The reason for the traditional advice is captioning rule #3. By repeating the word "style", you ensure that the training ends up amplifying the elements of style in the images. But the issue is that "style" is too generic to work well. It can mean artistic, fashionable, or a type of something (e.g. "style of thermos"). So SD doesn't know what part of the images to map the concept of style. In my experience, putting it in doesn't make the model more effective.</p>
+<h3 id="use-words-with-the-right-level-of-specificity-common-but-not-too-generic"><strong>Use words with the right level of specificity: common but not too generic</strong></h3>
+<p>This is a hard to understand idea that's related to captioning rule #5. SD will take each word in your captions and match it with a concept that it recognizes in your trainers. It can do that because it already has visual associations with that word. It will then blend the visual information from in your trainers with its existing visual associations. If your caption words are too generic, that will cause lack of style transfer, because there are too many existing visual associations. Here's an example. Let's say that one of your trainer images for your style model happens to contain an visual of a brandy snifter. If you caption that as "a container", the base SD model knows a million examples of container that come in vastly different sizes and shapes. So they style of the brandy snifter becomes diluted.</p>
+<p>On the flip side, if your captions words are too novel or unusual, it may cause over-fitting. For example, imagine that you caption your image as "a specialblob brandy snifter". So you're using the keyword "specialblob" that SD definitely doesn't already know, and you're using the uncommon word "snifter". If you were trying to train an object model that that exact special snifter specifically, you would want caption like that. Essentially, this tells SD, "the snifter you see in the image is unique from other snifters - it's a specialblob." That way when you prompt "specialblob", the output will be that exact snifter from the training image rather than some generic snifter. But for a style model, you don't care about the snifter itself but rather the style (e.g. swirly brush strokes) of the snifter.</p>
+<p>Rather than "container" or "snifter", a good middle-ground of specificity might be "glassware". That's a more common word, yet all glassware all somewhat similar - at least semi-transparent and liquid holding. This middle-ground allows SD to match the snifter with a smaller pool of similar images, so swirliness of your trainer image is less diluted. I only have limited anecdotal evidence for this advice, and it's very subjective. But I think using simple common words is a good strategy.</p>
+<h3 id="you-may-or-may-not-want-to-caption-things-that-are-true-of-all-the-training-images"><strong>You may or may not want to caption things that are true of ALL the training images</strong></h3>
+<p>Here the rules conflict, and I don't have solid advice. Captioning rule #3 is that words repetitions will be amplified. So if All of the trainers are "paintings with "swirly brush strokes", then theoretically including those words in the captions will make the training pay attention to those concepts in the training images and amplify them. But trainer rule #2 is that visual repetitions will be amplified even if you don't caption them. So the swirliness is gauranteed to be learned anyway. Also, captioning rule #1 is that if you do include "swirly brush strokes" in the caption for every image, then you'll also need to include those words in the prompt to make the model generate that style most effectively. That's just a pain and needlessly eats up prompt tokens.</p>
+<p>This likely depends on how generic these concepts are. Every training image could be captioned as "an image". But that's certainly useless since an image could literally look like anything. In this example, where every image is a painting, you could also use the caption "painting" for every trainer. But that's probably also too generic. Again, relating to rule #5, the captioned visual concepts get blended with existing SD's existing visual concepts for that word, so that's blending with the millions of styles of "painting" in LAION. "Swirly brush strokes" might be specific enough. Best to experiment.</p>
+<h2 id="how-to-caption-object-models">How to caption ~object~ models</h2>
+<p>You can find proof for most of this advice in my other post that shows an <a href="https://old.reddit.com/r/StableDiffusion/comments/11b3i30/5_training_methods_compared_with_a_clear_winner/">apples to apples comparison of object captioning methods</a>.</p>
+<h3 id="do-use-keywords-eg-a-blob-person-opposite-from-style-models"><strong>DO use keywords - e.g. "a blob person". (opposite from style models)</strong></h3>
+<p>Let's say that you're training yourself. You need a special keyword (aka "blob") to indicate that you are a special instance of a generic object, i.e. "person". Yes, you are a special "blob person"! Every training image's caption could be nothing more than "blob person". That way, the prompt "blob person" will generate someone who looks like you, while the prompt "person" will still generate diverse people.</p>
+<p>However, you might want to pair the special keyword with multiple generic objects. For example, if you're training yourself, you may want to use "blob face" for closeups and "blob person" or "blob woman" for long-shots. SD is sometimes bad at understanding that a closeup photo of an object is the same object as a long-shot photo of that object. It's also pretty bad at understand the term "closeup" in general.</p>
+<h3 id="the-less-description-the-better-opposite-from-style-models"><strong>The LESS description the better. (opposite from style models)</strong></h3>
+<p>If you're training yourself, your goal is for the output to be recognizable as you but to be flexible to novel situations and styles that aren't found in the training images. You want the model to ignore all aspects of the trainers that aren't part of your identity, such as the background or the clothes that you're wearing. Remember captioning rule #1 and its opposite. For every caption word you use, the corresponding detail of the training images will be regenerated when you use that word in the prompt. For an object, you don't want that. For example, let's say a trainer has a window in the background. If you caption "window", then it's more likely that if you put "window" into the prompt, it'll generate that specific window (over-fitting) rather than many different windows.</p>
+<p>Similarly, you don't want to caption "a beautiful old black blob woman", even when all of those adjectives are true. Remember caption rule #3. Since that caption will be repeated for every trainer, you're teaching the model that every "beautiful old black woman" looks exactly like you. And that concept will bleed into the component concepts. So even "old black woman" will look like you, and probably even "old black man"! So use as few words as possible, e.g. "blob woman".</p>
+<p>There are cases were you do need to use more than just "blob person". For example, when the photos of you have some major difference, such as a two different hairstyles. In that case, SD will unsuccessfully try to average those differences in the output, creating a blurry hairstyle. To fix that, expand the captions as little as needed, such as to "blob person, short hair" and "blob person, long hair". That also allows you to use "short" and "long" in the prompts to generate those hairstyles separately. Another example is if you're in various different positions. In that case, for example, you might caption, "blob person, short hair, standing" and "blob person, short hair, sitting."</p>
+<p>SD already understands concepts such as "from above" and "from below", so you don't need to caption the angle of the photo for SD to be able to regenerate those angles. But if you want to reliably get that exact angle, then you should caption it, and you'll need several trainer images from that same angle.</p>
+<h3 id="for-multiple-concepts-describe-the-image-in-order-from-most-to-least-prominent-concept-same-as-for-style-models"><strong>For multiple concepts, describe the image in order from most to least prominent concept. (same as for style models)</strong></h3>
+<p>Read the same advice for style models above for the full explanation. This is less important for an object model because the captions are so much shorter - maybe as short as "blob person". But if you're adding hair style to the caption, for example, then the order you want is "blob person, short hair" since "person" is more prominent and bigger in the trainer image than "hair".</p>
+<p>In my <a href="https://civitai.com/models/4940/emotion-puppeteer">Emotion-Puppeteer model</a>, I captioned each images as "X face, Y eyes, Z mouth". The reason for "X face" is that I wanted to differentiate between "plain" and "cute" faces. Face is first because it's a bigger and broader concept that eyes and mouths. The reason for "Y eyes" and "Z mouth" is that I wanted to be able to "puppeteer" the mouth and eyes separately. Also, it wouldn't have worked to caption, "angry face" or "angry emotion" because an angry person may be frowning, pouting, gnashing their teeth. SD would have averaged those very different trainers together into a blurry or grotesque mess. After face, eyes, and mouths, I also included the even less prominent concepts of "closeup" and "looking straight". All of those levers were successfully trained.</p>
+<h3 id="use-words-with-the-right-level-of-specificity-common-but-not-too-generic-same-as-for-style-models"><strong>Use words with the right level of specificity: common but not too generic. (same as for style models)</strong></h3>
+<p>Read the same advice for style models above for the full explanation. This is a bit tricky. If you are a woman, you could theoretically caption yourself as "blob image", "blob person", "blob woman", "blob doctor", or "blob homo sapiens". As described above, "image" is way too generic. "Doctor" is too specific, unless your images are all of you in scrubs and you want the model to always generate you in scrubs. "Homo sapiens" is too uncommon, and your likeness may get blended (captioning rule #5) with other homo sapiens images that are hairy and naked. "Woman" or "person" are probably the right middle-ground.</p>
+<p>Here's a real-world example. In my <a href="https://civitai.com/models/4940/emotion-puppeteer">Emotion-Puppeteer model</a>, I wanted a caption for images where the eyes seem to be smiling - when the eyes are crescent shaped with crinkled in the corners caused by raised cheeks. I wanted to be able to generate "smiling eyes" separately from "smiling mouth" because it's possible to smile with your eyes and not your mouth - i.e. "smizing", and it's also possible to smile with your mouth and not your eyes - i.e. a "fake smile". So in an earlier version of my model, I used the caption "smiling eyes". This didn't work well because the base SD model has such a strong association of the word "smile" with mouths. So whenever I prompted "smiling eyes, frowning mouth", it generated smiling mouths.</p>
+<p>To fix this in the latest model, I changed the caption to "pleasing eyes", which is a very specific and uncommon word combination. Since the LAION database probably has few instances of "pleasing eyes", it acts like a keyword. It ends up being the same as if I had used a unique keyword such as "blob eyes". So now when you prompt "pleasing eyes", the model gives you eyes similar to my training images, and you can puppeteer those kind of eyes separately from the mouths.</p>
+<h2 id="learning-rate">Learning rate</h2>
+<p>The slower the better, if you can stand it. My <a href="https://civitai.com/models/4940/emotion-puppeteer">Emotion-Puppeteer model</a> was trained for the first third of its steps at 1.5e -6, then sped up to 1.0e -6 for the final two-thirds. I saved checkpoints at several stages and published the model with that generates all of the eye and mouth keywords the most reliably. However, that published model is "over-trained" and needs CFG of 5 or else the output looks fried. I had the same problem with my <a href="https://civitai.com/models/1053/technicolor-50s-diffusion">Technicolor-Diffusion model</a>: the style didn't become reliable until the model was "over-trained".</p>
+<p>The solution is either an even slower learning rate or even more training images. Either way, that means a longer training time. Everydream2 defaults to 1.5e -6, which is deffo too fast. Dreambooth used to default to 1.0e -6 (not sure now). Probably 5e -7 (aka half the speed of 1.0e -6) would be best. But damn, that's slow. I didn't have the patience. Some day I'll try it.</p>
+<p>The best training software</p>
+<h3 id="as-of-feb-2023-everydream2-is-the-best-checkpoint-training-software"><strong>As of Feb 2023, Everydream2 is the best checkpoint training software.</strong></h3>
+<p>Note that I'm not affiliated with it in any way. I've tried several different options, and here's why I make this claim: Everydream2 is definitely the fastest and probably the easiest. You can use training images with several different aspect ratios, which isn't possible in most other software. Lastly, it's easy to set up on Runpod if you don't have an expensive GPU. Everydream2 doesn't use prior-preservation or a classifier image set. That's no longer necessary to prevent over-fitting, and that saves you time.</p>
+<p>Of course, this could all be obsolete soon given how quickly as things keep advancing!</p>
+<p><strong>If you have any experience that contradicts this advice, please let me know!</strong></p>
+<h2 id="additional-comment"><strong>Additional Comment</strong></h2>
+<p>Great writeup! Definitely not a ton of great info out there for people doing large projects that extend beyond your basic "here's my face, 'dreambooth' it" type stuff.</p>
+<p>ED2 author here, a few notes:</p>
+<ul>
+<li>Shouldn't need to worry too much about downsizing your images prior to training, they're resized on the fly (bicubic, which should be best general case resize), and crop jitter feature needs them to be slightly larger than your target training size (i.e. if training at 512, you ideally want like 520x520 bare minimum, but 2000x2000 is fine too, I personally recommend 1.5+ megapixel just to allow yourself headroom to train at higher res in the future as tech improves). You can feed in 4K images if you want, shouldn't have any appreciable impact on performance as the data loader is multithreaded and preloads stuff on CPU. Having 4k+ images shouldn't hurt anything but your disk space. You may kick yourself in the future if you resize everything to 512x512 or 768x768 or whatever. Crop jitter is also a quality improvement and it needs "buffer" in the training image size to slice off a few edge pixels to shift the image around every epoch. Here's a video that talks about crop jitter and a bit about resolution and aspects, etc: <a href="https://www.youtube.com/watch?v=0xswM8QYFD0">https://www.youtube.com/watch?v=0xswM8QYFD0</a></li>
+<li>You might consider toying with conditional dropout especially to "force" a style into the model, but high values can start to cause weird behavior. Its a way to help make a style take over the whole model. Conditional dropout is a fairly powerful tool. I might suggest if you want to completely take over the model with style using 0.10-0.15. Higher values will cause bleeding, especially at lower CFG scale at inference.</li>
+</ul>
+<blockquote>
+<p>Order captions from most to least prominent concept</p>
+</blockquote>
+<p>Definitely, character names should be up front, and if you have 2+ characters better to just list their names instead of trying to cram outfit information in as well, and instead use the solo images to details outfits and such, and keep your 2+ character images to &lt;15%, maybe even &lt;10%, but you can train SD to paint 2 characters at once if you give it enough data and examples. 3+ is still very elusive, probably needs inference tricks, inpainting, maybe some controlnet stuff would help now.</p>
+<p>You mention starting at 1.5e-6 then going to 1e-6, makes sense, make sure you use the chaining feature. You can setup a few copies of train.json (or look at chain0.json, chain1.json etc) with different settings and run them from a batch file in order. <code>"resume_ckpt": "findlast"</code> will resume from the last training sessions. There's an example <code>chain.bat</code> (can rename to .sh for linux) in the repo and chain0.json, chain1.json, chain2.json that shows how you can chain them together. Only the first chain0 would use "resume_ckpt": "sd_v1-5_vae" or whatever base model, then the rest use "findlast" to resume in order. This means you can tweak any setting and walk away to let something run overnight and have it change settings as it goes. I feel chaining is a bit underutilized in the community.</p>
+<p>For training smaller dreambooth type models, I've found it useful to actually copy your training images, one with a full caption, the other with just the person's name. Ex. "joe smith" and "joe smith in a blue cardigan sitting at a desk". Most useful when you are just doing a face/person with like 20-40 images.</p>
+<h2 id="captioning-datasets-for-training-purposes"><strong>Captioning Datasets for Training Purposes</strong></h2>
+<p>In the spirit of how open the various SD communities are in sharing their models, processes, and everything else, I thought I would write something up based on my knowledge and experience so far in an area that I think doesn’t get enough attention: captioning datasets for training purposes.</p>
+<h3 id="disclaimer">DISCLAIMER</h3>
+<p>I am not an expert in this field, this is simply a mix of what has worked for me, what I've learned from others, my understanding of the underlying processes, and the knowledge I've gained from working with other types of datasets.</p>
+<p>I have found this workflow to be reasonably efficient when manually captioning a dataset considering the resulting quality of the captions compared to automated captioning. But be warned, if you are looking to caption hundreds of photos, <em>it's still gonna take some time.</em> To be clear, that means I am saying this method is not good for captioning truly large datasets with tens of thousands of images. Unless you are a masochist.</p>
+<p>Sometimes I say "tag" and sometimes "caption". I was going to go through and fix it all, but I had captioning to do, so maybe I will make it uniform later.</p>
+<p>I do not consider this document "finished". There is so much to learn, and the AI space is moving so fast, that it will likely never be finished. However, I will try to expand and alter this document as necessary.</p>
+<p>My experience has primarily been with LoRA training, but some of the aspects here are applicable to all types of training.</p>
+<h3 id="who-is-this-document-for">WHO IS THIS DOCUMENT FOR</h3>
+<p>I hope this document can be helpful to anyone who is somewhat seriously interested in training their own models in Stable Diffusion using their own datasets. If your goal is to quickly teach your face to a model, there are much better guides available which will have you up and running in a flash. But if your goal is to go a bit deeper, explore training in more depth, perhaps you can add this document to your resources.</p>
+<h3 id="dataset">DATASET</h3>
+<p>Obtaining a good dataset is talked about extensively elsewhere, so I've only included the most important parts:</p>
+<ul>
+<li>high quality input means high quality output</li>
+<li>more quantity and more variety is better</li>
+<li>If you are forced to choose between quality and quantity, quality always wins.</li>
+<li>Upscale as a last resort, avoid it if possible. When I am forced to upscale, I use LDSR via Automatic1111.</li>
+</ul>
+<h3 id="preparation">PREPARATION</h3>
+<p>Depending on how and what you are training, you may need to crop the photos to a specific width and height. Other types of training will bucket images into various sizes and do not require cropping. Look into what is required for the method of training you are doing, the model you are training on, and the program you are using to train your model with.</p>
+<h3 id="captioning-general-notes">CAPTIONING – GENERAL NOTES</h3>
+<p>The following recommendations are based on my experiments, my background work with other datasets, reading subject-matter papers, and borrowing from other successful approaches.</p>
+<p><strong>Avoid automated captioning, for now.</strong></p>
+<ul>
+<li>BLIP and deepbooru are exciting, but I think it is a bit early for them yet.</li>
+<li>I often find mistakes and extremely repetitive captions, which take awhile to clean up.</li>
+<li>They struggle with context and with relative importance.</li>
+<li>I think it is faster to manually caption, rather than fix mistakes that BLIP/deepbooru made <em>and</em> still have to manually caption.</li>
+</ul>
+<h4 id="caption-in-the-same-manner-you-prompt"><strong>Caption in the same manner you prompt.</strong></h4>
+<ul>
+<li>Captioning and prompting are related.</li>
+<li>Recognize how you typically prompt. Verbose sentences? Short descriptions? Vague? Detailed?</li>
+<li>Caption in a similar style and verbosity as you tend to when prompting.</li>
+</ul>
+<h4 id="follow-a-set-structure-per-concept"><strong>Follow a set structure per concept.</strong></h4>
+<ul>
+<li>Following a structure makes the process easier on you, and although I have no objective evidence, my intuition says that using a consistent structure to describe your dataset will benefit the learning process.</li>
+<li>You might have a structure you use for photographs and another structure you use for illustrations. But try to avoid mixing and matching structures when captioning a single dataset.</li>
+<li>I have explained the structure I generally use below, which can be used as an example.</li>
+</ul>
+<h4 id="captions-are-like-variables-you-can-use-in-your-prompts"><strong>Captions are like variables you can use in your prompts.</strong></h4>
+<ul>
+<li>
+<p>Everything you describe in a caption can be thought of as a variable that you can play with in your prompt. This has two implications:</p>
+</li>
+<li>
+<p>You want to describe as much detail as you can about anything that isn’t the concept you are trying to implicitly teach. <strong><em>In other words, describe everything that you want to become a variable.</em></strong> <code>Example: If you are teaching a specific face but want to be able to change the hair color, you should describe the hair color in each image so that “hair color” becomes one of your variables.</code></p>
+</li>
+<li>You don’t want to describe anything (beyond a class level description) that you want to be implicitly taught. <strong><em>In other words, the thing you are trying to teach shouldn’t become a variable.</em></strong> <code>Example: If you are teaching a specific face, you should not describe that it has a big nose. You don’t want the nose size to be variable, because then it isn’t that specific face anymore.However, you can still caption “face” if you want to, which provides context to the model you are training. This does have some implications described in the following point.</code></li>
+</ul>
+<h4 id="leveraging-classes-as-tags"><strong>Leveraging classes as tags</strong></h4>
+<ul>
+<li>
+<p>There are two concepts here.</p>
+</li>
+<li>
+<p>Using generic class tags will bias that entire class towards your training data. This may or may not be desired depending on what your goals are.</p>
+</li>
+<li>
+<p>Using generic class tags provides context to the learning process. Conceptually, it is easier to learn what a “face” is when the model already has a reasonable approximation of “face”.</p>
+</li>
+<li>
+<p>If you want to bias the entire class of your model towards your training images, use broad class tags rather than specific tags. <code>Example: If you want to teach your model that every man should look like Brad Pitt, your captions should contain the tag “man” but should not be more specific than that. This influences your model to produce a Brad Pitt looking man whenever you use the word “man” in your prompt. This also allows your model to draw on and leverage what it already knows about the concept of “man” while it is training.</code></p>
+</li>
+<li>If you want to reduce the impact of your training on the entire class, include specific tags and de-emphasize class tags. <code>Example: If you want to teach your model that only “ohwxman” should look like Brad Pitt, and you don't want every "man" to look like Brad Pitt you would not use "man" as a tag, only tagging it with “ohwxman”. This reduces the impact of your training images on the tag “man”, and strongly associates your training images with “ohwxman”. Your model will draw on what it knows about “ohwxman”, which is practically nothing *see note*, thus building up knowledge almost solely from your training images which creates a very strong association.</code></li>
+<li>NOTE* This is simplified for the sake of understanding. This would actually be tokenized into two tokens, “ohwx” and “man”, but these tokens would be strongly correlated for training purposes, which should still reduce the impact on the overall class of “man” when compared to training with “man” as a token in the caption. The math it all is quite complex and well beyond the scope here.</li>
+</ul>
+<h4 id="consistent-captioning"><strong>Consistent Captioning</strong></h4>
+<ul>
+<li>Use consistent captions across all of your training. This will help you better consistently invoke your concept when prompting. I use a program to aid me with this, ensuring that I always use the same captions.</li>
+<li>Using inconsistent tags across your dataset is going to make the concept you are trying to teach harder for SD to grasp as you are essentially forcing it to learn both the concept and the different phrasings for that concept. It’s much better to have it just learn the concept under a single term.</li>
+<li><code>For example, you probably don’t want to have both “legs raised in air” and “raised legs” if you are trying to teach one single concept of a person with their legs up in the air. You want to be able to consistently invoke this pose in your prompt, so choose one way to caption it.</code></li>
+</ul>
+<h4 id="avoid-repetition"><strong>Avoid Repetition</strong></h4>
+<ul>
+<li>Try to avoid repetition wherever possible. Similar to prompting, repeating words increases the weighting of those words.</li>
+<li>As an example, I often find myself repeating the word "background" too much. I might have three tags that say "background" (<code>Example: simple background, white background, lamp in background</code>). Even though I want the background to have low weight, I've unintentionally increased the weighting quite a bit. It would be better to combine these or reword them (<code>Example: simple white background with a lamp)</code>.</li>
+</ul>
+<h4 id="take-note-of-ordering"><strong>Take Note of Ordering</strong></h4>
+<ul>
+<li>Again, just like with prompting, order matters for relative weighting of tags.</li>
+<li>Having a specific structure/order that you generally use for captions can help you maintain relative weightings of tags between images in your dataset, which should be beneficial to the training process.</li>
+<li>Having a standardized ordering makes the whole captioning process faster as you become familiar with captioning in that structure.</li>
+</ul>
+<h4 id="use-your-models-existing-knowledge-to-your-advantage"><strong>Use Your Models Existing Knowledge to Your Advantage</strong></h4>
+<ul>
+<li>Your model already produces decent results and reasonably understands what you are prompting. Take advantage of that by captioning with words that already work well in your prompts.</li>
+<li>You want to use descriptive words, but if you use words that are too obscure/niche, you likely can't leverage much of the existing knowledge. <code>Example: you could say "sarcrastic" or you could say "mordacious". SD has some idea of what "sarcastic" conveys, but it likely has no clue what "mordacious" is.</code></li>
+<li>You can also look at this from the opposite perspective. If you were trying to teach the concept of "mordacious", you might have a dataset full of images that convey "sarcrastic" and caption them with both the tags "sarcastic" and "mordacious" side by side (so that they are close in relative weighting).</li>
+</ul>
+<p>CAPTIONING – STRUCTURE</p>
+<p>I use this mainly for people / characters, so it might not be quite as applicable to something like fantasy landscapes, but perhaps it can give some inspiration.</p>
+<p>I want to emphasize again that I am not saying this is the only or best way to caption. This is just how I have found success with my own captions on my own datasets. My goal is simply to share what I do and why, and you are free to take as much or little inspiration from it as you want.</p>
+<p><strong>General format</strong></p>
+<ul>
+<li><Globals> <Type/Perspective/"Of a..."> <Action Words> <Subject Descriptions> <Notable Details> <Background/Location> <Loose Associations></li>
+</ul>
+<p><strong>Globals</strong></p>
+<ul>
+<li>This is where I would stick a rare token (e.g. “ohwx”) that I want heavily associated with the concept I am training, or anything that is both important to the training and uniform across the dataset <code>Examples: man, woman, anime</code></li>
+</ul>
+<p><strong>Type/Perspective/"of a..."</strong></p>
+<ul>
+<li>Broad descriptions of the image to supply context. I usually do this in “layers”.</li>
+<li>What is it? <code>Examples: photograph, illustration, drawing, portrait, render, anime.</code></li>
+<li>Of a... <code>Examples: woman, man, mountain, trees, forest, fantasy scene, cityscape</code></li>
+<li>What type of X is it (x = choice above)? <code>Examples: full body, close up, cowboy shot, cropped, filtered, black and white, landscape, 80s style</code></li>
+<li>What perspective is X from? <code>Examples: from above, from below, from front, from behind, from side, forced perspective, tilt-shifted, depth of field</code></li>
+</ul>
+<p><strong>Action Words</strong></p>
+<ul>
+<li>Descriptions of what the main subject is doing or what is happening to the main subject, or general verbs that are applicable to the concept in the image. Describe in as much detail as possible, with a combination of as many verbs as you want.</li>
+<li>The goal is to make all the actions, poses, and whatever else active that is happening into variables (as described in point 3 of “Captioning – General”) so that, hopefully, SD is better able to learn the main concept in a general sense rather than only learning the main concept doing specific actions.</li>
+<li><code>Using a person as an example: standing, sitting, leaning, arms above head, walking, running, jumping, one arm up, one leg out, elbows bent, posing, kneeling, stretching, arms in front, knee bent, lying down, looking away, looking up, looking at viewer</code></li>
+<li><code>Using a flower as an example: wilting, growing, blooming, decaying, blossoming</code></li>
+</ul>
+<p><strong>Subject Descriptions</strong></p>
+<ul>
+<li>As much description about the subject as possible, without describing the main concept you are trying to teach. Once again, think of this as picking out everything that you want to be a variable in your prompt.</li>
+<li><code>Using a person as an example: white hat, blue shirt, silver necklace, sunglasses, pink shoes, blonde hair, silver bracelet, green jacket, large backpack</code></li>
+<li><code>Using a flower as an example: pink petals, green leaves, tall, straight, thorny, round leaves</code></li>
+</ul>
+<p><strong>Notable Details</strong></p>
+<ul>
+<li>I use this as a sort of catch-all for anything that I don’t think is quite “background” (or something that is background but I want to emphasize) but also isn’t the main subject.</li>
+<li>Normally the part of the caption going in this spot is unique to one or just a few training images.</li>
+<li>I predominately use short captions in Danbooru-style, but if I need to describe something more complex I put it here.</li>
+<li><code>For example, in a photo at a beach I might put “yellow and blue striped umbrella partially open in foreground”.</code></li>
+<li><code>For example, in a portrait I might put “he is holding a cellphone to his ear”.</code></li>
+</ul>
+<p><strong>Background / Location</strong></p>
+<ul>
+<li>Fairly self-explanatory. Be as descriptive as possible about what is happening in the images background. I tend to do this in a few “layers” as well, narrowing down to specifics, which helps when captioning several photos.</li>
+<li>
+<p><code>For example, for a beach photo I might put (separated by the three “layers”):</code></p>
+</li>
+<li>
+<p><code>Outdoors, beach, sand, water, shore, sunset</code></p>
+</li>
+<li><code>Small waves, ships out at sea, sandcastle, towels</code></li>
+<li><code>the ships are red and white, the sandcastle has a moat around it, the towels are red with yellow stripes</code></li>
+</ul>
+<p><strong>Loose Associations</strong></p>
+<ul>
+<li>This is where I put any final loose associations I have with the image.</li>
+<li>This could be anything that pops up in my head, usually “feelings” that I feel when looking at the image or concepts I feel are portrayed, really anything goes here as long <em>as it exists in the image</em>.</li>
+<li>Keep in mind this is for <em>loose</em> associations. If the image is <em>very obviously</em> portraying some feeling, you may want it tagged closer to the start of the caption for higher weighting.</li>
+<li><code>For example: happy, sad, joyous, hopeful, lonely, sombre</code></li>
+</ul>
+<h3 id="the-booru-dataset-tag-manager">THE BOORU DATASET TAG MANAGER</h3>
+<p>You’ve got a dataset. You’ve decided on a structure. You’re ready to start captioning. Now it’s time for the magic part of the workflow: <a href="https://github.com/starik222/BooruDatasetTagManager">BooruDatasetTagManager</a> (BDTM). This handy piece of software will do two extremely important things for us which greatly speeds up the workflow:</p>
+<ol>
+<li>Tags are preloaded in *\tags\list.tag, which can be edited. This gives us auto-complete for common tags, allows us to double-click common tags so we don’t need to type it out, etc.</li>
+<li>It enables you to easily be consistent with your captioning by displaying already-used captions so that you can easily add it to an image without typing it out.</li>
+</ol>
+<p>As an added bonus, it helps when you're forgetful. Sometimes I forget that standing with most of your weight on one foot (but with both feet on the ground) is called contrapposto. But I have it saved as a tag, and usually remember it starts as "contra". Thankfully auto-complete is there to save the day. Seriously, having all of these tags at your fingertips is a huge difference from trying to remember a bunch of tags or having booru sites open in other tabs.</p>
+<h3 id="the-process">THE PROCESS</h3>
+<ol>
+<li>Place all of your images in a folder and then navigate there in the BDTM UI, selecting the folder with your images.</li>
+<li>At the top, press “View” and then “Show preview” to see the selected image.</li>
+<li>If you have any globally applicable tags, add them on the right side of the UI. You can select where these global tags appear (top, bottom, or at a specific position in the list).</li>
+<li>Select your image on the left and begin adding tags, remembering to follow you structure as best as possible. As you type, the tags will show auto-complete options from the list.tag file which you can select, or you can type in your own custom ones.</li>
+<li>Each tag you have used anywhere in that dataset will show on the right side (under “All tags”). You can double-click a tag from the “All tags” section to apply it to the currently selected image, saving tons of time and ensuring tag consistency across your dataset</li>
+<li>Once all of your images are tagged, go back to the start and do it again. This time look at your tags and make sure they are ordered appropriately according to the weighting you want (you can drag them to reorder if necessary), make sure they follow your structure, check for missing tags, etc.</li>
+</ol>
+<p>And that’s it. I patiently look at every image and add any tags I think are applicable, aiming to have at least one to two tags in each of the categories of my prompt structure. I usually have between 8 and 20 tags per image, though sometimes I might have even more.</p>
+<p>Over time, I have edited the provided list.tag file removing many of the tags I’ll never use and adding a bunch of tags that I use frequently, making the whole process even easier.</p>
+<h2 id="full-example-of-a-single-image">FULL EXAMPLE OF A SINGLE IMAGE</h2>
+<p>This is an example of how I would caption a single image I picked off of safebooru. <em>We will assume that I want to train the style of this image and associate it with the tag "ohwxStyle", and we will assume that I have many images in this style within my dataset.</em></p>
+<p>Sample Image: <a href="https://safebooru.org/index.php?page=post&amp;s=view&amp;id=3887414">https://safebooru.org/index.php?page=post&amp;s=view&amp;id=3887414</a></p>
+<ul>
+<li>Globals: ohwxStyle</li>
+<li>Type/Perspective/Of a: anime, drawing, of a young woman, full body shot, from side</li>
+<li>Action words: sitting, looking at viewer, smiling, head tilt, holding a phone, eyes closed</li>
+<li>Subject description: short brown hair, pale pink dress with dark edges, stuffed animal in lap, brown slippers</li>
+<li>Notable details: sunlight through windows as lighting source</li>
+<li>Background/location: brown couch, red patterned fabric on couch, wooden floor, white water-stained paint on walls, refrigerator in background, coffee machine sitting on a countertop, table in front of couch, bananas and coffee pot on table, white board on wall, clock on wall, stuffed animal chicken on floor</li>
+<li>Loose associations: dreary environment</li>
+</ul>
+<p>All together: ohwxStyle, anime, drawing, of a young woman, full body shot, from side, sitting, looking at viewer, smiling, head tilt, holding a phone, eyes closed, short brown hair, pale pink dress with dark edges, stuffed animal in lap, brown slippers, sunlight through windows as lighting source, brown couch, red patterned fabric on couch, wooden floor, white water-stained paint on walls, refrigerator in background, coffee machine sitting on a countertop, table in front of couch, bananas and coffee pot on table, white board on wall, clock on wall, stuffed animal chicken on floor, dreary environment</p>
+<p>The best part is, I can set all of those "global" ones in BDTM to apply to all of my images. I've now also got all of those tags ready just a double-click away, so if my next image is also a full body shot, from the side, sitting... I just double-click it. Much easier than typing it out again.</p>
+<h3 id="train">TRAIN</h3>
+<p>Time to start training! I don't have much to write here other than experiment. There is no golden number of steps or guaranteed results when it comes to training. That's why it's fun to experiment. And now you can experiment knowing that you have an extremely high quality dataset, allowing you to really hone-in on the appropriate training settings.</p>
+<h3 id="misc-thoughts-and-references">MISC THOUGHTS AND REFERENCES</h3>
+<ul>
+<li>I always try to remind myself that we are just gently guiding the learning process, not controlling it. Your captions <em>help</em> <em>point the learning process in the right direction</em>, but the captions are not absolute. Inferences will be made on things in the image that weren't captioned, associations will be made between tags and parts of the image you didn't intend, etc. Try to guide, but trust in the training and the quality of your images as well.</li>
+<li>Danbooru/safebooru tags are great. I mean, there's a lot of trash ones that hold no meaning, but take a look at the Danbooru wiki for tag group "Posture" as an example. Dozens of specific words for different arm positions, leg positions, etc. You might just find that one specific word you've been searching for that describes the style/pose/lighting/whatever by crawling through the danbooru tags and wiki. Maybe you've always wanted someone posing with that ballerina style foot where the toes are pointed downwards. Well it's called plantar flexion; thanks danbooru tags.</li>
+</ul>
+<h2 id="detailed-guide-on-training-embeddings-on-a-persons-likeness"><strong>Detailed guide on training embeddings on a person's likeness</strong></h2>
+<p>This is a guide on how to train embeddings with textual inversion on a person's likeness.</p>
+<p>This guide assumes you are using the <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">Automatic1111 Web UI</a> to do your trainings, and that you know basic embedding related terminology. This is not a step-by-step guide, but rather an explanation of what each setting does and how to fix common problems.</p>
+<p>I've been practicing training embeddings for about a month now using these settings and have successfully made many embeddings, ranging from poor quality to very good quality. This is a collection of all the lessons I've learned and suggested settings to use when training an embedding to learn a person's likeness.</p>
+<h3 id="what-is-an-embedding">What is an embedding?</h3>
+<p>An embedding is a special word that you put into your prompt that will significantly change the output image. For example, if you train an embedding on Van Gogh paintings, it should learn that style and turn the output image into a Van Gogh painting. If you train an embedding on a single person, it should make all people look like that person.</p>
+<h3 id="why-do-i-want-an-embedding">Why do I want an embedding?</h3>
+<p>To keep it brief, there are 3 other options to using an embedding: models, hypernetworks, and LoRAs. Each has advantages and disadvantages. The main advantage of embeddings is their flexibility and small size.</p>
+<ul>
+<li>A model is a 2GB+ file that can do basically anything. It takes a lot of VRAM to train and has a large file size.</li>
+<li>A hypernetwork is an 80MB+ file that sits on top of a model and can learn new things not present in the base model. It is relatively easy to train, but is typically less flexible than an embedding when using it in other models.</li>
+<li>A LoRA (Low-Rank Adaptation) is a 2-9MB+ file and is functionally very similar to a hypernetwork. They are quick and easy to train, flexible, and produce good results, which has made them very popular. They tend to memorize content (like tattoos and mannerisms) rather than generalizing content. Depending on your use case, this could be a superior option to embeddings.</li>
+<li>An embedding is a 4KB+ file (yes, 4 kilobytes, it's very small) that can be applied to any model that uses the same base model, which is typically the base stable diffusion model. It cannot learn new content, rather it creates magical keywords behind the scenes that tricks the model into creating what you want.</li>
+</ul>
+<h3 id="preparing-your-starting-images">Preparing your starting images</h3>
+<p><strong>Data set:</strong> your starting images are the most important thing!! If you start with bad images, you will end up with a bad embedding. Make sure your images are high quality (no motion blur, no graininess, not partially out of frame, etc). Using more images means more flexibility and accuracy at the expense of longer training times. Your images should have plenty of variation in them - location, lighting, clothes, expressions, activity, etc.</p>
+<p>The embedding learns what is similar between all your images, so if the images are too similar to each other the embedding will catch onto that and start learning mostly what's similar. I once had a data set that had very similar backgrounds and it completely messed up the embedding, so make sure to use images with varied backgrounds.</p>
+<p>When experimenting I recommend that you use less than 10 images in order to reduce your training times so that you can fail and iterate with different training settings more rapidly.</p>
+<p>You can create a somewhat functional embedding with as little as 1 image. You can get good results with 10, but the best answer on how many images to use is however many high-quality images you have access to. Remember: quality over quantity!!</p>
+<p>I find that focusing on close ups of the face produces the best results. Humans are very good at recognizing faces, the AI is not. We need to give the AI the best chance at recreating an accurate face as possible, so that's why we focus on face pics. I'd recommend about half of the data set should be high quality close ups of the face, with the rest being upper body and full body shots to capture things like their clothing style, posture, and body shape. In the end, though, the types of images that you feed the AI are the types of images you will get back. So if you completely focus on face pics, you'll mostly get face pic results. Curate your data set so that it represents what you want to use it for.</p>
+<p>Do not use any images that contain more than 1 person. Just delete them, it'll only confuse the AI. You should also delete any that contain a lot of background text like a big sign, any watermarks, and any pictures of the subject taking a selfie with their phone (it'll skew towards creating selfie pics if you don't remove those).</p>
+<p>All your training images need to be the same resolution, preferably 512x512. I like to use 3 websites that help to crop the images semi-automatically:</p>
+<ul>
+<li><a href="https://www.birme.net/?target_width=512&amp;target_height=512">BIRME - Bulk Image Resizing Made Easy 2.0</a></li>
+<li><a href="https://bulkimagecrop.com/">Bulk Image Crop</a></li>
+<li><a href="https://bulkresizephotos.com/en?bg=000000&amp;padding=true&amp;quality=0.9&amp;type=exact&amp;value=512&amp;secondaryValue=512">Bulk Resize Photos</a></li>
+</ul>
+<p>No images are uploaded to these sites. The cropping is done locally.</p>
+<p>As of 2/19/2023 <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/pull/6700">pull request 6700</a>, there is a new option for training: "<strong>Use PNG alpha channel as loss weight</strong>". This lets you to use transparency in your images to tell the AI what to concentrate on as it is learning. Transparent pixels get ignored during the training. This is a great feature because it allows you to tell the AI to focus only on the parts of the image that you want it to learn, such as a person in the photo.</p>
+<p>The coder that added this feature also made a <a href="https://github.com/Shondoit/lyne">utility program</a> you can use to automatically create these partially transparent images from your data set. Just run the python file at scripts/add_weight_map.py with the --help launch argument. For the attention mask, I found using "a woman" works well.</p>
+<p>If you decide to use this alpha channel as loss weight feature, you should reduce your learning rate and step count by a little bit (about ~30%) since the AI's learning is hyper focused on your subject. This results in less training time and a more flexible embedding in the end, so it's a win/win.</p>
+<h3 id="creating-the-embedding-file">Creating the embedding file</h3>
+<p><strong>Initialization text:</strong> Using the default of "*" is fine if you don't know what to use. Think of this as a word used in a prompt - the embedding will start with using that word. For example, if you put the initialization text to "woman" and attempted to use the embedding without any training, it should be equivalent to a prompt with the word "woman".</p>
+<p>You can also start with a zero value embedding. This starts with all 0's in the underlying data, meaning it has no explicit starting point. I've heard people say this gives good results, so give it a shot if you want to experiment. An update to A1111 in January enabled this functionality in the Web UI by just leaving the text box blank.</p>
+<p>In my opinion, the best initialization text to use is a word that most accurately describes your subject. For a man, use "man". For a woman, use "woman".</p>
+<p><strong>Number of vectors per token:</strong> higher number means more data that your embedding can store. This is how many 'magical words' are used to describe your subject. For a person's likeness I like to use 10, although 1 or 2 can work perfectly fine too.</p>
+<p>If prompting for something like "brad pitt" is enough to get Brad Pitt's likeness in stable diffusion 1.5, and it only uses 2 tokens (words), then it should be possible to capture another person's likeness with only 2 vectors per token.</p>
+<p>Each vector adds 4KB to the final size of the embedding file.</p>
+<h3 id="preprocessing">Preprocessing</h3>
+<p><strong>Use BLIP for caption:</strong> Check this. Captions are stored in .txt files with the same name as the image. After you generate them, it's a good idea (but not required) to go through them manually and edit any mistakes it made and add things it may have missed. The way the AI uses these captions in the learning process is complicated, so think of it this way:</p>
+<ol>
+<li>the AI creates a sample image using the caption as the prompt</li>
+<li>it compares that sample to the actual picture in your data set and finds the differences</li>
+<li>it then tries to find magical prompt words to put into the embedding that reduces the differences</li>
+</ol>
+<p>Step 2 is the important part because if your caption is insufficient and leaves out crucial details then it'll have a harder time learning the stuff you want it to learn. For example, if you have a picture of a woman wearing a fancy wedding dress in a church, and the caption says, "a woman wearing a dress in a building", then the AI will try to learn how to turn a building into a church, and a normal dress into a wedding dress. A better caption would be "a woman wearing a white wedding dress standing in a church with a Jesus statue in the background".</p>
+<p>To put it simply: add captions for things you want to AI to NOT learn. It sounds counterintuitive, just basically describe everything except the person.</p>
+<p>In theory this should also mean that you should not include "a woman" in the captions, but in a test I did it did not make a difference.</p>
+<p>Automatic1111 has an unofficial <a href="https://github.com/d8ahazard/sd_smartprocess">Smart Process</a> extension that allows you to use a v2 CLIP model which produces slightly more coherent captions than the default BLIP model.</p>
+<p><strong>Create flipped copies:</strong> Don't check this if you are training on a person's likeness, since people are not 100% symmetrical.</p>
+<p><strong>Width/Height:</strong> Match the width/height resolution of your training images. Recommended to use 512x512, but I've used 512x640 many times and it works perfectly fine.</p>
+<p>Don't use <strong>deepbooru</strong> for captions since they create anime tags in the captions, and your real life person isn't an anime character.</p>
+<h3 id="training">Training</h3>
+<p><strong>Learning rate:</strong> this is how fast the embedding evolves per training step. The higher the value, the faster it'll learn, but using too high a learning rate for too long can cause the embedding to become inflexible, or cause deformities and visual artifacts to start appearing in your images.</p>
+<p>I like to think of it this way: a large learning rate is like using a sledgehammer to create a stone statue from a large boulder. It's great to make rapid progress at the start by knocking off large pieces of stone, but eventually you need to use something smaller like a hammer to get more precision, then finally end up at a chisel to get the fine details you want.</p>
+<p>In my experience, values around the default of 0.005 work best. But we aren't limited to a static learning rate, we can have it change at set step intervals. This is the learning rate formula that I use:</p>
+<pre><code>0.05:10, 0.02:20, 0.01:60, 0.005:200, 0.002:500, 0.001:3000, 0.0005
+
+</code></pre>
+<p>This means that from step 1-10 it uses a learning rate of 0.05 which is pretty high. 10-20 is lowered to 0.02, 20-60 is lowered to 0.01, etc. After step 3000 it'll train at 0.0005 until you interrupt it. This whole line of text can be plugged into the Embedding Learning Rate text box.</p>
+<p>This formula tends to work well for me, YOUR RESULTS WILL VARY depending on your data set it. This, along with the number of training steps, will need to be experimented with depending on your data set.</p>
+<p>The lower the learning rate goes, the more fine turning happens and the more precise the embedding will become. This should produce decent results in the 200-500 step range, and get better towards 1000-1500 steps. If you have extra time then you can let it run to 3000 steps, but I think that's unnecessary.</p>
+<p><strong>Batch size:</strong> This is how many training images are put into your GPU's VRAM at once. Higher value is always better as long as you don't run out of VRAM. My 12GB GPU can do 18 with:</p>
+<ul>
+<li>The <code>xformers</code> <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings">launch argument</a> in the .bat file.</li>
+<li>"Use cross attention optimizations while training" is enabled</li>
+</ul>
+<p>The max value is the number of images in your training set. So if you set it to use 18 and you have 10 training images, it'll just automatically downgrade to a batch size of 10.</p>
+<p>Having a high batch size can be important because it helps generate more accurate learning data for the embedding. The picture below helps visualize what happens with different batch sizes. Reaching the red dot in the middle means we accurately represent the subject in our training data.</p>
+<p><img alt="https://preview.redd.it/3xg0p31fhv8a1.jpg?width=473&amp;format=pjpg&amp;auto=webp&amp;v=enabled&amp;s=43d0d047fb22f87c871ba17330923873d613a407" src="https://preview.redd.it/3xg0p31fhv8a1.jpg?width=473&amp;format=pjpg&amp;auto=webp&amp;v=enabled&amp;s=43d0d047fb22f87c871ba17330923873d613a407" /></p>
+<h3 id="how-batch-size-helps-to-converge-on-the-subject">How batch size helps to converge on the subject</h3>
+<p><strong>Gradient accumulation steps:</strong> Think of this as a multiplier to your batch size, and a multiplier to the overall time to train. This value should be set as high as possible without the batch size * gradient accumulation going higher than the total number of images in your data set:</p>
+<pre><code>batch size * gradient accumulation steps &lt;= total number of images in data set
+</code></pre>
+<p>If you are still fine tuning your training variables you can keep this at 1 so your trainings finish faster, but they'll likely be slightly lower quality.</p>
+<p>Check out this article for a more detailed explanation of what gradient accumulation actually does: <a href="https://towardsdatascience.com/what-is-gradient-accumulation-in-deep-learning-ec034122cfa">https://towardsdatascience.com/what-is-gradient-accumulation-in-deep-learning-ec034122cfa</a></p>
+<p><strong>Prompt template file:</strong> <code>subject_filewords.txt</code> is a good starting place for training a person's likeness. I use a custom file that I call <code>custom_subject_filewords.txt</code> that contains just a single line of text: <code>a photo of [name], [filewords]</code> since we care about making photo quality images.</p>
+<p><code>[name]</code> gets automatically replaced by the embedding name, and <code>[filewords]</code> gets automatically replaced by the captions in the .txt files from earlier.</p>
+<p>These prompt templates are what's used to generate images that the AI uses while learning.</p>
+<p>I have not experimented with the prompt templates too much, but if you want to train on something other than a person's likeness then you will need to use a different template file than the one mentioned above.</p>
+<p><strong>Width and Height:</strong> set to your training image dimensions.</p>
+<p><strong>Max steps:</strong> I just set this to 3000 and interrupt it when I think it's done. The more steps the better if you use the learning rate formula from above. If the learning rate is too high for too long the embedding will get corrupted and produce garbage images.</p>
+<p><strong>Save an image and copy of embedding to log directory:</strong> I like to set this to every 10 steps, but use whatever you want. Constantly generating image previews will slow down the training process slightly.</p>
+<p><strong>Read parameters (prompt, etc...) from txt2img tab when making previews:</strong> I leave this unchecked so it just uses the captions for image previews. I've noticed that the quality of the embedding gets worse when this is checked, even though in theory it shouldn't. Maybe there's a bug in the A1111 training code somewhere.</p>
+<p><strong>Latent sampling method:</strong> I don't know what this does, but people say they get better results with Deterministic.</p>
+<p><strong>The rest are left on default settings.</strong></p>
+<h3 id="settings-tab">Settings tab</h3>
+<p><strong>Use cross attention optimizations while training:</strong> Enable this, it speeds up training slightly. It may possibly reduce quality a tiny bit, but nothing noticeable.</p>
+<p><strong>Turn on pin_memory for DataLoader. Makes training slightly faster but can increase memory usage:</strong> Enable this, by memory usage it means RAM, not VRAM. About a 5% speed increase.</p>
+<p><strong>Saves Optimizer state as separate *.optim file. Training of embedding or HN can be resumed with the matching optim file:</strong> Enable this, it creates a EmbedName.optim file next to each EmbedName.pt file that can be used to resume the training if you decide to interrupt it.</p>
+<p><strong>Disable any VAE</strong> you have loaded.</p>
+<p><strong>Disable any Hypernetwork</strong> you have loaded.</p>
+<p>The model you have loaded at the time of training matters. I make sure to always have the normal stable diffusion model loaded, that way it'll work well with all the other models created with it as a base.</p>
+<p>If you try to train on another model chances are you'll get garbage images as output, but if you have extra time this may be something for you to experiment with.</p>
+<h3 id="txt2img-tab">txt2img tab</h3>
+<p>Make sure to clear out the prompt and negative prompt textboxes, and set the width/height to your training image resolution. I think there's a bug in Automatic1111 where the "Read parameters (prompt, etc...) from txt2img tab when making previews" checkbox isn't fully respected, so I leave this setting unchecked and just set all the settings in the txt2img tab to their defaults.</p>
+<h3 id="click-train-embedding">Click 'Train Embedding'</h3>
+<p>Before clicking the Train Embedding button you should restart stable diffusion since it has memory leak issues. This will free up any lost VRAM and may help speed up training and prevent out of memory errors.</p>
+<p>Now we can click Train Embedding. As the embedding trains itself, watch the preview images generated in "\textual_inversion\YYYY-MM-DD\EmbeddingName\images".</p>
+<p>If the images produce garbage and look nothing like your subject then one of your settings was set wrong. The most likely culprit is you're training on a model that isn't the base stable diffusion model, which I've done accidently countless times.</p>
+<p>If you notice the images have random color splotches, particularly on the face, then the learning isn't going well. I see this happen when not enough training images have been provided, or if you are using a low number of steps when rendering the image.</p>
+<p>If the images are not producing people that look like your subject, then your data set may need to be updated to include more high quality face pictures, or it hasn't been trained for long enough at an average learning rate. It is also possible that the person's likeness you are training for is so unique looking that it can't find keywords to use to describe their look, which means you'll never get a good result. In that case I recommend training a hypernetwork instead of an embedding.</p>
+<p>~~You should let the embedding train to completion without interrupting it. If you interrupt it, it loses its momentum and will noticeably degrade the quality of the embedding when trying to resume training.~~ This is something that was fixed if you enable the " Saves Optimizer state as separate *.optim file. Training of embedding or HN can be resumed with the matching optim file." setting.</p>
+<h3 id="inspecting-the-embedding">Inspecting the embedding</h3>
+<p>During training you can run a 3rd party python script to inspect the internal guts of the embedding and make graphs to see what is actually happening:</p>
+<p><a href="https://github.com/Zyin055/Inspect-Embedding-Training">https://github.com/Zyin055/Inspect-Embedding-Training</a></p>
+<p>This will make graphs of the learning loss rate and the internal values of the vectors in the embedding.</p>
+<p>The most important part is the strength of the vectors in the vector graph, which tell you how overtrained the embedding is. The more overtrained it is, the less flexible it will be. For example, if the vectors have a strength of ~2.0 and you try to prompt your embedding with "with blue hair" it likely won't work as expected most of the time. If the strength is ~0.20 then it should work much better. There is no magic number for how large the vectors should be, it's a tradeoff between accuracy to the original training images versus how flexible it can be with respect to other words in a prompt.</p>
+<h3 id="picking-the-final-embedding-file">Picking the final embedding file</h3>
+<p>After training completes, move the new embedding files from "\textual_inversion\YYYY-MM-DD\EmbeddingName\embeddings" to "\embeddings" so that you can use the embeddings in a prompt.</p>
+<p>Use the 'X/Y plot' script to make an X/Y plot at various step counts using "Seed: 1-3" on the X axis and "Prompt S/R: 10,100,200,300, ... etc" on the Y axis to see how the embedding evolved over time. The prompt should be something like "a photo of EmbedName-10". You should make several plots using different prompts to see how flexible it is at various training steps. One prompt I like using to test for flexibility is "a photo of EmbedName-XX with blue hair, smiling". Low step counts should be able to do this easily, but higher step counts may struggle. Pick the step count that produces the best results.</p>
+<p>If the results don't look great in the base model, try using models that were designed to render humans, such as HassanBlend or Zeipher-f222, which use stable diffusion 1.5 as a base.</p>
+<p>If you see likeness but the quality is not quite as good as you would like, then you likely need to let it train for more steps. For example, on my RTX 3060 12GB it took 15 hours of training on 240 images (16 batch size, 15 gradient accumulation) to get a very nice result. It took about an hour on 15 images (15 batch size, 1 gradient accumulation) to get a decent result.</p>
+<p>If it renders a person sometimes at a specific step range, but starts rendering garbage at other step counts, try doing the training again with a different learning rate, like a static 0.005 and see if that helps.</p>
+<h3 id="final-notes">Final notes</h3>
+<p>One last thing to note is that there is inherit randomness when training an embedding. When using the exact same training parameters, you will never produce the same exact embedding twice. Sometimes some embeddings just work better than others even when using the exact same training parameters. This makes it incredibly difficult to determine if a change in your settings actually helped or hurt the embedding since you can't do side by side comparisons. There's a guy that <a href="https://github.com/Shondoit/stable-diffusion-webui/tree/deterministic-training">edited the training code</a> to make it more deterministic, so maybe in the future we'll have this luxury as a base feature.</p>
+<p>All my experiments were on stable diffusion 1.5. I have not tried using embeddings with 2.0+ yet.</p>
+<p>I am not an embedding expert by any means. It is entirely possible that something I said above is suboptimal.</p>
+<p>I hope you found some of this information useful. It has taken me a lot of time to learn how to do this since concrete information about this subject is sparse. Feel free to add any other hints or corrections down in the comments.</p>
+<h2 id="lora-training"><strong>LoRA Training</strong></h2>
+<p><img alt="lcsIp90.png" src="../assets/lora.png" /></p>
+<h2 id="2"><strong>2</strong></h2>
+<p><img alt="Untitled.png" src="../assets/lora-prep.jpeg" /></p>
+<h2 id="3"><strong>3</strong></h2>
+<p><img alt="Untitled.png" src="../assets/lora-training.jpeg" /></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../steamdeck/" class="btn btn-neutral float-left" title="Steam Deck"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../about/" class="btn btn-neutral float-right" title="Main Page">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../steamdeck/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
