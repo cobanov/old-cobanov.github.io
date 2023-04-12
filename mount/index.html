@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Hey - Cobanov</title>
+    <title>Mount Flash Disk over SSH - Cobanov</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Hey";
-        var mkdocs_page_input_path = "portfolio.md";
+        var mkdocs_page_name = "Mount Flash Disk over SSH";
+        var mkdocs_page_input_path = "mount.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -41,7 +41,7 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Blog</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helper one-liners</a>
@@ -62,7 +62,9 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../pyyaml/">Python YAML Configs</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../mount/">Mount Flash Disk over SSH</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Mount Flash Disk over SSH</a>
+    <ul class="current">
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">About</span></p>
@@ -84,7 +86,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Hey</li>
+          <li>Blog &raquo;</li>
+      <li>Mount Flash Disk over SSH</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -93,34 +96,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="hey">Hey</h1>
-<h2 id="cobanov">Cobanov</h2>
-<p><img alt="" src="../assets/cobanov.jpg" /></p>
-<h2 id="chrome">Chrome</h2>
-<p><img alt="" src="../assets/chrome_1.jpg" />
-<img alt="" src="../assets/chrome_2.jpg" />
-<img alt="" src="../assets/chrome_3.jpg" /></p>
-<h2 id="little-girls">Little Girls</h2>
-<p><img alt="" src="../assets/little-girls.jpg" /></p>
-<h2 id="women">Women</h2>
-<p><img alt="" src="../assets/women_1.jpg" />
-<img alt="" src="../assets/women_2.jpg" /></p>
-<h2 id="cartoon">Cartoon</h2>
-<p><img alt="" src="../assets/cartoon.jpg" /></p>
-<h2 id="concept-art">Concept Art</h2>
-<p><img alt="" src="../assets/concept_women.jpg" /></p>
-<h2 id="cosmic-people">Cosmic People</h2>
-<p><img alt="" src="../assets/cosmic-people.jpg" /></p>
-<h2 id="line-art">Line-art</h2>
-<p><img alt="" src="../assets/lineart.jpg" /></p>
-<h2 id="wlop">WLOP</h2>
-<p><img alt="" src="../assets/wlop.jpg" /></p>
-<h2 id="coral-glacier">Coral &amp; Glacier</h2>
-<p><img alt="" src="../assets/coral.jpg" />
-<img alt="" src="../assets/glacier.jpg" /></p>
+                <h2 id="1-find-what-the-drive-is-called">1. Find what the drive is called</h2>
+<p>You'll need to know what the drive is called to mount it. To do that fire off one of the following (ranked in order of my preference):</p>
+<pre><code>lsblk
+sudo blkid
+sudo fdisk -l
+</code></pre>
+<p>You're looking for a partition that should look something like: /dev/sdb1. The more disks you have the higher the letter this is likely to be. Anyway, find it and remember what it's called.</p>
+<h2 id="2-create-a-mount-point-optional">2. Create a mount point (optional)</h2>
+<p>This needs to be mounted into the filesystem somewhere. You can usually use /mnt/ if you're being lazy and nothing else is mounted there but otherwise you'll want to create a new directory:</p>
+<pre><code>sudo  mkdir /media/usb
+</code></pre>
+<h2 id="3-mount">3. Mount</h2>
+<pre><code>sudo mount /dev/sdb1 /media/usb
+</code></pre>
+<p>When you're done, just fire off:</p>
+<pre><code>sudo umount /media/usb
+</code></pre>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../pyyaml/" class="btn btn-neutral float-left" title="Python YAML Configs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../about/" class="btn btn-neutral float-right" title="Main Page">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -142,6 +141,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../pyyaml/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

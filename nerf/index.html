@@ -70,6 +70,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#resume-stop-training">Resume &amp; Stop Training</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#visualize-only-without-training">Visualize Only (without training)</a>
+    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#training-on-custom-data">Training on Custom Data</a>
@@ -84,9 +86,11 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../instagram/">Instagram</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../steamdeck/">Steam Deck</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuning-terms/">Training and Tuning Terms</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../finetune-diffusion/">Fine Tuning Diffusion</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../pyyaml/">Python YAML Configs</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../mount/">Mount Flash Disk over SSH</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">About</span></p>
@@ -122,7 +126,8 @@
 <h2 id="prerequisites">Prerequisites</h2>
 <ol>
 <li>Docker</li>
-<li>CUDA 11.3</li>
+<li>Latest nvidia drivers</li>
+<li>CUDA 11.8 capable GPU</li>
 </ol>
 <h2 id="install">Install</h2>
 <ol>
@@ -130,13 +135,17 @@
 </ol>
 <pre><code class="language-bash">docker pull dromni/nerfstudio:&lt;version_number&gt;
 </code></pre>
+<p>You can see the latest tag in this link <a href="https://hub.docker.com/r/dromni/nerfstudio/tags">https://hub.docker.com/r/dromni/nerfstudio/tags</a></p>
+<pre><code class="language-bash"># example command
+docker pull dromni/nerfstudio:0.1.19
+</code></pre>
 <ol>
 <li>Run docker image</li>
 </ol>
 <pre><code class="language-bash">docker run --gpus all -v /folder/of/your/data:/workspace/ -v /home/&lt;YOUR_USER&gt;/cache/:/home/user/.cache/ -p 7007:7007 --rm -it dromni/nerfstudio:0.1.13
 </code></pre>
 <p>Example for Windows:</p>
-<pre><code class="language-bash">docker run --gpus all -v D:\nerf:/workspace/ -v D:\nerf/:/home/user/.cache/ -p 7007:7007 --rm -it dromni/nerfstudio:0.1.13
+<pre><code class="language-bash">docker run --gpus all -v D:\nerf:/workspace/ -v D:\nerf/:/home/user/.cache/ -p 7007:7007 --rm -it dromni/nerfstudio:0.1.19
 </code></pre>
 <pre><code>-  Give the container access to nvidia GPU (required).
 -  Mount a folder from the local machine into the container to be able to process them (required).
@@ -155,19 +164,50 @@
 <pre><code>ns-download-data nerfstudio --capture-name=poster
 </code></pre>
 <p>Because this code is often used too much, google drive can put a download restriction, read the error message and try to download the file in the link with your browser.</p>
-<p>After downloading the file, you can copy the folder into the volume <code>D:\nerf\data\nerfstudio</code> you opened.</p>
+<p>There are also different dataset you can use, to show them run this code</p>
+<pre><code class="language-bash">ns-download-data nerfstudio --help
+</code></pre>
+<pre><code class="language-plain">bww_entrance, campanile, desolation, library, 
+poster, redwoods2, storefront, vegetation, Egypt, 
+person, kitchen, plane, dozer, floating-tree, aspen, 
+stump, sculpture, Giannini-Hall, all, nerfstudio-dataset
+</code></pre>
+<p>After select one of the dataset you can download as well with following command</p>
+<pre><code>ns-download-data nerfstudio --capture-name=bmw_entrance
+</code></pre>
+<p>You will see all the downloaded datasets in this directory <code>D:\nerf\data\nerfstudio</code></p>
 <h3 id="explore-nerf-studio">Explore NeRF Studio</h3>
+<p>Start training with the following command, you will need change the datapath to your dataset folder</p>
+<pre><code class="language-bash">ns-train nerfacto --data data/nerfstudio/poster
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">ns-train nerfacto --data data/nerfstudio/bww_entrance
+</code></pre>
+<p>If everything is correct, ideal output would be like this.</p>
+<p><img alt="nerf-training" src="../assets/nerf-training.png" /></p>
 <p>A web page similar to the link below will appear on your terminal screen, open this page and continue.</p>
-<pre><code>https://viewer.nerf.studio/versions/22-12-02-0/?websocket_url=ws://localhost:7007 
+<pre><code class="language-bash">https://viewer.nerf.studio/versions/22-12-02-0/?websocket_url=ws://localhost:7007 
 </code></pre>
 <h3 id="resume-stop-training">Resume &amp; Stop Training</h3>
 <p>You can stop the training with the <code>Ctrl + c</code> shortcut.</p>
 <p>If you want to continue the training from where it left off, run the code below.</p>
-<pre><code>ns-train nerfacto --data data/nerfstudio/poster --trainer.load-dir {outputs/.../nerfstudio_models}
+<pre><code class="language-bash">ns-train nerfacto --data data/nerfstudio/poster --load-dir {outputs/.../nerfstudio_models}
+</code></pre>
+<p>Example code</p>
+<pre><code class="language-bash">ns-train nerfacto --data data/nerfstudio/bww_entrance/ --load-dir outputs/bww_entrance/nerfacto/2023-03-14_183456/nerfstudio_models/
+</code></pre>
+<h3 id="visualize-only-without-training">Visualize Only (without training)</h3>
+<pre><code class="language-bash">ns-viewer --load-config {outputs/.../config.yml}
+</code></pre>
+<pre><code class="language-bash"># example code
+ns-viewer --load-config outputs/bww_entrance/nerfacto/2023-03-14_183456/config.yml
 </code></pre>
 <h2 id="training-on-custom-data">Training on Custom Data</h2>
 <p>Put your files in the main directory of the volume you opened, you can also keep them in a folder in the main directory.</p>
-<pre><code>ns-process-data {video,images,polycam,insta360,record3d} --data {DATA_PATH} --output-dir {PROCESSED_DATA_DIR}
+<pre><code class="language-bash">ns-process-data {video,images,polycam,insta360,record3d} --data {DATA_PATH} --output-dir {PROCESSED_DATA_DIR}
+</code></pre>
+<pre><code class="language-bash"># example code
+ns-process-data video --data raw_video/forest_walk.mp4 --output-dir forest_walk_processed
 </code></pre>
 <p>Arguments:</p>
 <pre><code>ns-process-data images [-h] --data PATH --output-dir PATH
@@ -182,7 +222,10 @@ net-ss,sosnet,disk}]
                        [--num-downscales INT] [--skip-colmap]
                        [--colmap-cmd STR] [--no-gpu] [--verbose]
 </code></pre>
-<pre><code>ns-train nerfacto --data {PROCESSED_DATA_DIR}
+<pre><code class="language-bash">ns-train nerfacto --data {PROCESSED_DATA_DIR}
+</code></pre>
+<pre><code class="language-bash"># example code
+ns-train nerfacto --data forest_walk_processed/
 </code></pre>
 <h3 id="example">Example</h3>
 <p>It points to the same place in the following two paths. one its location on the host and the other its location inside the container.</p>

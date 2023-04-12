@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Hey - Cobanov</title>
+    <title>Python YAML Configs - Cobanov</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Hey";
-        var mkdocs_page_input_path = "portfolio.md";
+        var mkdocs_page_name = "Python YAML Configs";
+        var mkdocs_page_input_path = "pyyaml.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -41,7 +41,7 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Blog</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../helpers/">Helper one-liners</a>
@@ -60,7 +60,19 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../tuning-terms/">Training and Tuning Terms</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../pyyaml/">Python YAML Configs</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Python YAML Configs</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#install-and-import-yaml">Install and Import YAML</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#loading-yaml-with-python">Loading YAML with Python</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#printing-config">Printing Config</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#individual">Individual</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#updating-yaml-with-python">Updating YAML with Python</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../mount/">Mount Flash Disk over SSH</a>
                   </li>
@@ -84,7 +96,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
-      <li>Hey</li>
+          <li>Blog &raquo;</li>
+      <li>Python YAML Configs</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -93,34 +106,53 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="hey">Hey</h1>
-<h2 id="cobanov">Cobanov</h2>
-<p><img alt="" src="../assets/cobanov.jpg" /></p>
-<h2 id="chrome">Chrome</h2>
-<p><img alt="" src="../assets/chrome_1.jpg" />
-<img alt="" src="../assets/chrome_2.jpg" />
-<img alt="" src="../assets/chrome_3.jpg" /></p>
-<h2 id="little-girls">Little Girls</h2>
-<p><img alt="" src="../assets/little-girls.jpg" /></p>
-<h2 id="women">Women</h2>
-<p><img alt="" src="../assets/women_1.jpg" />
-<img alt="" src="../assets/women_2.jpg" /></p>
-<h2 id="cartoon">Cartoon</h2>
-<p><img alt="" src="../assets/cartoon.jpg" /></p>
-<h2 id="concept-art">Concept Art</h2>
-<p><img alt="" src="../assets/concept_women.jpg" /></p>
-<h2 id="cosmic-people">Cosmic People</h2>
-<p><img alt="" src="../assets/cosmic-people.jpg" /></p>
-<h2 id="line-art">Line-art</h2>
-<p><img alt="" src="../assets/lineart.jpg" /></p>
-<h2 id="wlop">WLOP</h2>
-<p><img alt="" src="../assets/wlop.jpg" /></p>
-<h2 id="coral-glacier">Coral &amp; Glacier</h2>
-<p><img alt="" src="../assets/coral.jpg" />
-<img alt="" src="../assets/glacier.jpg" /></p>
+                <h1 id="python-yaml-configuration-guide">Python YAML Configuration Guide</h1>
+<p>YAML (YAML Ain't Markup Language) is a human-readable data serialization format that is commonly used for configuration files and data exchange between programming languages. Python has built-in support for parsing YAML files using the yaml module, which provides functions for reading and writing YAML data.</p>
+<h2 id="install-and-import-yaml">Install and Import YAML</h2>
+<pre><code class="language-bash">pip install PyYAML
+</code></pre>
+<p>After the package installation, you can proceed to import the PyYAML package in Python.</p>
+<pre><code class="language-python">import yaml
+</code></pre>
+<h2 id="loading-yaml-with-python">Loading YAML with Python</h2>
+<p>In this example, we open the file config.yaml in read mode and pass it to the yaml.load() function. We also specify the Loader parameter as yaml.FullLoader, which is a safe loader that can load any YAML document.</p>
+<pre><code class="language-python">with open(&quot;config.yaml&quot;) as f:
+    cfg = yaml.load(f, Loader=yaml.FullLoader)
+</code></pre>
+<h2 id="printing-config">Printing Config</h2>
+<pre><code class="language-python">print(cfg)
+</code></pre>
+<pre><code class="language-python">{'maintainer': 'Mert Cobanov',
+ 'pca_params': {'n_components': 224},
+ 'umap_params': {'metrics': ['euclidean', 'l1', 'manhattan', 'chebyshev'],
+                 'min_dist': [0.01, 0.1, 0.5],
+                 'spread': 1.0},
+ 'visualize_params': {'median_threshold': 6}}
+</code></pre>
+<h2 id="individual">Individual</h2>
+<pre><code class="language-python">print(config['pca_params'])
+
+#'n_components': 224
+</code></pre>
+<h2 id="updating-yaml-with-python">Updating YAML with Python</h2>
+<p>Updating a YAML configuration file with Python involves loading the existing configuration data, modifying it in memory, and then writing the updated data back to the file. This can be accomplished using the pyyaml library, which provides functions for reading and writing YAML data.</p>
+<p>Here's an example of how to update a YAML file using Python:</p>
+<pre><code class="language-python">cfg[&quot;n_components&quot;] = 0.2
+cfg[&quot;umap_params&quot;][&quot;metrics&quot;].append(&quot;chebyshev&quot;)
+</code></pre>
+<pre><code class="language-python">with open(&quot;config.yaml&quot;, &quot;w&quot;) as f:
+    cfg = yaml.dump(
+        cfg, stream=f, default_flow_style=False, sort_keys=False
+    )
+</code></pre>
+<p>It's important to note that the yaml.dump() function will overwrite the entire contents of the file, so you should be careful to include all of the data that you want to keep in the updated file. If you only want to update a specific section of the YAML data, you can modify just that section in memory and then write the entire data structure back to the file.</p>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../tuning-terms/" class="btn btn-neutral float-left" title="Training and Tuning Terms"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../mount/" class="btn btn-neutral float-right" title="Mount Flash Disk over SSH">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -142,6 +174,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../tuning-terms/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../mount/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
