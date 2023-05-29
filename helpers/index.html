@@ -34,7 +34,7 @@
           <a href=".." class="icon icon-home"> Cobanov
         </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -100,6 +100,12 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#delete-all-hidden-mac-junk-files-in-windows-like-ds_store">Delete all hidden Mac junk files in Windows (Like .DS_STORE)</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../new-macbook/">New Macbook Installation</a>
@@ -117,8 +123,6 @@
                   <li class="toctree-l1"><a class="reference internal" href="../tuning-terms/">Training and Tuning Terms</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../pyyaml/">Python YAML Configs</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../mount/">Mount Flash Disk over SSH</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">About</span></p>
@@ -139,7 +143,7 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
           <li>Blog &raquo;</li>
       <li>Helper one-liners</li>
     <li class="wy-breadcrumbs-aside">
@@ -224,6 +228,12 @@ for f in *; do ffmpeg -i &quot;${f}&quot; -vn -ab 128k -ar 44100 -y &quot;${f}.m
 <hr />
 <h3 id="esrgan">ESRGAN</h3>
 <pre><code class="language-bash">python inference_realesrgan.py -n RealESRGAN_x4plus -i v13 -s 3 --suffix 8k -t 1500 -o v13_out
+</code></pre>
+<h2 id="utilities">Utilities</h2>
+<h3 id="delete-all-hidden-mac-junk-files-in-windows-like-ds_store">Delete all hidden Mac junk files in Windows (Like .DS_STORE)</h3>
+<pre><code>del /s /q /f /a .DS_STORE
+</code></pre>
+<pre><code>del /s /q /f /a ._.*
 </code></pre>
               
             </div>
