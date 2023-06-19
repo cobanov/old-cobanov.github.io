@@ -99,6 +99,7 @@ for f in *.mp3; do ffmpeg -i "$f" -acodec pcm_s16le -ac 1 -ar 16000 "wav-exports
 
 for f in *.flac; do ffmpeg -i "$f" "wav-exports/${f%.}.wav"; done
 ```
+
 ### WAV  → mp3
 
 ```bash
@@ -148,4 +149,16 @@ mogrify -format png *.*
 
 ```bash
 python inference_realesrgan.py -n RealESRGAN_x4plus -i v13 -s 3 --suffix 8k -t 1500 -o v13_out
+```
+
+## Utilities
+
+### Delete all hidden Mac junk files in Windows (Like .DS_STORE)
+
+```
+del /s /q /f /a .DS_STORE
+```
+
+```
+del /s /q /f /a ._.*
 ```
