@@ -174,11 +174,12 @@
 <p><strong>MP3 → WAV</strong></p>
 <pre><code>for f in *.mp3; do ffmpeg -i &quot;$f&quot; -acodec pcm_s16le -ac 1 -ar 16000 &quot;wav-exports/${f%.}.wav&quot;; done
 </code></pre>
-<p><strong>FLAC→ WAV</strong>```
-for f in *.flac; do ffmpeg -i "$f" "wav-exports/${f%.}.wav"; done</p>
-<pre><code>**WAV → mp3**
+<p><strong>FLAC→ WAV</strong></p>
+<pre><code class="language-mp4">for f in *.flac; do ffmpeg -i &quot;$f&quot; &quot;wav-exports/${f%.}.wav&quot;; done
 </code></pre>
-<p>for f in <em>.</em>; do ffmpeg -i "$f" "wav-exports/${f%.}.wav"; done`</p>
+<p><strong>WAV → mp3</strong></p>
+<pre><code>for f in *.*; do ffmpeg -i &quot;$f&quot; &quot;wav-exports/${f%.}.wav&quot;; done`
+</code></pre>
 <pre><code>for f in *; do ffmpeg -i &quot;${f}&quot; -vn -ab 128k -ar 44100 -y &quot;${f}.mp3&quot; ; done
 </code></pre>
 <p><strong>PNG Sequence → MP4</strong></p>

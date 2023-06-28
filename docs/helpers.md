@@ -108,14 +108,17 @@ ls -U | while read n; do identify -format "%f,%w,%h\n" "$n"; done > file_size.cs
 for f in *.mp3; do ffmpeg -i "$f" -acodec pcm_s16le -ac 1 -ar 16000 "wav-exports/${f%.}.wav"; done
 ```
 
-**FLAC→ WAV**```
+**FLAC→ WAV**
+
+```mp4
 for f in *.flac; do ffmpeg -i "$f" "wav-exports/${f%.}.wav"; done
-
 ```
+
 **WAV → mp3**
-```
 
+```
 for f in *.*; do ffmpeg -i "$f" "wav-exports/${f%.}.wav"; done`
+```
 
 ```
 for f in *; do ffmpeg -i "${f}" -vn -ab 128k -ar 44100 -y "${f}.mp3" ; done
