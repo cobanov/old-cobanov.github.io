@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Helper one-liners - Cobanov</title>
+    <title>One Liners - Cobanov</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Helper one-liners";
+        var mkdocs_page_name = "One Liners";
         var mkdocs_page_input_path = "helpers.md";
         var mkdocs_page_url = null;
       </script>
@@ -41,72 +41,10 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Blog</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Helper one-liners</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#remote-connection">Remote Connection</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#ssh">SSH</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scp">SCP</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#from-local">From Local</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#download-file-from-remote-server">Download File From Remote Server</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#various">Various</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#download-file">Download File</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#rename-files">Rename Files</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#extract-files">Extract Files</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#string-slicing">String Slicing</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#random-file-name">Random File Name</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#move-files">Move Files</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#delete-files-recursively">Delete Files Recursively</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#get-dimensions-from-folder">Get Dimensions from Folder</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ffmpeg">FFMPEG</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#mp3-wav">MP3 → WAV</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#wav-mp3">WAV  → mp3</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#png-sequence-mp4">PNG Sequence → MP4</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mp4-png">MP4 → PNG</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#mov-to-optimized-gif">MOV to Optimized GIF</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#image">Image</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#esrgan">ESRGAN</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#delete-all-hidden-mac-junk-files-in-windows-like-ds_store">Delete all hidden Mac junk files in Windows (Like .DS_STORE)</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="" href="../helpersv2.md">Helper one-liners</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../new-macbook/">New Macbook Installation</a>
                   </li>
@@ -167,8 +105,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Blog &raquo;</li>
-      <li>Helper one-liners</li>
+      <li>One Liners</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -177,94 +114,104 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="helper-codes">Helper Codes</h1>
+                <h1 id="one-liners">One Liners</h1>
+<h1 id="python">Python</h1>
+<h2 id="poetry">Poetry</h2>
+<p>Here are some helpful one liners for using Poetry, a dependency manager for Python:</p>
+<ul>
+<li><code>poetry new &lt;project-name&gt;</code>: Create a new project.</li>
+<li><code>poetry add &lt;library&gt;</code>: Add a new library to the project.</li>
+<li><code>poetry remove &lt;library&gt;</code>: Remove a library from the project.</li>
+<li><code>poetry update &lt;library&gt;</code>: Update a library to the latest version.</li>
+<li><code>poetry run which python</code>: Get the path to the virtual environment's Python interpreter.</li>
+<li><code>poetry env list</code>: Show a list of all environments.</li>
+<li><code>poetry export --output requirements.txt</code>: Export dependencies to a requirements.txt file.</li>
+</ul>
+<hr />
 <h2 id="remote-connection">Remote Connection</h2>
 <h3 id="ssh">SSH</h3>
-<pre><code class="language-bash">ssh -J mert@{servername}.ddns.net:port mert@target
+<pre><code>ssh -J mert@{servername}.ddns.net:port mert@target
 </code></pre>
 <h3 id="scp">SCP</h3>
-<h4 id="from-local">From Local</h4>
-<pre><code class="language-bash">scp -o &quot;ProxyJump mert@servername.ddns.net -p {port}&quot; test.txt mert@target-pc:/home/mert/
+<p><strong>From Local</strong></p>
+<pre><code>scp -o &quot;ProxyJump mert@servername.ddns.net -p {port}&quot; test.txt mert@target-pc:/home/mert/
 </code></pre>
-<h4 id="download-file-from-remote-server">Download File From Remote Server</h4>
-<pre><code class="language-bash">scp -o &quot;ProxyJump mert@servername.ddns.net -p {port}&quot; mert@target-pc:/home/mert/ test.txt
+<p><strong>Download File From Remote Server</strong></p>
+<pre><code>scp -o &quot;ProxyJump mert@servername.ddns.net -p {port}&quot; mert@target-pc:/home/mert/ test.txt
 </code></pre>
 <hr />
 <h2 id="various">Various</h2>
 <h3 id="download-file">Download File</h3>
-<pre><code class="language-bash">wget --user-agent Mozilla/4.0 'big address' -O dest_file_name
+<pre><code>wget --user-agent Mozilla/4.0 'big address' -O dest_file_name
 </code></pre>
 <h3 id="rename-files">Rename Files</h3>
-<pre><code class="language-bash">ls -v | cat -n | while read n f; do mv -n &quot;$f&quot; &quot;$n.ext&quot;; done
+<pre><code>ls -v | cat -n | while read n f; do mv -n &quot;$f&quot; &quot;$n.ext&quot;; done
 </code></pre>
 <h3 id="extract-files">Extract Files</h3>
-<pre><code class="language-bash">7za x test.7z
+<pre><code>7za x test.7z
 </code></pre>
-<h3 id="string-slicing">String Slicing</h3>
-<pre><code class="language-bash"># From Character
-for f in raw_daily/*.csv; do echo  $f /dimensions_&quot;${f#*blocks_}&quot;; done
-
-# TO Character
-for f in raw_daily/*.csv; do echo  $f /dimensions_&quot;${f%*blocks_}&quot;; done
+<h2 id="string-slicing">String Slicing</h2>
+<p><strong>From Character</strong></p>
+<pre><code>for f in raw_daily/*.csv; do echo  $f /dimensions_&quot;${f#*blocks_}&quot;; done
 </code></pre>
-<h3 id="random-file-name">Random File Name</h3>
-<pre><code class="language-bash">for i in *.jpg; do mv -i &quot;$i&quot; ${RANDOM}${RANDOM}.jpg; done
+<p><strong>To Character</strong></p>
+<pre><code>for f in raw_daily/*.csv; do echo  $f /dimensions_&quot;${f%*blocks_}&quot;; done
 </code></pre>
-<h3 id="move-files">Move Files</h3>
-<pre><code class="language-bash">for f in png-exports/*; do cp $f/*.png all_images; done
+<p><strong>Random File Name</strong></p>
+<pre><code>for i in *.jpg; do mv -i &quot;$i&quot; ${RANDOM}${RANDOM}.jpg; done
 </code></pre>
-<h3 id="delete-files-recursively">Delete Files Recursively</h3>
-<pre><code class="language-bash"> find e -maxdepth 10 -type f -name &quot;.*&quot; -delete
+<p><strong>Move Files</strong></p>
+<pre><code>for f in png-exports/*; do cp $f/*.png all_images; done
 </code></pre>
-<h3 id="get-dimensions-from-folder">Get Dimensions from Folder</h3>
-<pre><code class="language-jsx">ls -U | while read n; do identify -format &quot;%f,%w,%h\n&quot; &quot;$n&quot;; done &gt; file_size.csv
+<p><strong>Delete Files Recursively</strong></p>
+<pre><code>find e -maxdepth 10 -type f -name &quot;.*&quot; -delete
+</code></pre>
+<p><strong>Get Dimensions from Folder</strong></p>
+<pre><code>ls -U | while read n; do identify -format &quot;%f,%w,%h\n&quot; &quot;$n&quot;; done &gt; file_size.csv
 </code></pre>
 <hr />
 <h2 id="ffmpeg">FFMPEG</h2>
-<h3 id="mp3-wav">MP3 → WAV</h3>
-<pre><code class="language-bash">for f in *.mp3; do ffmpeg -i &quot;$f&quot; -acodec pcm_s16le -ac 1 -ar 16000 &quot;wav-exports/${f%.}.wav&quot;; done
-
-for f in *.flac; do ffmpeg -i &quot;$f&quot; &quot;wav-exports/${f%.}.wav&quot;; done
+<p><strong>MP3 → WAV</strong></p>
+<pre><code>for f in *.mp3; do ffmpeg -i &quot;$f&quot; -acodec pcm_s16le -ac 1 -ar 16000 &quot;wav-exports/${f%.}.wav&quot;; done
 </code></pre>
-<h3 id="wav-mp3">WAV  → mp3</h3>
-<pre><code class="language-bash">for f in *.*; do ffmpeg -i &quot;$f&quot; &quot;wav-exports/${f%.}.wav&quot;; done
-for f in *; do ffmpeg -i &quot;${f}&quot; -vn -ab 128k -ar 44100 -y &quot;${f}.mp3&quot; ; done
+<p><strong>FLAC→ WAV</strong>```
+for f in *.flac; do ffmpeg -i "$f" "wav-exports/${f%.}.wav"; done</p>
+<pre><code>**WAV → mp3**
 </code></pre>
-<h3 id="png-sequence-mp4">PNG Sequence → MP4</h3>
-<pre><code class="language-bash">ffmpeg -f image2 -r 30 -i image_%6d.png -vcodec libx264 -crf 18  -pix_fmt yuv420p output.mp4
+<p>for f in <em>.</em>; do ffmpeg -i "$f" "wav-exports/${f%.}.wav"; done`</p>
+<pre><code>for f in *; do ffmpeg -i &quot;${f}&quot; -vn -ab 128k -ar 44100 -y &quot;${f}.mp3&quot; ; done
 </code></pre>
-<h3 id="mp4-png">MP4 → PNG</h3>
-<pre><code class="language-bash">ffmpeg -i test.mp4 -vf fps=1/2  png-exports/video13_%06d.png
+<p><strong>PNG Sequence → MP4</strong></p>
+<pre><code>ffmpeg -f image2 -r 30 -i image_%6d.png -vcodec libx264 -crf 18  -pix_fmt yuv420p output.mp4
 </code></pre>
-<pre><code class="language-bash">for f in *.mp4; do ffmpeg -i &quot;$f&quot; -vf fps=2 png-exports/${f%.*}_%06d.png; done
+<p><strong>MP4 → PNG</strong></p>
+<pre><code>ffmpeg -i test.mp4 -vf fps=1/2  png-exports/video13_%06d.png`
 </code></pre>
-<h3 id="mov-to-optimized-gif">MOV to Optimized GIF</h3>
-<pre><code class="language-jsx">ffmpeg -i test.mov -vf scale=320:-1 -r 10 output/ffout%3d.png
+<pre><code>for f in *.mp4; do ffmpeg -i &quot;$f&quot; -vf fps=2 png-exports/${f%.*}_%06d.png; done
 </code></pre>
-<pre><code class="language-jsx">convert -delay 8 -loop 0 output/ffout*.png output/test.gif
+<p><strong>MOV to Optimized GIF</strong></p>
+<pre><code>ffmpeg -i test.mov -vf scale=320:-1 -r 10 output/ffout%3d.png`
+</code></pre>
+<pre><code>convert -delay 8 -loop 0 output/ffout*.png output/test.gif
 </code></pre>
 <hr />
 <h2 id="image">Image</h2>
 <p>Convert all images in directory</p>
-<pre><code class="language-bash">mogrify -format png *.*
+<pre><code>mogrify -format png *.*
+</code></pre>
+<p><strong>ESRGAN</strong></p>
+<pre><code>python inference_realesrgan.py -n RealESRGAN_x4plus -i v13 -s 3 --suffix 8k -t 1500 -o v13_out
 </code></pre>
 <hr />
-<h3 id="esrgan">ESRGAN</h3>
-<pre><code class="language-bash">python inference_realesrgan.py -n RealESRGAN_x4plus -i v13 -s 3 --suffix 8k -t 1500 -o v13_out
-</code></pre>
 <h2 id="utilities">Utilities</h2>
-<h3 id="delete-all-hidden-mac-junk-files-in-windows-like-ds_store">Delete all hidden Mac junk files in Windows (Like .DS_STORE)</h3>
-<pre><code>del /s /q /f /a .DS_STORE
+<p>Delete all hidden Mac junk files in Windows (Like .DS_STORE)</p>
+<pre><code>del /s /q /f /a .DS_STORE`
 </code></pre>
-<pre><code>del /s /q /f /a ._.*
+<pre><code>del /s /q /f /a ._.*`
 </code></pre>
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href=".." class="btn btn-neutral float-left" title="Hello 👋"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../new-macbook/" class="btn btn-neutral float-right" title="New Macbook Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -286,10 +233,6 @@ for f in *; do ffmpeg -i &quot;${f}&quot; -vn -ab 128k -ar 44100 -y &quot;${f}.m
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../new-macbook/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
