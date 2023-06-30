@@ -7,7 +7,7 @@ edit_uri: ""
 nav:
   - Blog:
       - "index.md"
-      - "Helper one-liners": "helpersv2.md"
+      - "Helper one-liners": "helpers.md"
       - "New Macbook Installation": "new-macbook.md"
       - "Cypherpunk Manifesto": "cyberpunk.md"
       - "Doing Python Configuration Right": "python-conf.md"
@@ -20,16 +20,16 @@ nav:
   - About:
       - "about.md"
   - diffusion-book:
-    - What is Latent Diffusion: diffusion/ldm.md
-    - ViT Visual Transformers: diffusion/vit.md
-    - Glossary: diffusion/glossary.md
-    - Samplers: diffusion/samplers.md
-    - Prompting: diffusion/prompting.md
-    - Blender Depthmap: diffusion/blender-depthmap.md
-    - Training LDM: diffusion/training-ldm.md
-    - Fine Tuning: diffusion/fine-tuning.md
-    - Dream Booth: diffusion/dream-booth.md
-    - Tools & Blogs and Useful Links: diffusion/tools.md
+      - What is Latent Diffusion: diffusion/ldm.md
+      - ViT Visual Transformers: diffusion/vit.md
+      - Glossary: diffusion/glossary.md
+      - Samplers: diffusion/samplers.md
+      - Prompting: diffusion/prompting.md
+      - Blender Depthmap: diffusion/blender-depthmap.md
+      - Training LDM: diffusion/training-ldm.md
+      - Fine Tuning: diffusion/fine-tuning.md
+      - Dream Booth: diffusion/dream-booth.md
+      - Tools & Blogs and Useful Links: diffusion/tools.md
 
 theme: readthedocs
 #   icon:
