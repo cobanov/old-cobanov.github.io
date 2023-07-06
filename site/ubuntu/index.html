@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>New Macbook Installation - Cobanov</title>
+    <title>Install Ubuntu - Cobanov</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "New Macbook Installation";
-        var mkdocs_page_input_path = "new-macbook.md";
+        var mkdocs_page_name = "Install Ubuntu";
+        var mkdocs_page_input_path = "ubuntu.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -46,11 +46,17 @@
                   </li>
                   <li class="toctree-l1"><a class="" href="../helpersv2.md">Helper one-liners</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">New Macbook Installation</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../new-macbook/">New Macbook Installation</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">Install Ubuntu</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Install Ubuntu</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#disk-partition">Disk Partition</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#after-installation">After Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configure-git">Configure Git</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../cyberpunk/">Cypherpunk Manifesto</a>
                   </li>
@@ -110,7 +116,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
           <li>Blog &raquo;</li>
-      <li>New Macbook Installation</li>
+      <li>Install Ubuntu</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -119,69 +125,101 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="install-xcode">Install XCode</h2>
-<pre><code>sudo xcode-select --install
+                <h2 id="install-ubuntu">Install Ubuntu</h2>
+<h3 id="disk-partition">Disk Partition</h3>
+<ul>
+<li>EFI: 500mb</li>
+<li>SWAP: 8192mb</li>
+<li>EXT4 Boot: 100mb</li>
+<li>EXT: all remain</li>
+</ul>
+<h3 id="after-installation">After Installation</h3>
+<p>Update ubuntu</p>
+<pre><code class="language-bash">sudo apt-get update &amp;&amp; sudo apt-get upgrade
 </code></pre>
-<h2 id="install-brew">Install Brew.</h2>
-<pre><code>/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+<pre><code class="language-bash">sudo apt install curl vim tree wget vim git htop imagemagick ffmpeg tmux
 </code></pre>
-<h2 id="brew-services">Brew Services</h2>
-<pre><code>brew install tree wget vim fig git htop imagemagick ffmpeg tmux
+<h3 id="configure-git">Configure Git</h3>
+<pre><code class="language-bash">git config --global user.name &quot;Mert Cobanov&quot;
+git config --global user.email &quot;&lt;mertcobanov@gmail.com&gt;&quot;
+git config --global init.defaultBranch 'main'
+git config --global credential.helper store
 </code></pre>
-<pre><code>brew install --cask iterm2 visual-studio-code
+<h2 id="install-zsh">Install Zsh</h2>
+<p>Read this
+<a href="https://gist.github.com/n1snt/454b879b8f0b7995740ae04c5fb5b7df">https://gist.github.com/n1snt/454b879b8f0b7995740ae04c5fb5b7df</a></p>
+<h3 id="make-default">Make default</h3>
+<pre><code class="language-bash">sudo nano ~/.bashrc
+exec zsh
 </code></pre>
-<h2 id="install-zsh">Install ZSH.</h2>
-<pre><code>sudo apt install zsh-autosuggestions zsh-syntax-highlighting zsh
+<h3 id="install-addons">Install addons</h3>
+<pre><code class="language-bash">sudo apt-get install fonts-powerline
 </code></pre>
-<h2 id="install-oh-my-zsh">Install Oh my ZSH.</h2>
-<pre><code>sh -c &quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;
+<h2 id="gpu-drivers">GPU Drivers</h2>
+<pre><code class="language-bash">sudo apt update &amp; upgrade
+sudo apt install nvidia-driver-525 # Check the latest
+nvidia-smi
 </code></pre>
-<h2 id="iterm2-settings">iTerm2 Settings</h2>
-<blockquote>
-<p>Preferences &gt; Profiles &gt; Keys &gt; Presets &gt; Natural Text Editing</p>
-</blockquote>
-<h2 id="install-python-dev-environment">Install Python Dev Environment</h2>
-<p>Install Anaconda</p>
-<pre><code>curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
+<pre><code class="language-bash">lspci | grep -i nvidia
+sudo apt install build-essential
+gcc --version
+g++ --version
+sudo apt install nvidia-cuda-toolkit
+nvcc --version
+</code></pre>
+<h2 id="install-miniconda">Install Miniconda</h2>
+<pre><code class="language-bash">curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
 sh Miniconda3-latest-MacOSX-arm64.sh
 </code></pre>
-<p>Initialize on Terminal if needed</p>
-<pre><code>conda init
-source ~/.zshrc
-</code></pre>
-<p>Install popular libraries</p>
-<pre><code>python -m pip install --upgrade pip
-pip install pandas numpy matplotlib seaborn scikit-learn requests
-</code></pre>
-<h2 id="pytorch-env">PyTorch Env</h2>
-<p>Create environment for PyTorch</p>
-<pre><code>conda create --name torchenv python=3.9
+<h3 id="torch-environment">Torch environment</h3>
+<pre><code class="language-bash">conda create --name torchenv python=3.9
 activate torchenv
-</code></pre>
-<p>Install Dependencies</p>
-<pre><code>brew install gcc
 
-conda install astunparse numpy ninja pyyaml setuptools cmake cffi typing_extensions future six requests dataclasses
-conda install pkg-config libuv
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 </code></pre>
-<p>MPS acceleration is available on MacOS 12.3+</p>
-<pre><code>conda install pytorch torchvision torchaudio -c pytorch-nightly
+<pre><code class="language-python">import torch
+torch.cuda.is_available()
 </code></pre>
-<p>if you get error</p>
-<pre><code>conda install pytorch -c pytorch-nightly
-pip install --pre torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
+<h2 id="docker-with-nvidia-container-runtime">Docker with NVIDIA Container Runtime</h2>
+<pre><code class="language-bash">sudo apt-get update
 </code></pre>
-<p>Check if everyting is okay</p>
-<pre><code class="language-python">python
-import torch; torch.backends.mps.is_available()
-# True
+<pre><code class="language-bash">sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+</code></pre>
+<pre><code class="language-bash">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+</code></pre>
+<pre><code class="language-bash">echo &quot;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot; | sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre>
+<pre><code class="language-bash">sudo apt update
+apt-cache policy docker-ce
+</code></pre>
+<pre><code class="language-bash">sudo apt install docker-ce
+sudo systemctl status docker
+
+sudo docker run hello-world
+</code></pre>
+<h2 id="nvidia-container-runtime">NVIDIA Container Runtime</h2>
+<pre><code class="language-bash">curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | \
+  sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | \
+  sudo tee /etc/apt/sources.list.d/nvidia-container-runtime.list
+sudo apt-get update
+</code></pre>
+<pre><code class="language-bash">sudo apt-get install nvidia-container-runtime
+</code></pre>
+<pre><code class="language-bash">docker run --gpus all nvidia/cuda:12.1.0-base-ubuntu22.04 nvidia-smi
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href=".." class="btn btn-neutral float-left" title="Hello 👋"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../ubuntu/" class="btn btn-neutral float-right" title="Install Ubuntu">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../new-macbook/" class="btn btn-neutral float-left" title="New Macbook Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cyberpunk/" class="btn btn-neutral float-right" title="Cypherpunk Manifesto">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -204,10 +242,10 @@ import torch; torch.backends.mps.is_available()
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../new-macbook/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../ubuntu/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../cyberpunk/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
