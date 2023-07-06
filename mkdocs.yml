@@ -7,7 +7,7 @@ edit_uri: ""
 nav:
   - Blog:
       - "index.md"
-      - "Helper one-liners": "helpersv2.md"
+      - "Helper one-liners": "helpers.md"
       - "New Macbook Installation": "new-macbook.md"
       - "Install Ubuntu": "ubuntu.md"
       - "Cypherpunk Manifesto": "cyberpunk.md"
