@@ -1,865 +1,123 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Instang NGP - Cobanov</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Instang NGP";
+        var mkdocs_page_input_path = "archive\\instant-ngp-windows.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
 
-<!doctype html>
-<html lang="tr" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-        <meta name="author" content="Mert Cobanov">
-      
-      
-      
-      
-      <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.17">
-    
-    
-      
-        <title>Instang NGP - Cobanov</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../assets/stylesheets/main.26e3688c.min.css">
-      
-        
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
-      
-      
+<body class="wy-body-for-nav" role="document">
 
-    
-    
-    
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto Slab";--md-code-font:"Fira Code"}</style>
-      
-    
-    
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-    
-      
-
-    
-    
-    
-  </head>
-  
-  
-    
-    
-      
-    
-    
-    
-    
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
-  
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#instant-neural-graphics-primitives" class="md-skip">
-          Ana içeriğe geç
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-    
-      
-
-  
-
-<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="Başlık">
-    <a href="../.." title="Cobanov" class="md-header__button md-logo" aria-label="Cobanov" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
-
-    </a>
-    <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
-    </label>
-    <div class="md-header__title" data-md-component="header-title">
-      <div class="md-header__ellipsis">
-        <div class="md-header__topic">
-          <span class="md-ellipsis">
-            Cobanov
-          </span>
-        </div>
-        <div class="md-header__topic" data-md-component="header-topic">
-          <span class="md-ellipsis">
-            
-              Instang NGP
-            
-          </span>
-        </div>
-      </div>
-    </div>
-    
-      
-        <form class="md-header__option" data-md-component="palette">
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-            
-              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
-            
-              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-        </form>
-      
-    
-    
-      <div class="md-header__option">
-        <div class="md-select">
-          
-          <button class="md-header__button md-icon" aria-label="Dil seç">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
-          </button>
-          <div class="md-select__inner">
-            <ul class="md-select__list">
-              
-                <li class="md-select__item">
-                  <a href="/tr/" hreflang="tr" class="md-select__link">
-                    Turkish
-                  </a>
-                </li>
-              
-                <li class="md-select__item">
-                  <a href="/en/" hreflang="en" class="md-select__link">
-                    English
-                  </a>
-                </li>
-              
-            </ul>
-          </div>
-        </div>
-      </div>
-    
-    
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Ara" placeholder="Ara" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-      </label>
-      <nav class="md-search__options" aria-label="Ara">
-        
-        <button type="reset" class="md-search__icon md-icon" title="Temizle" aria-label="Temizle" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
-        </button>
-      </nav>
-      
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Arama başlatılıyor
-          </div>
-          <ol class="md-search-result__list" role="presentation"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Cobanov
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
 </div>
-    
-    
-      <div class="md-header__source">
-        <a href="https://github.com/cobanov/" title="Depoya git" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
-    Visit my GitHub
-  </div>
-</a>
       </div>
-    
-  </nav>
-  
-    
-      
-<nav class="md-tabs" aria-label="Sekmeler" data-md-component="tabs">
-  <div class="md-grid">
-    <ul class="md-tabs__list">
-      
-        
-  
-  
 
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
-        Blog
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../about/" class="md-tabs__link">
-        About
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../diffusion/ldm/" class="md-tabs__link">
-        diffusion-book
-      </a>
-    </li>
-  
-
-      
-    </ul>
-  </div>
-</nav>
-    
-  
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-      
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
-            
-              
-                
-              
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-  
-
-
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigasyon" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Cobanov" class="md-nav__button md-logo" aria-label="Cobanov" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
-
-    </a>
-    Cobanov
-  </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/cobanov/" title="Depoya git" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
-    Visit my GitHub
-  </div>
-</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Blog</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../..">Hello 👋</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="../../helpersv2.md">Helper one-liners</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../new-macbook/">New Macbook Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ubuntu/">Install Ubuntu</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../cyberpunk/">Cypherpunk Manifesto</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../python-conf/">Doing Python Configuration Right</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../windows-wsl-ssh/">Windows WSL Activate SSH</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../nerf/">NeRF</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../instagram/">Instagram</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../tuning-terms/">Training and Tuning Terms</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../pyyaml/">Python YAML Configs</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">About</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../about/">Main Page</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">diffusion-book</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diffusion/ldm/">What is Latent Diffusion</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diffusion/vit/">ViT Visual Transformers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diffusion/glossary/">Glossary</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diffusion/samplers/">Samplers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diffusion/prompting/">Prompting</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diffusion/blender-depthmap/">Blender Depthmap</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diffusion/training-ldm/">Training LDM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diffusion/fine-tuning/">Fine Tuning</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diffusion/dream-booth/">Dream Booth</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diffusion/tools/">Tools & Blogs and Useful Links</a>
+                  </li>
+              </ul>
+      </div>
     </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
-          Blog
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_1">
-          <span class="md-nav__icon md-icon"></span>
-          Blog
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
-        Hello 👋
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../helpers/" class="md-nav__link">
-        Helper one-liners
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../new-macbook/" class="md-nav__link">
-        New Macbook Installation
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../cyberpunk/" class="md-nav__link">
-        Cypherpunk Manifesto
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../python-conf/" class="md-nav__link">
-        Doing Python Configuration Right
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../windows-wsl-ssh/" class="md-nav__link">
-        Windows WSL Activate SSH
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../nerf/" class="md-nav__link">
-        NeRF
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../instagram/" class="md-nav__link">
-        Instagram
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../tuning-terms/" class="md-nav__link">
-        Training and Tuning Terms
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../pyyaml/" class="md-nav__link">
-        Python YAML Configs
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-          About
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_2">
-          <span class="md-nav__icon md-icon"></span>
-          About
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../about/" class="md-nav__link">
-        Main Page
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-          diffusion-book
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          diffusion-book
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../diffusion/ldm/" class="md-nav__link">
-        What is Latent Diffusion
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../diffusion/vit/" class="md-nav__link">
-        ViT Visual Transformers
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../diffusion/glossary/" class="md-nav__link">
-        Glossary
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../diffusion/samplers/" class="md-nav__link">
-        Samplers
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../diffusion/prompting/" class="md-nav__link">
-        Prompting
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../diffusion/blender-depthmap/" class="md-nav__link">
-        Blender Depthmap
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../diffusion/training-ldm/" class="md-nav__link">
-        Training LDM
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../diffusion/fine-tuning/" class="md-nav__link">
-        Fine Tuning
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../diffusion/dream-booth/" class="md-nav__link">
-        Dream Booth
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../diffusion/tools/" class="md-nav__link">
-        Tools & Blogs and Useful Links
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-            
-              
-                
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      İçindekiler
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#requirements" class="md-nav__link">
-    Requirements
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compilation" class="md-nav__link">
-    Compilation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interactive-training-and-rendering-on-custom-image-sets" class="md-nav__link">
-    Interactive Training and Rendering on Custom Image Sets
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rendering-custom-camera-path" class="md-nav__link">
-    Rendering custom camera path
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interactive-training-and-rendering" class="md-nav__link">
-    Interactive training and rendering
-  </a>
-  
-    <nav class="md-nav" aria-label="Interactive training and rendering">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#nerf-fox" class="md-nav__link">
-    NeRF fox
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sdf-armadillo" class="md-nav__link">
-    SDF armadillo
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#image-of-einstein" class="md-nav__link">
-    Image of Einstein
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#volume-renderer" class="md-nav__link">
-    Volume Renderer
-  </a>
-  
-</li>
-        
-      </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#python-bindings" class="md-nav__link">
-    Python bindings
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting-compile-errors" class="md-nav__link">
-    Troubleshooting compile errors
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#thanks" class="md-nav__link">
-    Thanks
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license-and-citation" class="md-nav__link">
-    License and Citation
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
-          
-          
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
 
-
-<h1 id="instant-neural-graphics-primitives">Instant Neural Graphics Primitives !<a class="headerlink" href="#instant-neural-graphics-primitives" title="Permanent link">&para;</a></h1>
-<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Cobanov</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+      <li>Instang NGP</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="instant-neural-graphics-primitives">Instant Neural Graphics Primitives !</h1>
+<h2 id="requirements">Requirements</h2>
 <ul>
 <li>An <strong>NVIDIA GPU</strong>; tensor cores increase performance when available. All shown results come from an RTX 3090.</li>
 <li>Python ver: 3.9.*</li>
@@ -870,7 +128,7 @@
 <li>This installation tutorial will be using Anaconda. Download anaconda prompt <a href="https://www.anaconda.com/products/individual">here</a>.</li>
 <li><strong><a href="https://developer.nvidia.com/optix">OptiX</a> 7.3 or higher</strong> for faster mesh SDF training. You need to either login or join to obtain the installer. Set the system environment variables <code>OptiX_INSTALL_DIR</code> to the installation directory if it is not discovered automatically. Should look like this: <img alt="image" src="https://user-images.githubusercontent.com/29135514/151631220-7a934f5c-c299-41ab-a44e-184e2dc142b9.png" /></li>
 </ul>
-<h2 id="compilation">Compilation<a class="headerlink" href="#compilation" title="Permanent link">&para;</a></h2>
+<h2 id="compilation">Compilation</h2>
 <p>copy these files <code>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.6\extras\visual_studio_integration\MSBuildExtensions</code>
 to here <code>C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\BuildCustomizations</code></p>
 <p><code>cd</code> into a directory that you want to download the codes at. Eg. <code>cd F:\Tutorial\ngp\</code></p>
@@ -913,7 +171,7 @@ cmake --build build --config RelWithDebInfo -j 16
 </tr>
 </tbody>
 </table>
-<h2 id="interactive-training-and-rendering-on-custom-image-sets">Interactive Training and Rendering on Custom Image Sets<a class="headerlink" href="#interactive-training-and-rendering-on-custom-image-sets" title="Permanent link">&para;</a></h2>
+<h2 id="interactive-training-and-rendering-on-custom-image-sets">Interactive Training and Rendering on Custom Image Sets</h2>
 <p>Install <a href="https://github.com/colmap/colmap/releases/tag/3.7">COLMAP</a>, I used ver 3.7</p>
 <p>Add it to your system environment variables at Environment Variables &gt; System Variables Path &gt; Edit environment variable</p>
 <p><img alt="image" src="https://user-images.githubusercontent.com/29135514/151633058-e45f9220-c417-4249-aff3-09d29c1a4e9b.png" /></p>
@@ -966,7 +224,7 @@ pip install -r requirements.txt
 <pre><code>C:\user\user\download\instant-ngp\build\testbed.exe --scene data/toy_truck
 </code></pre>
 <p>And it should launch the GUI and everything amazing with it</p>
-<h2 id="rendering-custom-camera-path">Rendering custom camera path<a class="headerlink" href="#rendering-custom-camera-path" title="Permanent link">&para;</a></h2>
+<h2 id="rendering-custom-camera-path">Rendering custom camera path</h2>
 <ol>
 <li>May need to install more dependencies. Install <code>pip install tqdm scipy pillow opencv-python</code>, <code>conda install -c conda-forge ffmpeg</code>, might be needed in the conda virtual environment. Refer to installation of <code>pyexr</code> above in the installation section if you didn't install that too.</li>
 <li>Train any image set like above.</li>
@@ -984,7 +242,7 @@ pip install -r requirements.txt
 </code></pre>
 <p>Your video will be saved at root. You might have to play around with the <code>fps</code> and <code>n_seconds</code> to speed up or slow down. I couldn't get it accurately because of the lack of information and this is the best I could come up with. To be honest, this is only a short-term solution too, since the author has promised to publish an official one. So stay tuned!</p>
 <p>And my fork edits end here.</p>
-<h2 id="interactive-training-and-rendering">Interactive training and rendering<a class="headerlink" href="#interactive-training-and-rendering" title="Permanent link">&para;</a></h2>
+<h2 id="interactive-training-and-rendering">Interactive training and rendering</h2>
 <p><img src="docs/assets_readme/testbed.png" width="100%"/></p>
 <p>This codebase comes with an interactive testbed that includes many features beyond our academic publication:</p>
 <ul>
@@ -995,7 +253,7 @@ pip install -r requirements.txt
 <li>And many more task-specific settings.</li>
 <li>See also our <a href="https://nvlabs.github.io/instant-ngp/assets/mueller2022instant.mp4">one minute demonstration video of the tool</a>.</li>
 </ul>
-<h3 id="nerf-fox">NeRF fox<a class="headerlink" href="#nerf-fox" title="Permanent link">&para;</a></h3>
+<h3 id="nerf-fox">NeRF fox</h3>
 <p>One test scene is provided in this repository, using a small number of frames from a casually captured phone video:</p>
 <pre><code class="language-sh">instant-ngp$ ./build/testbed --scene data/nerf/fox
 </code></pre>
@@ -1005,27 +263,27 @@ Now you can run:</p>
 <pre><code class="language-sh">instant-ngp$ ./build/testbed --scene data/nerf_synthetic/lego/transforms_train.json
 </code></pre>
 <p>For more information about preparing datasets for use with our NeRF implementation, please see <a href="docs/nerf_dataset_tips.md">this document</a>.</p>
-<h3 id="sdf-armadillo">SDF armadillo<a class="headerlink" href="#sdf-armadillo" title="Permanent link">&para;</a></h3>
+<h3 id="sdf-armadillo">SDF armadillo</h3>
 <pre><code class="language-sh">instant-ngp$ ./build/testbed --scene data/sdf/armadillo.obj
 </code></pre>
 <p><img src="docs/assets_readme/armadillo.png"/></p>
-<h3 id="image-of-einstein">Image of Einstein<a class="headerlink" href="#image-of-einstein" title="Permanent link">&para;</a></h3>
+<h3 id="image-of-einstein">Image of Einstein</h3>
 <pre><code class="language-sh">instant-ngp$ ./build/testbed --scene data/image/albert.exr
 </code></pre>
 <p><img src="docs/assets_readme/albert.png"/></p>
 <p>To reproduce the gigapixel results, download, for example, <a href="https://www.flickr.com/photos/trevor_dobson_inefekt69/29314390837">the Tokyo image</a> and convert it to <code>.bin</code> using the <code>scripts/image2bin.py</code> script. This custom format improves compatibility and loading speed when resolution is high. Now you can run:</p>
 <pre><code class="language-sh">instant-ngp$ ./build/testbed --scene data/image/tokyo.bin
 </code></pre>
-<h3 id="volume-renderer">Volume Renderer<a class="headerlink" href="#volume-renderer" title="Permanent link">&para;</a></h3>
+<h3 id="volume-renderer">Volume Renderer</h3>
 <p>Download the <a href="https://drive.google.com/drive/folders/1SuycSAOSG64k2KLV7oWgyNWyCvZAkafK?usp=sharing">nanovdb volume for the Disney cloud</a>, which is derived <a href="https://disneyanimation.com/data-sets/?drawer=/resources/clouds/">from here</a> (<a href="https://media.disneyanimation.com/uploads/production/data_set_asset/6/asset/License_Cloud.pdf">CC BY-SA 3.0</a>).</p>
 <pre><code class="language-sh">instant-ngp$ ./build/testbed --mode volume --scene data/volume/wdas_cloud_quarter.nvdb
 </code></pre>
 <p><img src="docs/assets_readme/cloud.png"/></p>
-<h2 id="python-bindings">Python bindings<a class="headerlink" href="#python-bindings" title="Permanent link">&para;</a></h2>
+<h2 id="python-bindings">Python bindings</h2>
 <p>To conduct controlled experiments in an automated fashion, all features from the interactive testbed (and more!) have Python bindings that can be easily instrumented.
 For an example of how the <code>./build/testbed</code> application can be implemented and extended from within Python, see <code>./scripts/run.py</code>, which supports a superset of the command line arguments that <code>./build/testbed</code> does.</p>
 <p>Happy hacking!</p>
-<h2 id="troubleshooting-compile-errors">Troubleshooting compile errors<a class="headerlink" href="#troubleshooting-compile-errors" title="Permanent link">&para;</a></h2>
+<h2 id="troubleshooting-compile-errors">Troubleshooting compile errors</h2>
 <p>Before investigating further, make sure all submodules are up-to-date and try compiling again.</p>
 <pre><code class="language-sh">instant-ngp$ git submodule sync --recursive
 instant-ngp$ git submodule update --init --recursive
@@ -1067,7 +325,7 @@ If your problem persists, consult the following table of known issues.</p>
 </tbody>
 </table>
 <p>If you cannot find your problem in the table, please feel free to <a href="https://github.com/NVlabs/instant-ngp/issues/new">open an issue</a> and ask for help.</p>
-<h2 id="thanks">Thanks<a class="headerlink" href="#thanks" title="Permanent link">&para;</a></h2>
+<h2 id="thanks">Thanks</h2>
 <p>Many thanks to <a href="https://research.nvidia.com/person/jonathan-tremblay">Jonathan Tremblay</a> and <a href="https://developer.nvidia.com/blog/author/atao/">Andrew Tao</a> for testing early versions of this codebase and to Arman Toorians and Saurabh Jain for the factory robot dataset.
 We also thank <a href="https://github.com/grey-area">Andrew Webb</a> for noticing that one of the prime numbers in the spatial hash was not actually prime; this has been fixed since.</p>
 <p>This project makes use of a number of awesome open source libraries, including:</p>
@@ -1082,7 +340,7 @@ We also thank <a href="https://github.com/grey-area">Andrew Webb</a> for noticin
 <li>and others! See the <code>dependencies</code> folder.</li>
 </ul>
 <p>Many thanks to the authors of these brilliant projects!</p>
-<h2 id="license-and-citation">License and Citation<a class="headerlink" href="#license-and-citation" title="Permanent link">&para;</a></h2>
+<h2 id="license-and-citation">License and Citation</h2>
 <pre><code class="language-bibtex">@article{mueller2022instant,
     title = {Instant Neural Graphics Primitives with a Multiresolution Hash Encoding},
     author = {Thomas M\&quot;uller and Alex Evans and Christoph Schied and Alexander Keller},
@@ -1093,87 +351,42 @@ We also thank <a href="https://github.com/grey-area">Andrew Webb</a> for noticin
 </code></pre>
 <p>Copyright © 2022, NVIDIA Corporation. All rights reserved.</p>
 <p>This work is made available under the Nvidia Source Code License-NC. Click <a href="LICENSE.txt">here</a> to view a copy of this license.</p>
-
-
-
-  
-
-
-
-                
-              </article>
+              
             </div>
-          
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
           
         </div>
-        
-      </main>
-      
-        <footer class="md-footer">
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
-  
-  
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
-</div>
-      
-        <div class="md-social">
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://twitter.com/cobanov" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
-    </a>
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://youtube.com/@mertcobanov" target="_blank" rel="noopener" title="youtube.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
-    </a>
-  
-    
-    
-    
-    
-      
-      
-    
-    <a href="https://instagram.com/mertcobanov" target="_blank" rel="noopener" title="instagram.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
-    </a>
-  
-</div>
-      
-    </div>
+      </div>
+
+    </section>
+
   </div>
-</footer>
-      
-    </div>
-    <div class="md-dialog" data-md-component="dialog">
-      <div class="md-dialog__inner md-typeset"></div>
-    </div>
-    
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}}</script>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <script src="../../assets/javascripts/bundle.b425cdc4.min.js"></script>
-      
     
-  </body>
+  </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme_extra.js" defer></script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
 </html>
