@@ -117,7 +117,7 @@ for f in *.flac; do ffmpeg -i "$f" "wav-exports/${f%.}.wav"; done
 **WAV → mp3**
 
 ```
-for f in *.*; do ffmpeg -i "$f" "wav-exports/${f%.}.wav"; done`
+for f in *.*; do ffmpeg -i "$f" "wav-exports/${f%.}.wav"; done
 ```
 
 ```
@@ -133,7 +133,7 @@ ffmpeg -f image2 -r 30 -i image_%6d.png -vcodec libx264 -crf 18  -pix_fmt yuv420
 **MP4 → PNG**
 
 ```
-ffmpeg -i test.mp4 -vf fps=1/2  png-exports/video13_%06d.png`
+ffmpeg -i test.mp4 -vf fps=1/2  png-exports/video13_%06d.png
 ```
 
 ```
@@ -143,7 +143,7 @@ for f in *.mp4; do ffmpeg -i "$f" -vf fps=2 png-exports/${f%.*}_%06d.png; done
 **MOV to Optimized GIF**
 
 ```
-ffmpeg -i test.mov -vf scale=320:-1 -r 10 output/ffout%3d.png`
+ffmpeg -i test.mov -vf scale=320:-1 -r 10 output/ffout%3d.png
 ```
 
 ```
@@ -173,9 +173,9 @@ python inference_realesrgan.py -n RealESRGAN_x4plus -i v13 -s 3 --suffix 8k -t 1
 Delete all hidden Mac junk files in Windows (Like .DS_STORE)
 
 ```
-del /s /q /f /a .DS_STORE`
+del /s /q /f /a .DS_STORE
 ```
 
 ```
-del /s /q /f /a ._.*`
+del /s /q /f /a ._.*
 ```
