@@ -6,17 +6,17 @@ edit_uri: ""
 
 nav:
   - Blog:
-      - "index.md"
-      - "Helper one-liners": "helpers.md"
-      - "New Macbook Installation": "new-macbook.md"
-      - "Install Ubuntu": "ubuntu.md"
-      - "Cypherpunk Manifesto": "cyberpunk.md"
-      - "Doing Python Configuration Right": "python-conf.md"
-      - "Windows WSL Activate SSH": "windows-wsl-ssh.md"
-      - "NeRF": "nerf.md"
-      - "Instagram": "instagram.md"
-      - "Training and Tuning Terms": "tuning-terms.md"
-      - "Python YAML Configs": "pyyaml.md"
+      - "0. Hello": "index.md"
+      - "1. Helper one-liners": "helpers.md"
+      - "2. New Macbook Installation": "new-macbook.md"
+      - "3. Install Ubuntu": "ubuntu.md"
+      - "4. Cypherpunk Manifesto": "cyberpunk.md"
+      - "5. Doing Python Configuration Right": "python-conf.md"
+      - "6. Windows WSL Activate SSH": "windows-wsl-ssh.md"
+      - "7. NeRF": "nerf.md"
+      - "8. Instagram": "instagram.md"
+      - "9. Training and Tuning Terms": "tuning-terms.md"
+      - "10. Python YAML Configs": "pyyaml.md"
 
   - About:
       - "about.md"

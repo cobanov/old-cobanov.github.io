@@ -41,12 +41,6 @@ sudo nano ~/.bashrc
 exec zsh
 ```
 
-### Install addons
-
-```bash
-sudo apt-get install fonts-powerline
-```
-
 ## GPU Drivers
 
 ```bash
@@ -67,8 +61,8 @@ nvcc --version
 ## Install Miniconda
 
 ```bash
-curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh
-sh Miniconda3-latest-MacOSX-arm64.sh
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+sh bash Miniconda3-latest-Linux-x86_64.shv
 ```
 
 ### Torch environment
