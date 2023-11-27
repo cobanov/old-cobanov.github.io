@@ -5,24 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Mert Cobanov" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Helper one-liners - Cobanov</title>
+    <title>1. Helper one-liners - Cobanov</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Helper one-liners";
+        var mkdocs_page_name = "1. Helper one-liners";
         var mkdocs_page_input_path = "helpers.md";
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -42,29 +41,29 @@
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Blog</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="..">Hello 👋</a>
+                  <li class="toctree-l1"><a class="reference internal" href="..">0. Hello</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Helper one-liners</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">1. Helper one-liners</a>
     <ul class="current">
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../new-macbook/">New Macbook Installation</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../new-macbook/">2. New Macbook Installation</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">Install Ubuntu</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../ubuntu/">3. Install Ubuntu</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../cyberpunk/">Cypherpunk Manifesto</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../cyberpunk/">4. Cypherpunk Manifesto</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../python-conf/">Doing Python Configuration Right</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../python-conf/">5. Doing Python Configuration Right</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../windows-wsl-ssh/">Windows WSL Activate SSH</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../windows-wsl-ssh/">6. Windows WSL Activate SSH</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../nerf/">NeRF</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../nerf/">7. NeRF</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../instagram/">Instagram</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../instagram/">8. Instagram</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../tuning-terms/">Training and Tuning Terms</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../tuning-terms/">9. Training and Tuning Terms</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../pyyaml/">Python YAML Configs</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../pyyaml/">10. Python YAML Configs</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">About</span></p>
@@ -108,9 +107,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Blog &raquo;</li>
-      <li>Helper one-liners</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Blog</li>
+      <li class="breadcrumb-item active">1. Helper one-liners</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -183,7 +182,7 @@
 <pre><code class="language-mp4">for f in *.flac; do ffmpeg -i &quot;$f&quot; &quot;wav-exports/${f%.}.wav&quot;; done
 </code></pre>
 <p><strong>WAV → mp3</strong></p>
-<pre><code>for f in *.*; do ffmpeg -i &quot;$f&quot; &quot;wav-exports/${f%.}.wav&quot;; done`
+<pre><code>for f in *.*; do ffmpeg -i &quot;$f&quot; &quot;wav-exports/${f%.}.wav&quot;; done
 </code></pre>
 <pre><code>for f in *; do ffmpeg -i &quot;${f}&quot; -vn -ab 128k -ar 44100 -y &quot;${f}.mp3&quot; ; done
 </code></pre>
@@ -191,12 +190,12 @@
 <pre><code>ffmpeg -f image2 -r 30 -i image_%6d.png -vcodec libx264 -crf 18  -pix_fmt yuv420p output.mp4
 </code></pre>
 <p><strong>MP4 → PNG</strong></p>
-<pre><code>ffmpeg -i test.mp4 -vf fps=1/2  png-exports/video13_%06d.png`
+<pre><code>ffmpeg -i test.mp4 -vf fps=1/2  png-exports/video13_%06d.png
 </code></pre>
 <pre><code>for f in *.mp4; do ffmpeg -i &quot;$f&quot; -vf fps=2 png-exports/${f%.*}_%06d.png; done
 </code></pre>
 <p><strong>MOV to Optimized GIF</strong></p>
-<pre><code>ffmpeg -i test.mov -vf scale=320:-1 -r 10 output/ffout%3d.png`
+<pre><code>ffmpeg -i test.mov -vf scale=320:-1 -r 10 output/ffout%3d.png
 </code></pre>
 <pre><code>convert -delay 8 -loop 0 output/ffout*.png output/test.gif
 </code></pre>
@@ -211,16 +210,16 @@
 <hr />
 <h2 id="utilities">Utilities</h2>
 <p>Delete all hidden Mac junk files in Windows (Like .DS_STORE)</p>
-<pre><code>del /s /q /f /a .DS_STORE`
+<pre><code>del /s /q /f /a .DS_STORE
 </code></pre>
-<pre><code>del /s /q /f /a ._.*`
+<pre><code>del /s /q /f /a ._.*
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href=".." class="btn btn-neutral float-left" title="Hello 👋"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../new-macbook/" class="btn btn-neutral float-right" title="New Macbook Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href=".." class="btn btn-neutral float-left" title="0. Hello"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../new-macbook/" class="btn btn-neutral float-right" title="2. New Macbook Installation">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -250,14 +249,15 @@
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
