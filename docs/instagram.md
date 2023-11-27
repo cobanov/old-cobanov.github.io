@@ -13,19 +13,19 @@ Bu projeye [davidarroyo1234](https://github.com/davidarroyo1234)'nun bu [github 
 
 ## Instagram hesabiniza girin ve developer console'u acin
 
-```
+```bash
 Windows: Ctrl+Shift+J
 MacOS: ⌘+⌥+I
 ```
 
-![instagram](../assets/instagram.png)
+![instagram](assets/instagram.png)
 
 ## Kodu Console'a yapistirip calistirin
 
-![](../assets/insta3.png)
+![](assets/insta3.png)
 
 ## Run tusuna basarak baslatabilirsiniz
 
 Calistirin ve takipten cikmak istediginiz kullanicilari tikleyip calistirin.
 
-![](../assets/insta2.png)
+![](assets/insta2.png)
