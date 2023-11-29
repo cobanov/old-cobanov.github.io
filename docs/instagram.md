@@ -8,13 +8,17 @@ Bu projeye [davidarroyo1234](https://github.com/davidarroyo1234)'nun bu [github 
 
 ## Linkteki web adresine gidin ve copy butonuna basin
 
-[LINK](https://davidarroyo1234.github.io/InstagramUnfollowers/)
+### [LINK ](https://davidarroyo1234.github.io/InstagramUnfollowers/)
 
-[Alternatif LINK - GIST](https://gist.githubusercontent.com/cobanov/5804dc3e9deb6b07ede82207102b5562/raw/2156dacc8727559654183757e5ef39b8ebb4010d/unfollowers)
+### Alternatif Linker
 
-[Alternatif LINK - ZEROBIN](https://zerobin.net/?505411b9c44fe0a7#ueNIjXVBswk+LdE/6jxYy8P9EWin24SrWI9FmDBWdIo=)
+Alternatif linkler icin kodun tamamini `ctrl+a` `ctrl+c` veya koda uc kez tiklayarak tumunu sectikten sonra kopyalayabilirsiniz.
 
-[Alternatif LINK - PASTEBIN](https://pastebin.com/qGB93W4B)
+- [GIST](https://gist.githubusercontent.com/cobanov/5804dc3e9deb6b07ede82207102b5562/raw/2156dacc8727559654183757e5ef39b8ebb4010d/unfollowers)
+
+- [ZEROBIN](https://zerobin.net/?505411b9c44fe0a7#ueNIjXVBswk+LdE/6jxYy8P9EWin24SrWI9FmDBWdIo=)
+
+- [PASTEBIN](https://pastebin.com/qGB93W4B)
 
 ## Instagram hesabiniza girin ve developer console'u acin
 
