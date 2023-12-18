@@ -17,7 +17,8 @@ sudo apt-get update && sudo apt-get upgrade
 ```
 
 ```bash
-sudo apt install curl vim tree wget vim git htop imagemagick ffmpeg tmux
+sudo apt install curl vim tree wget git htop tmux
+sudo apt install imagemagick ffmpeg 
 ```
 
 ### Configure Git
@@ -40,7 +41,37 @@ Read this
 sudo nano ~/.bashrc
 exec zsh
 ```
+## Docker
 
+```bash
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+apt-cache policy docker-ce
+sudo apt install docker-ce -y
+sudo systemctl status docker 
+sudo su
+useradd -m -s /bin/bash docker -g docker
+su docker
+docker run hello-world
+```
+
+## Portainer
+
+```bash
+docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+```
+
+## Create User
+
+```
+sudo adduser fethi
+sudo usermod -aG sudo fethi
+
+sudo chown fethi:fethi /developer
+sudo chmod u+rw /developer
+```
 ## GPU Drivers
 
 ```bash
@@ -62,7 +93,7 @@ nvcc --version
 
 ```bash
 curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-sh bash Miniconda3-latest-Linux-x86_64.shv
+bash Miniconda3-latest-Linux-x86_64.sh
 ```
 
 ### Torch environment
