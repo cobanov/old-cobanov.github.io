@@ -8,7 +8,7 @@
     <title>3. Install Ubuntu - Cobanov</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
@@ -17,11 +17,12 @@
         var mkdocs_page_url = null;
       </script>
     
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -113,9 +114,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Blog</li>
-      <li class="breadcrumb-item active">3. Install Ubuntu</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Blog &raquo;</li>
+      <li>3. Install Ubuntu</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -136,7 +137,8 @@
 <p>Update ubuntu</p>
 <pre><code class="language-bash">sudo apt-get update &amp;&amp; sudo apt-get upgrade
 </code></pre>
-<pre><code class="language-bash">sudo apt install curl vim tree wget vim git htop imagemagick ffmpeg tmux
+<pre><code class="language-bash">sudo apt install curl vim tree wget git htop tmux
+sudo apt install imagemagick ffmpeg 
 </code></pre>
 <h3 id="configure-git">Configure Git</h3>
 <pre><code class="language-bash">git config --global user.name &quot;Mert Cobanov&quot;
@@ -150,6 +152,29 @@ git config --global credential.helper store
 <h3 id="make-default">Make default</h3>
 <pre><code class="language-bash">sudo nano ~/.bashrc
 exec zsh
+</code></pre>
+<h2 id="docker">Docker</h2>
+<pre><code class="language-bash">sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;
+apt-cache policy docker-ce
+sudo apt install docker-ce -y
+sudo systemctl status docker 
+sudo su
+useradd -m -s /bin/bash docker -g docker
+su docker
+docker run hello-world
+</code></pre>
+<h2 id="portainer">Portainer</h2>
+<pre><code class="language-bash">docker volume create portainer_data
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+</code></pre>
+<h2 id="create-user">Create User</h2>
+<pre><code>sudo adduser fethi
+sudo usermod -aG sudo fethi
+
+sudo chown fethi:fethi /developer
+sudo chmod u+rw /developer
 </code></pre>
 <h2 id="gpu-drivers">GPU Drivers</h2>
 <pre><code class="language-bash">sudo apt update &amp; upgrade
@@ -165,7 +190,7 @@ nvcc --version
 </code></pre>
 <h2 id="install-miniconda">Install Miniconda</h2>
 <pre><code class="language-bash">curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-sh bash Miniconda3-latest-Linux-x86_64.shv
+bash Miniconda3-latest-Linux-x86_64.sh
 </code></pre>
 <h3 id="torch-environment">Torch environment</h3>
 <pre><code class="language-bash">conda create --name torchenv python=3.9
@@ -245,15 +270,14 @@ sudo apt-get update
     
   </span>
 </div>
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "..";</script>
-    <script src="../js/theme_extra.js"></script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/main.js"></script>
-    <script>
-        jQuery(function () {
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
-        });
+        };
     </script>
 
 </body>
