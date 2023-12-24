@@ -29,6 +29,11 @@ MacOS: ⌘+⌥+I
 
 ![instagram](assets/instagram.png)
 
+## PROBLEM 1: Kodu Yapistiramiyorsaniz!
+Yeni guncellemeler ile birlikte console'a direkt kod yapistiramazsiniz ve asagidaki gibi bir hata mesaji alirsiniz. Aciklamada soyledigi gibi klavyenizle ilgili yere `allow pasting` yazmalisiniz ve kod yapistirmayi bu sekilde aktif edebilirsiniz.
+
+![Alt text](assets/self-xss-console-warn.png)
+
 ## Kodu Console'a yapistirip calistirin
 
 ![](assets/insta3.png)
